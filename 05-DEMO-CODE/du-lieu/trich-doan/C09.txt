@@ -1,0 +1,6 @@
+/* A card responds as one target; only its artwork grows inside the frame.
+   Shared markup applies this to both libraries and search results. */
+  .maku-course-card:hover .maku-course-media img,
+  .brush-card:hover .brush-card-image img { transform: scale(1.045); }
+.maku-course-card:focus-within .maku-course-media img,
+.brush-card:focus-within .brush-card-image img { transform: scale(1.045); }

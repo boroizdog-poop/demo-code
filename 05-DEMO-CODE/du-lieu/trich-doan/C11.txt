@@ -1,0 +1,16 @@
+    .artio-hero-image, .artio-portrait, .artio-eye-crop {
+        transform: translate3d(calc(var(--pointer-x, 0) * var(--pointer-depth)), calc(var(--pointer-y, 0) * var(--pointer-depth)), 0);
+        transition: transform 180ms ease-out;
+    }
+    .artio-hero-image { --pointer-depth: 6px; scale: 1.18; transition: transform 180ms ease-out, scale 350ms ease-out; }
+    .artio-hero-shell.is-pointer-active .artio-hero-image { scale: 1.195; }
+    .artio-hero-shell.is-pointer-active :is(.artio-hero-image, .artio-portrait, .artio-eye-crop) { will-change: transform; }
+    .artio-portrait { --pointer-depth: 12px; }
+    .artio-eye-crop { --pointer-depth: 16px; }
+    .artio-portrait > img, .artio-eye-crop > img {
+        transform-origin: center;
+        transition: transform 300ms ease-out;
+    }
+    .is-pointer-active .artio-portrait:hover > img, .is-pointer-active .artio-eye-crop:hover > img {
+        transform: scale(1.05);
+    }

@@ -1,0 +1,29 @@
+// Manual carousel only; submitting and hiding comments remain in app.js.
+(() => {
+    const section = document.querySelector('.resource-comments');
+    const track = section?.querySelector('[data-comment-list]');
+    const controls = section?.querySelector('.comments-controls');
+    if (!track || !controls) return;
+    const previous = controls.querySelector('[data-comments-prev]');
+    const next = controls.querySelector('[data-comments-next]');
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    function update() {
+        const end = Math.max(0, track.scrollWidth - track.clientWidth);
+        controls.hidden = end <= 2;
+        previous.disabled = track.scrollLeft <= 2;
+        next.disabled = track.scrollLeft >= end - 2;
+    }
+    function move(direction) {
+        const card = track.querySelector('.comment');
+        if (!card) return;
+        const gap = parseFloat(getComputedStyle(track).gap) || 0;
+        track.scrollBy({left: direction * (card.getBoundingClientRect().width + gap), behavior: reduced.matches ? 'instant' : 'smooth'});
+    }
+    previous.addEventListener('click', () => move(-1));
+    next.addEventListener('click', () => move(1));
+    track.addEventListener('scroll', update, {passive: true});
+    window.addEventListener('resize', update, {passive: true});
+    window.addEventListener('pageshow', update);
+    if ('ResizeObserver' in window) new ResizeObserver(update).observe(track);
+    update();
+})();

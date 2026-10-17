@@ -1,0 +1,22 @@
+<?php
+require __DIR__.'/bootstrap.php';
+require __DIR__.'/includes/layout.php';
+require __DIR__.'/includes/brushes.php';
+$q=trim((string)($_GET['q']??''));
+// Recognize complete synonym terms before removing Vietnamese accents.
+$searchText=static function(string $text): string {
+    if(class_exists('Normalizer')) $text=Normalizer::normalize($text,Normalizer::FORM_C) ?: $text;
+    $text=preg_replace('/(?<![\p{L}\p{N}_])(?:(?:bộ|bo)\s+cọ|cọ|brush(?:es)?)(?![\p{L}\p{N}_])/iu', 'brush', $text) ?? $text;
+    $text=preg_replace('/(?<![\p{L}\p{N}_])(?:(?:khóa|khoá|khoa)\s+(?:học|hoc)|courses?)(?![\p{L}\p{N}_])/iu', 'course', $text) ?? $text;
+    return artio_search_normalize($text);
+};
+$needle=$searchText($q);
+// Preserve partial-word matching when the query contains no synonym phrase.
+$usesSynonyms=$needle!==artio_search_normalize($q)||preg_match('/(?<![a-z0-9])(?:brush|course)(?![a-z0-9])/', $needle);
+$searchContent=$usesSynonyms?$searchText:'artio_search_normalize';
+$courses=$brushes=[];
+if ($needle!=='') {
+    $courses=array_values(array_filter(artio_courses(),fn($c)=>str_contains($searchContent($c['title'].' '.$c['category'].' '.$c['excerpt']),$needle)));
+    $brushes=array_values(array_filter(artio_brushes(),fn($b)=>str_contains($searchContent($b['title'].' '.$b['artist'].' '.$b['type'].' '.$b['tag'].' '.$b['description']),$needle)));
+}
+$needsAuth=!artio_user();

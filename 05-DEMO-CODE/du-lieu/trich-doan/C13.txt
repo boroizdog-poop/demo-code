@@ -1,0 +1,34 @@
+'use strict';
+const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
+if ('IntersectionObserver' in window) {
+  const targets = [...document.querySelectorAll('[data-gallery-reveal], .catalog-body .maku-course-card, .brush-card')];
+  const reveal = element => {
+    element.classList.remove('is-waiting');
+    observer.unobserve(element);
+  };
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => { if (entry.isIntersecting) reveal(entry.target); });
+  }, {threshold: 0.08, rootMargin: '0px 0px -48px 0px'});
+  const anchor = document.getElementById(location.hash.slice(1));
+  // Each entrance runs once. Visible, focused and directly linked content stays readable.
+  targets.forEach(element => {
+    const rect = element.getBoundingClientRect();
+    if (motionPreference.matches || rect.top < innerHeight || element.contains(document.activeElement) || (anchor && (anchor === element || anchor.contains(element)))) return;
+    element.classList.add('gallery-reveal', 'is-waiting');
+    observer.observe(element);
+  });
+  const revealAll = () => targets.forEach(reveal);
+  // Tab or other focus navigation reveals only the focused content and its ancestors.
+  document.addEventListener('focusin', event => {
+    let target = event.target.closest('.gallery-reveal');
+    while (target) {
+      reveal(target);
+      target = target.parentElement?.closest('.gallery-reveal');
+    }
+  });
+  motionPreference.addEventListener('change', event => {
+    if (event.matches) { revealAll(); observer.disconnect(); }
+  });
+  window.addEventListener('pageshow', event => { if (event.persisted) revealAll(); });
+}
+const carousel = document.querySelector('[data-carousel]');

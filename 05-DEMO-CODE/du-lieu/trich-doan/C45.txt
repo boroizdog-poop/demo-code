@@ -1,0 +1,34 @@
+<?php
+declare(strict_types=1);
+if (PHP_SAPI !== 'cli') exit;
+require_once dirname(__DIR__).'/bootstrap.php';
+$db=artio_db();
+$sqlite=$db->getAttribute(PDO::ATTR_DRIVER_NAME)==='sqlite';
+$ref=$sqlite?'INTEGER':'INT UNSIGNED';
+function artio_add_model_column(PDO $db, bool $sqlite, string $table, string $column, string $definition): void {
+    $columns=$sqlite?array_column($db->query("PRAGMA table_info($table)")->fetchAll(),'name'):array_column($db->query("SHOW COLUMNS FROM $table")->fetchAll(),'Field');
+    if (!in_array($column,$columns,true)) $db->exec("ALTER TABLE $table ADD COLUMN $column $definition");
+}
+artio_add_model_column($db,$sqlite,'courses','category_id',"$ref NULL REFERENCES categories(id)");
+artio_add_model_column($db,$sqlite,'comments','course_id',"$ref NULL REFERENCES courses(id)");
+artio_add_model_column($db,$sqlite,'comments','brush_id',"$ref NULL REFERENCES brushes(id)");
+$db->exec('UPDATE courses SET category_id=(SELECT id FROM categories WHERE categories.name=courses.category) WHERE category_id IS NULL');
+foreach ($db->query('SELECT id,resource_key FROM comments WHERE course_id IS NULL AND brush_id IS NULL')->fetchAll() as $comment) {
+    if (preg_match('/^course:(\d+)$/',$comment['resource_key'],$match)) {
+        $db->prepare('UPDATE comments SET course_id=(SELECT id FROM courses WHERE id=?) WHERE id=?')->execute([(int)$match[1],$comment['id']]);
+    } elseif (preg_match('/^brush:([a-zA-Z0-9_-]+)$/',$comment['resource_key'],$match)) {
+        $db->prepare('UPDATE comments SET brush_id=(SELECT id FROM brushes WHERE slug=?) WHERE id=?')->execute([$match[1],$comment['id']]);
+    }
+}
+if ($sqlite) {
+    // Additive guards also cover databases created before FK columns were introduced.
+    foreach (['INSERT','UPDATE'] as $operation) {
+        $suffix=strtolower($operation);
+        $db->exec("CREATE TRIGGER IF NOT EXISTS comments_validate_$suffix BEFORE $operation ON comments BEGIN
+            SELECT CASE WHEN (NEW.course_id IS NULL)=(NEW.brush_id IS NULL) THEN RAISE(ABORT,'Comment needs exactly one resource') END;
+            SELECT CASE WHEN NOT EXISTS(SELECT 1 FROM users WHERE id=NEW.user_id) THEN RAISE(ABORT,'Comment user does not exist') END;
+            SELECT CASE WHEN NEW.course_id IS NOT NULL AND NOT EXISTS(SELECT 1 FROM courses WHERE id=NEW.course_id) THEN RAISE(ABORT,'Comment course does not exist') END;
+            SELECT CASE WHEN NEW.brush_id IS NOT NULL AND NOT EXISTS(SELECT 1 FROM brushes WHERE id=NEW.brush_id) THEN RAISE(ABORT,'Comment brush does not exist') END;
+        END");
+        $db->exec("CREATE TRIGGER IF NOT EXISTS courses_validate_category_$suffix BEFORE $operation ON courses BEGIN
+            SELECT CASE WHEN NEW.category_id IS NULL OR NOT EXISTS(SELECT 1 FROM categories WHERE id=NEW.category_id) THEN RAISE(ABORT,'Course category does not exist') END;

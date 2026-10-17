@@ -1,0 +1,36 @@
+.admin-page .sticky-actions #editor-status { flex: 1 1 200px; margin: 0; }
+.admin-page button[aria-busy=true] { position: relative; color: transparent; opacity: 1; }
+.admin-page button[aria-busy=true]::after { content: ''; position: absolute; inset: 0; margin: auto; width: 16px; height: 16px; border: 2px solid var(--admin-line-strong); border-top-color: var(--admin-body); border-radius: 50%; animation: admin-saving 700ms linear infinite; }
+.admin-page .orange-btn[aria-busy=true]::after { border-color: var(--admin-muted); border-top-color: var(--admin-on-primary); }
+@keyframes admin-saving { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion:reduce) { .admin-page button[aria-busy=true]::after { animation: none; } }
+
+.admin-page .admin-login-card .eyebrow { color: var(--admin-accent-text); }
+
+/* Native page transitions preserve the admin shell without replacing live forms. */
+@view-transition { navigation: auto; }
+@supports (view-transition-name: admin-sidebar) {
+  .admin-page .maku-header { view-transition-name: admin-header; }
+  .admin-page .admin-sidebar { view-transition-name: admin-sidebar; }
+  .admin-page .admin-section-tabs { view-transition-name: admin-section-tabs; }
+  .admin-page .admin-content { view-transition-name: admin-content; }
+  ::view-transition-group(root),
+  ::view-transition-group(admin-header),
+  ::view-transition-group(admin-sidebar),
+  ::view-transition-group(admin-section-tabs),
+  ::view-transition-group(admin-content) { animation: none; }
+  ::view-transition-old(root),
+  ::view-transition-old(admin-header),
+  ::view-transition-old(admin-sidebar),
+  ::view-transition-old(admin-section-tabs),
+  ::view-transition-old(admin-content) { display: none; animation: none; }
+  ::view-transition-new(root),
+  ::view-transition-new(admin-header),
+  ::view-transition-new(admin-sidebar),
+  ::view-transition-new(admin-section-tabs) { animation: none; mix-blend-mode: normal; }
+  ::view-transition-new(admin-content) { animation: admin-content-settle 140ms ease-out both; mix-blend-mode: normal; }
+}
+@keyframes admin-content-settle { from { opacity: .96; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+  ::view-transition-new(admin-content) { animation: none; }

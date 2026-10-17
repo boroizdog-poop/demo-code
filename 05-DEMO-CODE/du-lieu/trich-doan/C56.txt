@@ -1,0 +1,15 @@
+$$('[data-comment-form]').forEach(form => form.addEventListener('submit', async event => {
+  event.preventDefault();
+  const button = $('button', form), status = $('.form-status', form), body = $('textarea', form);
+  button.disabled = true; status.textContent = 'Đang gửi...';
+  const result = await postApi({action:'comment_add', resource_key:form.dataset.resource, body:body.value});
+  if (result.ok) { status.textContent = result.message; body.value = ''; location.hash = 'comments'; location.reload(); }
+  else { status.textContent = result.message; if (result.message.includes('đăng nhập')) openAuth(); }
+  button.disabled = false;
+}));
+$$('[data-hide-comment]').forEach(button => button.addEventListener('click', async () => {
+  button.disabled = true;
+  const result = await postApi({action: 'comment_hide', id: Number(button.dataset.hideComment)});
+  if (result.ok) location.reload();
+  else { toast(result.message); button.disabled = false; }
+}));

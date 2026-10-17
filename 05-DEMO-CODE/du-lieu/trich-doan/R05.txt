@@ -1,0 +1,49 @@
+/* Review cards, shared by course and brush detail pages. */
+.resource-comments { display: block; max-width: none; padding-top: 54px; border-top: 0; }
+.resource-comments .comments-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
+.resource-comments .comments-eyebrow { margin-bottom: 14px; color: #555b61; font: 500 10px/1.5 var(--body); letter-spacing: .26em; }
+.resource-comments h2 { margin: 0; color: #18191b; font: 500 clamp(30px, 3.5vw, 52px)/1.2 var(--body); letter-spacing: -.055em; }
+.resource-comments h2 em { color: #a1a4a8; font-style: normal; }
+.resource-comments .comment-count { margin: 12px 0 0; color: #81858a; font: 400 13px/1.5 var(--body); }
+.resource-comments .comments-controls { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.resource-comments .comments-controls[hidden] { display: none; }
+.resource-comments .comments-controls button { display: grid; place-items: center; flex: 0 0 44px; width: 44px; height: 44px; padding: 0; border: 1px solid #18191b; border-radius: 50%; background: #18191b; color: white; line-height: 1; }
+.resource-comments .comments-controls svg { display: block; width: 22px; height: 22px; }
+.resource-comments .comments-controls button:disabled { opacity: .3; cursor: default; }
+.resource-comments .comments-column { min-width: 0; max-width: none; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.resource-comments [data-comment-list] { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 14px; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: #d5d8dc transparent; }
+.resource-comments .comment { display: flex; flex-direction: column; flex: 0 0 calc((100% - 32px) / 3); min-width: 0; height: 380px; min-height: 0; overflow: hidden; padding: 24px; border: 0; border-radius: 28px; background: #f0f2f4; scroll-snap-align: start; }
+.resource-comments .comment::before { content: none; }
+.resource-comments .comment :is(.comment-card-top, .comment-quote, .comment-meta) { flex-shrink: 0; }
+.resource-comments .comment .comment-meta { max-height: 96px; overflow-y: auto; }
+.resource-comments .comment .comment-card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.resource-comments .comment-avatar { display: grid; place-items: center; flex-shrink: 0; width: 42px; height: 42px; border-radius: 50%; background: #e0e6eb; color: #4a5a69; font: 600 18px/1 var(--body); text-transform: uppercase; }
+.resource-comments .comment-card-label { padding: 8px 12px; border: 1px solid #d0d5da; border-radius: 100px; color: #666d75; font: 500 10px/1.4 var(--body); }
+.resource-comments .comment-quote { display: block; margin-top: 28px; height: 36px; color: #8aa7c6; font: 700 58px/1 Georgia, serif; }
+.resource-comments .comment .comment-message { flex: 1 1 0; min-height: 0; margin: 10px 0 20px; overflow-y: auto; color: #18191b; font: 400 clamp(18px, 1.7vw, 25px)/1.4 var(--body); letter-spacing: -.035em; overflow-wrap: anywhere; scrollbar-width: thin; }
+.resource-comments .comment .comment-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; margin-top: auto; padding-left: 14px; border-left: 1px solid #c9ced4; }
+.resource-comments .comment strong { color: #262a30; font: 500 13px/1.5 var(--body); overflow-wrap: anywhere; }
+.resource-comments .comment time { color: #777e86; font: 400 11px/1.5 var(--body); }
+.resource-comments .comment .text-link { margin-top: 6px; font-size: 12px; }
+.resource-comments .comment-empty { margin: 0; padding: 42px 24px; border-radius: 24px; background: #f0f2f4; color: #737980; text-align: center; font: 400 15px/1.8 var(--body); }
+.resource-comments .comment-form { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px 24px; align-items: center; margin-top: 24px; padding: 20px 24px; border: 0; border-radius: 22px; background: #fff; }
+.resource-comments .comment-form label { display: block; min-width: 0; }
+.resource-comments .comment-form textarea { display: block; width: 100%; min-height: 64px; max-height: 220px; padding: 10px 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; color: #262626; font: 400 16px/1.6 var(--body); resize: vertical; }
+.resource-comments .comment-form textarea:focus { outline: none; border: 0; box-shadow: none; }
+.resource-comments .comment-form .outline-btn { justify-self: end; }
+
+  .resource-comments .comment-form .outline-btn:not(:disabled):hover { background: #18191b; border-color: #18191b; color: #fff; }
+
+.resource-comments .comment-form .form-status { grid-column: 1 / -1; margin: 0; }
+.resource-comments .form-status:empty { display: none; }
+.resource-comments .comment-empty + [data-open-auth] { margin-top: 22px; }
+.resource-comments :is(.comments-controls button, [data-comment-list], .comment-message):focus-visible { outline: 2px solid #656b73; outline-offset: 3px; }
+@media (max-width: 1000px) {
+  .resource-comments .comment { flex-basis: calc((100% - 16px) / 2); }
+}
+@media (max-width: 600px) {
+  .resource-comments .comments-heading { gap: 12px; }
+  .resource-comments .comment { flex-basis: 88%; height: 340px; padding: 22px; }
+  .resource-comments .comment-form { grid-template-columns: minmax(0, 1fr); padding: 18px; }
+  .resource-comments .comment-form .outline-btn { justify-self: start; }
+}

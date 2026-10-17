@@ -1,0 +1,28 @@
+.starter-slide-art { position: relative; overflow: hidden; isolation: isolate; border-radius: 16px; }
+.starter-slide-art img { transition: transform 260ms var(--ease-out); }
+
+.collection-feature > img, .closing-art > img { transition: scale 260ms var(--ease-out); }
+/* Keep artwork zoom separate from the scroll-driven framing. */
+:is(.about-art, .about-art-detail) { overflow: hidden; }
+.artwork-frame { overflow: hidden; border-radius: 14px; }
+:is(.about-art, .about-art-detail) img { transition: transform 260ms var(--ease-out); }
+.detail-cover img { transition: transform 260ms var(--ease-out); }
+.hero-floating-art img { transition: transform 260ms var(--ease-out); }
+.resource-detail-art { overflow: hidden; }
+.resource-detail-art img { transition: transform 260ms var(--ease-out); }
+  .starter-slide:hover { opacity: 1; }
+  .starter-slide:hover .starter-slide-art img { transform: scale(1.035); }
+  :is(.artwork-frame, .detail-cover, .hero-floating-art, .resource-detail-art):hover > img { transform: scale(1.035); }
+  :is(.collection-feature, .closing-art):hover > img { scale: 1.035; }
+@media (prefers-reduced-motion: reduce) {
+  .starter-slide-art img { transition: none; }
+  .starter-slide:hover .starter-slide-art img, .starter-slide:focus-within .starter-slide-art img { transform: none; }
+  :is(.about-art, .about-art-detail, .detail-cover, .hero-floating-art, .resource-detail-art) > img { transition: none !important; }
+  :is(.artwork-frame, .detail-cover, .hero-floating-art, .resource-detail-art):hover > img { transform: none; }
+  :is(.collection-feature, .closing-art):hover > img { scale: none; }
+}
+
+/* Give the wide desktop canvas the tall art strips from the reference while
+   keeping the reading column untouched and hiding them on smaller screens. */
+.gallery-edge-art { display: none; }
+@media (min-width: 1440px) {

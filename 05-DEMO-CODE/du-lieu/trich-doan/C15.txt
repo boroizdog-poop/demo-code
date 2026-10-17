@@ -1,0 +1,36 @@
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const animations = [];
+    const entrance = [
+        ['.artio-artwork', 0, 0],
+        ['.artio-header', 70, 12],
+        ['.artio-slide-number, .artio-vertical-rule', 120, 10],
+        ['h1', 160, 26],
+        ['.artio-subtitle', 240, 20],
+        ['.artio-intro', 320, 18],
+        ['.artio-portrait', 210, 30],
+        ['.artio-eye-crop', 330, 24],
+        ['.artio-motto, .artio-scroll-cue', 410, 14]
+    ];
+    if (!motion.matches && hero.animate) {
+        entrance.forEach(([selector, delay, distance]) => {
+            hero.querySelectorAll(selector).forEach(element => {
+                const artwork = element.matches('.artio-artwork, .artio-portrait, .artio-eye-crop');
+                const backdrop = element.matches('.artio-artwork');
+                const start = { opacity: 0, translate: `0 ${backdrop ? 0 : Math.min(distance, 18)}px` };
+                const end = { opacity: 1, translate: '0 0' };
+                const animation = element.animate([start, end], {
+                    duration: artwork ? 850 : 650,
+                    delay,
+                    easing: 'cubic-bezier(.22, 1, .36, 1)',
+                    fill: 'backwards'
+                });
+                animations.push(animation);
+            });
+        });
+    }
+    // Hero text and artwork enter once; typing never restarts their animations.
+    const finishEntrance = () => animations.forEach(animation => animation.cancel());
+    motion.addEventListener('change', event => { if (event.matches) finishEntrance(); });
+    hero.addEventListener('focusin', finishEntrance);
+    window.addEventListener('scroll', finishEntrance, { passive: true, once: true });
+    window.addEventListener('resize', finishEntrance, { passive: true });

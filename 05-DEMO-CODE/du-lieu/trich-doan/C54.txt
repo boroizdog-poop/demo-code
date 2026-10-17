@@ -1,0 +1,23 @@
+/* Neutral near-white canvas for resource browsing and detail pages. */
+body:is(.course-library-page, .brush-page, .account-page, .search-page, .course-detail-page, .resource-detail-page, .resource-gate-page) {
+  --canvas: #fcfcfc;
+  background-color: var(--canvas);
+}
+/* Slightly deeper canvas for the libraries, saved resources and detail pages. */
+body:is(.course-library-page, .brush-page, .account-page, .search-page, .course-detail-page, .resource-detail-page) {
+  --canvas: #f9f9f9;
+}
+.course-detail-page .enroll-card {
+  background: #f7f7f7;
+  border-color: #e4e4e4;
+}
+
+/* Match the homepage's charcoal and gray treatment on large resource headings. */
+body:is(.course-library-page, .brush-page, .account-page, .search-page, .course-detail-page, .resource-detail-page, .resource-gate-page) main :is(h1, h2) {
+  color: #18191b;
+}
+body:is(.course-library-page, .brush-page, .account-page, .search-page, .course-detail-page, .resource-detail-page, .resource-gate-page) main :is(h1, h2) em {
+  color: #686c73;
+}
+
+.brush-page .catalog-count + .brush-grid { padding-top: 0; }

@@ -1,0 +1,12 @@
+<?php
+require __DIR__.'/bootstrap.php';require __DIR__.'/includes/layout.php';
+$user=artio_user();
+if(!$user){header('Location: index.php',true,302);exit;}
+$filter=in_array($_GET['type']??'',['all','courses','brushes'],true)?$_GET['type']:'all';
+$s=artio_db()->prepare("SELECT c.* FROM courses c JOIN saved_courses s ON s.course_id=c.id WHERE s.user_id=? AND c.status='published' ORDER BY c.id DESC");
+$s->execute([$user['id']]);$courses=array_map('artio_hydrate',$s->fetchAll());
+$s=artio_db()->prepare("SELECT b.* FROM brushes b JOIN saved_brushes s ON s.brush_id=b.id WHERE s.user_id=? AND b.status='published' ORDER BY b.id DESC");
+$s->execute([$user['id']]);$brushes=$s->fetchAll();
+$total=count($courses)+count($brushes);
+$visibleCount=$filter==='courses'?count($courses):($filter==='brushes'?count($brushes):$total);
+artio_head('Bộ sưu tập của bạn'); ?>

@@ -1,0 +1,390 @@
+// Visual effects adapted from Artio-web-main; persistence and auth stay in app.js.
+(() => {
+    'use strict';
+    const shell = document.querySelector('.artio-hero-shell');
+    const hero = document.querySelector('.artio-hero');
+    if (!shell || !hero) return;
+    const resize = () => {
+        const compact = window.innerWidth <= 1000;
+        const scale = compact ? 1 : shell.clientWidth / 1440;
+        if (!scale) return;
+        shell.style.setProperty('--hero-corner-scale', scale);
+        const height = compact ? Math.max(620, window.innerHeight) : 601;
+        shell.style.setProperty('--hero-base-height', `${compact ? height : 601 * scale}px`);
+        hero.style.setProperty('--hero-scale', scale);
+        hero.style.setProperty('--hero-height', `${height}px`);
+        // Preserve the Figma 1440 × 601 composition on desktop.
+        hero.style.setProperty('--layout-offset', `${(height - 601) / 2}px`);
+        hero.style.setProperty('--art-scale', Math.max(1, height / 601));
+    };
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+
+    // Animate only the entrance; final styles remain visible without JavaScript.
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const animations = [];
+    const entrance = [
+        ['.artio-artwork', 0, 0],
+        ['.artio-header', 70, 12],
+        ['.artio-slide-number, .artio-vertical-rule', 120, 10],
+        ['h1', 160, 26],
+        ['.artio-subtitle', 240, 20],
+        ['.artio-intro', 320, 18],
+        ['.artio-portrait', 210, 30],
+        ['.artio-eye-crop', 330, 24],
+        ['.artio-motto, .artio-scroll-cue', 410, 14]
+    ];
+    if (!motion.matches && hero.animate) {
+        entrance.forEach(([selector, delay, distance]) => {
+            hero.querySelectorAll(selector).forEach(element => {
+                const artwork = element.matches('.artio-artwork, .artio-portrait, .artio-eye-crop');
+                const backdrop = element.matches('.artio-artwork');
+                const start = { opacity: 0, translate: `0 ${backdrop ? 0 : Math.min(distance, 18)}px` };
+                const end = { opacity: 1, translate: '0 0' };
+                const animation = element.animate([start, end], {
+                    duration: artwork ? 850 : 650,
+                    delay,
+                    easing: 'cubic-bezier(.22, 1, .36, 1)',
+                    fill: 'backwards'
+                });
+                animations.push(animation);
+            });
+        });
+    }
+    // Hero text and artwork enter once; typing never restarts their animations.
+    const finishEntrance = () => animations.forEach(animation => animation.cancel());
+    motion.addEventListener('change', event => { if (event.matches) finishEntrance(); });
+    hero.addEventListener('focusin', finishEntrance);
+    window.addEventListener('scroll', finishEntrance, { passive: true, once: true });
+    window.addEventListener('resize', finishEntrance, { passive: true });
+
+    // Separate transform from the entrance's translate so both motions compose.
+    let pointerFrame = 0;
+    let pointerX = 0;
+    let pointerY = 0;
+    function resetPointer() {
+        if (!pointerFrame && !shell.classList.contains('is-pointer-active')) return;
+        cancelAnimationFrame(pointerFrame);
+        pointerFrame = 0;
+        hero.style.removeProperty('--pointer-x');
+        hero.style.removeProperty('--pointer-y');
+        shell.classList.remove('is-pointer-active');
+    }
+    shell.addEventListener('pointermove', event => {
+        if (motion.matches || window.innerWidth <= 1000 || (event.pointerType !== 'mouse' && event.pointerType !== 'pen')) return;
+        shell.classList.add('is-pointer-active');
+        pointerX = event.clientX;
+        pointerY = event.clientY;
+        if (pointerFrame) return;
+        pointerFrame = requestAnimationFrame(() => {
+            pointerFrame = 0;
+            const rect = shell.getBoundingClientRect();
+            if (!rect.width || !rect.height) return;
+            const clamp = value => Math.max(-1, Math.min(1, value));
+            hero.style.setProperty('--pointer-x', clamp((pointerX - rect.left) / rect.width * 2 - 1).toFixed(3));
+            hero.style.setProperty('--pointer-y', clamp((pointerY - rect.top) / rect.height * 2 - 1).toFixed(3));
+        });
+    }, { passive: true });
+    shell.addEventListener('pointerleave', resetPointer);
+    document.addEventListener('visibilitychange', resetPointer);
+    shell.addEventListener('pointercancel', resetPointer);
+    window.addEventListener('blur', resetPointer);
+    window.addEventListener('scroll', resetPointer, { passive: true });
+    window.addEventListener('resize', resetPointer, { passive: true });
+    motion.addEventListener('change', resetPointer);
+})();
+
+// Reveal the whole About artwork frame once; recycling images stays uninterrupted.
+(() => {
+    const gallery = document.querySelector('.about-rolling-gallery');
+    if (!gallery || !('IntersectionObserver' in window)) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    gallery.classList.add('art-frame-entrance');
+    const observer = new IntersectionObserver(entries => {
+        if (!entries.some(entry => entry.isIntersecting)) return;
+        gallery.classList.add('art-frame-entered');
+        observer.disconnect();
+    }, {threshold:0, rootMargin:'0px 0px -24px 0px'});
+    if (reduced.matches) gallery.classList.add('art-frame-entered');
+    // Observe the unclipped section: the hidden frame has no intersection area yet.
+    else observer.observe(gallery.closest('.gallery-about'));
+    reduced.addEventListener('change', event => {
+        if (event.matches) { gallery.classList.add('art-frame-entered'); observer.disconnect(); }
+    });
+})();
+
+// Recycle the original images downwards; no duplicated images or cloned tracks.
+(() => {
+    const gallery = document.querySelector('.about-rolling-gallery');
+    if (!gallery || !('IntersectionObserver' in window)) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const columns = [...gallery.querySelectorAll('.art-roll-track')].map((track,index) => ({track,y:0,speed:[22,30][index],steps:new Map()}));
+    let visible = false, frame = 0, previousTime = 0;
+    const paused = () => gallery.contains(document.activeElement);
+    function reset() {
+        columns.forEach(column => {
+            if (!column.initialized && !reduced.matches) {
+                column.track.prepend(column.track.lastElementChild);
+                column.initialized = true;
+            }
+        });
+        columns.forEach(column => {
+            const gap = parseFloat(getComputedStyle(column.track).gap) || 0;
+            [...column.track.children].forEach(item => column.steps.set(item, item.offsetHeight + gap));
+            column.y = -column.steps.get(column.track.firstElementChild);
+        });
+        columns.forEach(column => {
+            column.track.style.transform = `translateY(${column.y}px)`;
+        });
+    }
+    function tick(time) {
+        frame = 0;
+        if (!visible || reduced.matches || document.hidden || paused()) { previousTime=0; return; }
+        const delta = previousTime ? Math.min(.05,(time-previousTime)/1000) : 0;
+        previousTime = time;
+        columns.forEach(column => {
+            column.y += delta*column.speed;
+            if (column.y >= 0) {
+                const last = column.track.lastElementChild;
+                const step = column.steps.get(last);
+                column.track.prepend(last);
+                column.y -= step;
+            }
+            column.track.style.transform = `translateY(${column.y.toFixed(2)}px)`;
+        });
+        frame = requestAnimationFrame(tick);
+    }
+    function start() {
+        if (!visible || reduced.matches || document.hidden || paused()) {
+            cancelAnimationFrame(frame); frame = 0; previousTime = 0;
+            return;
+        }
+        if (!frame) frame=requestAnimationFrame(tick);
+    }
+    new IntersectionObserver(([entry]) => {
+        visible=entry.isIntersecting;
+        columns.forEach(column => { column.track.style.willChange = visible ? 'transform' : 'auto'; });
+        start();
+    }).observe(gallery);
+    window.addEventListener('resize',reset,{passive:true});
+    reduced.addEventListener('change',()=>{reset();start();});
+    document.addEventListener('visibilitychange',start);
+    gallery.addEventListener('focusin', start);
+    gallery.addEventListener('focusout', () => queueMicrotask(start));
+    reset();
+    if ('ResizeObserver' in window) new ResizeObserver(reset).observe(gallery);
+})();
+
+// Highlight only the panel reached by the reading position as the stack overlaps.
+(() => {
+    const panels = [...document.querySelectorAll('.home-gallery .service-panel')];
+    if (!panels.length || !('IntersectionObserver' in window)) return;
+    panels.forEach(panel => panel.classList.add('panel-motion'));
+    let frame = 0;
+    let lastCurrent = -2;
+    let visible = true;
+    function paint() {
+        frame = 0;
+        const readingLine = window.innerHeight * .55;
+        let current = -1;
+        panels.forEach((panel, index) => {
+            const rect = panel.getBoundingClientRect();
+            if (rect.top <= readingLine && rect.bottom > 0) current = index;
+        });
+        if (current === lastCurrent) return;
+        lastCurrent = current;
+        panels.forEach((panel, index) => panel.classList.toggle('is-current', index === current));
+    }
+    function schedule() { if (visible && !frame) frame = requestAnimationFrame(paint); }
+    new IntersectionObserver(([entry]) => {
+        visible = entry.isIntersecting;
+        if (visible) schedule();
+    }).observe(panels[0].closest('.service-stack'));
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule, { passive: true });
+    window.addEventListener('pageshow', schedule);
+    paint();
+})();
+
+// Reveal the inspiration gallery with staggered artwork and text.
+(() => {
+    const bridge = document.querySelector('.art-bridge');
+    if (!bridge || !('IntersectionObserver' in window)) return;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const targets = [...bridge.querySelectorAll('.art-bridge-piece img, .art-bridge-background, .art-bridge-copy > *')];
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(({ target, isIntersecting }) => {
+            if (target.matches('.art-bridge-copy')) {
+                [...target.children].forEach(element => {
+                    if (isIntersecting) element.classList.add('bridge-entered');
+                    else if (!reduced.matches && !element.contains(document.activeElement)) element.classList.remove('bridge-entered');
+                });
+                return;
+            }
+            const text = target.parentElement.matches('.art-bridge-copy');
+            if (!isIntersecting) {
+                if (text && !reduced.matches && !target.contains(document.activeElement)) target.classList.remove('bridge-entered');
+                return;
+            }
+            target.classList.add('bridge-entered');
+            if (!text) observer.unobserve(target);
+        });
+    }, { threshold: .15, rootMargin: '0px 0px -32px 0px' });
+    function configure() {
+        observer.disconnect();
+        targets.forEach((target, index) => {
+            target.classList.add('bridge-entrance');
+            target.style.setProperty('--reveal-delay', `${(index % 3) * 80}ms`);
+            if (reduced.matches) target.classList.add('bridge-entered');
+            else if (target.parentElement.matches('.art-bridge-copy')) observer.observe(target.parentElement);
+            else if (!target.classList.contains('bridge-entered')) observer.observe(target);
+        });
+    }
+    configure();
+    reduced.addEventListener('change', configure);
+    bridge.addEventListener('focusin', () => {
+        targets.forEach(target => target.classList.add('bridge-entered'));
+        targets.filter(target => !target.parentElement.matches('.art-bridge-copy')).forEach(target => observer.unobserve(target));
+    });
+})();
+
+// Artwork drifts down and fades as the black interlude leaves the viewport.
+(() => {
+    const bridge = document.querySelector('.art-bridge');
+    if (!bridge) return;
+    const pieces = [...bridge.querySelectorAll('.art-bridge-piece')];
+    const distances = pieces.map(piece => parseFloat(piece.style.getPropertyValue('--fall')) || 0);
+    const copy = bridge.querySelector('.art-bridge-copy');
+    const background = bridge.querySelector('.art-bridge-background');
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const clamp = value => Math.max(0, Math.min(1, value));
+    let frame = 0;
+    let visible = true;
+    let lastProgress = -1;
+    function paint() {
+        frame = 0;
+        const rect = bridge.getBoundingClientRect();
+        const progress = reduced.matches ? 0 : clamp(-rect.top / (rect.height * .85));
+        if (Math.abs(progress - lastProgress) < .001) return;
+        lastProgress = progress;
+        const opacity = (1 - clamp((progress - .15) / .85)).toFixed(3);
+        const driftScale = innerWidth <= 760 ? .35 : 1;
+        pieces.forEach((piece, index) => {
+            piece.style.translate = `0 ${(progress * distances[index] * driftScale).toFixed(1)}px`;
+            piece.style.opacity = opacity;
+        });
+        background.style.setProperty('--bridge-opacity', opacity);
+        copy.style.opacity = (1 - clamp(progress / .75)).toFixed(3);
+    }
+    function schedule() { if (visible && !frame) frame = requestAnimationFrame(paint); }
+    if ('IntersectionObserver' in window) {
+        new IntersectionObserver(([entry]) => {
+            visible = entry.isIntersecting;
+            pieces.forEach(piece => { piece.style.willChange = visible && !reduced.matches ? 'translate, opacity' : 'auto'; });
+            if (visible) schedule();
+            else if (frame) { cancelAnimationFrame(frame); frame = 0; }
+        }).observe(bridge);
+    }
+    addEventListener('scroll', schedule, { passive: true });
+    addEventListener('resize', () => { lastProgress = -1; schedule(); }, { passive: true });
+    addEventListener('pageshow', schedule);
+    reduced.addEventListener('change', schedule);
+    paint();
+})();
+
+// Scroll motion for the hero and the LEARN / CREATE / EXPLORE ribbon.
+(() => {
+    const root = document.querySelector('.home-gallery');
+    if (!root) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const hero = document.querySelector('.artio-hero-shell');
+    const ribbon = root.querySelector('.gallery-ribbon');
+    const track = ribbon.querySelector('.gallery-ribbon-track');
+    let frame = 0;
+    let lastCover = -1;
+    let lastRibbon = -1;
+    let loopFrame = 0, previousTime = 0, loopOffset = 0, period = 0;
+    let ribbonVisible = false, scrolling = false, idleTimer = 0;
+    function measurePeriod() {
+        const first = track.firstElementChild;
+        period = first ? first.getBoundingClientRect().width + (parseFloat(getComputedStyle(track).columnGap) || 0) : 0;
+        if (period) loopOffset %= period;
+    }
+    function drawRibbon(progress) {
+        const scrollOffset = progress * (innerWidth <= 760 ? 240 : 520);
+        const offset = period ? (scrollOffset + loopOffset) % period : scrollOffset;
+        track.style.setProperty('--ribbon-x', `${(-offset).toFixed(1)}px`);
+        ribbon.style.setProperty('--ribbon-turn', `${(progress * 160 + (period ? loopOffset / period * 360 : 0)).toFixed(1)}deg`);
+    }
+    function tickRibbon(time) {
+        loopFrame = 0;
+        if (!ribbonVisible || scrolling || reduced.matches || document.hidden) { previousTime = 0; return; }
+        const delta = previousTime ? Math.min((time - previousTime) / 1000, .05) : 0;
+        previousTime = time;
+        if (period) loopOffset = (loopOffset + delta * 50) % period;
+        drawRibbon(Math.max(0, lastRibbon));
+        loopFrame = requestAnimationFrame(tickRibbon);
+    }
+    function syncRibbonLoop() {
+        cancelAnimationFrame(loopFrame); loopFrame = 0; previousTime = 0;
+        if (ribbonVisible && !scrolling && !reduced.matches && !document.hidden) loopFrame = requestAnimationFrame(tickRibbon);
+    }
+    const clamp = value => Math.max(0, Math.min(1, value));
+    function paint() {
+        frame = 0;
+        if (reduced.matches) {
+            hero.style.setProperty('--hero-height-cut', '0px');
+            hero.style.setProperty('--hero-scroll-dim', '0');
+            track.style.setProperty('--ribbon-x', '0px');
+            ribbon.style.setProperty('--ribbon-turn', '0deg');
+            lastCover = lastRibbon = -1;
+            return;
+        }
+        const height = innerHeight;
+        const baseHeight = parseFloat(hero.style.getPropertyValue('--hero-base-height')) || height;
+        const cover = clamp(window.scrollY / baseHeight);
+        // Read layout before writing styles; skip effects already at their endpoint.
+        const ribbonRect = ribbon.getBoundingClientRect();
+        const progress = clamp((height - ribbonRect.top) / (height + ribbonRect.height));
+        if (cover !== lastCover) {
+            lastCover = cover;
+            hero.style.setProperty('--hero-height-cut', '0px');
+            hero.style.setProperty('--hero-scroll-dim', (cover*.5).toFixed(3));
+        }
+        if (progress !== lastRibbon) {
+            lastRibbon = progress;
+            drawRibbon(progress);
+        }
+    }
+    function schedule() { if (!frame) frame = requestAnimationFrame(paint); }
+    function configure() {
+        schedule();
+        syncRibbonLoop();
+    }
+    window.addEventListener('scroll', () => {
+        scrolling = true;
+        loopOffset = 0;
+        syncRibbonLoop();
+        lastRibbon = -1;
+        schedule();
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(() => {
+            scrolling = false;
+            syncRibbonLoop();
+        }, 180);
+    }, {passive:true});
+    window.addEventListener('resize', () => { measurePeriod(); lastCover = lastRibbon = -1; schedule(); }, {passive:true});
+    window.addEventListener('pageshow', schedule);
+    reduced.addEventListener('change', configure);
+    measurePeriod();
+    if ('IntersectionObserver' in window) {
+        new IntersectionObserver(([entry]) => {
+            ribbonVisible = entry.isIntersecting;
+            syncRibbonLoop();
+        }).observe(ribbon);
+    }
+    document.addEventListener('visibilitychange', syncRibbonLoop);
+    if ('ResizeObserver' in window) new ResizeObserver(() => { measurePeriod(); lastRibbon = -1; schedule(); }).observe(track.firstElementChild);
+    paint();
+})();
+

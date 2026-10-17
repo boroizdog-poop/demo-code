@@ -1,0 +1,18 @@
+// Reveal the whole About artwork frame once; recycling images stays uninterrupted.
+(() => {
+    const gallery = document.querySelector('.about-rolling-gallery');
+    if (!gallery || !('IntersectionObserver' in window)) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    gallery.classList.add('art-frame-entrance');
+    const observer = new IntersectionObserver(entries => {
+        if (!entries.some(entry => entry.isIntersecting)) return;
+        gallery.classList.add('art-frame-entered');
+        observer.disconnect();
+    }, {threshold:0, rootMargin:'0px 0px -24px 0px'});
+    if (reduced.matches) gallery.classList.add('art-frame-entered');
+    // Observe the unclipped section: the hidden frame has no intersection area yet.
+    else observer.observe(gallery.closest('.gallery-about'));
+    reduced.addEventListener('change', event => {
+        if (event.matches) { gallery.classList.add('art-frame-entered'); observer.disconnect(); }
+    });
+})();

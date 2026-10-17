@@ -1,0 +1,16 @@
+$$('[data-save-course], [data-save-brush]').forEach(button => button.addEventListener('click', async () => {
+  button.disabled = true;
+  button.setAttribute('aria-busy', 'true');
+  const isBrush = button.hasAttribute('data-save-brush');
+  const result = await postApi({action: isBrush ? 'save_brush' : 'save_course', id: Number(isBrush ? button.dataset.saveBrush : button.dataset.saveCourse), saved: button.dataset.saved !== 'true'});
+  if (result.ok) {
+    if (button.hasAttribute('data-collection-remove')) { location.reload(); return; }
+    button.dataset.saved = String(result.saved);
+    button.setAttribute('aria-pressed', String(result.saved));
+    button.textContent = result.saved ? 'Đã lưu vào bộ sưu tập ✓' : 'Lưu vào bộ sưu tập';
+  } else if (result.message.includes('đăng nhập')) openAuth();
+  toast(result.message);
+  button.disabled = false;
+  button.removeAttribute('aria-busy');
+}));
+const lessons = JSON.parse($('#lesson-data')?.textContent || '{}');

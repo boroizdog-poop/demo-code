@@ -1,0 +1,23 @@
+<?php
+declare(strict_types=1);
+require __DIR__.'/bootstrap.php';
+require __DIR__.'/includes/layout.php';
+$courses = artio_courses();
+require __DIR__.'/includes/brushes.php';
+$brushes=artio_brushes();
+$site=artio_site_content();
+$featured = array_values(array_filter($courses, fn($course) => $course['level'] === 'Tân thủ'));
+
+$shareItems = [];
+foreach ($courses as $course) {
+    $shareItems[] = ['kind' => 'course', 'date' => (string)($course['updated_at'] ?? $course['created_at'] ?? ''), 'resource' => $course];
+}
+foreach ($brushes as $brush) {
+    $shareItems[] = ['kind' => 'brush', 'date' => (string)($brush['shared_at'] ?? ''), 'resource' => $brush];
+}
+usort($shareItems, static fn(array $a, array $b): int => strcmp($b['date'], $a['date']));
+$newShares = array_slice($shareItems, 0, 4);
+$needsAuth = !artio_user();
+artio_head('Gallery tài nguyên digital art', false, true); ?>
+<body class="gallery-home">
+<a class="skip-link" href="#main-content">Chuyển đến nội dung</a>

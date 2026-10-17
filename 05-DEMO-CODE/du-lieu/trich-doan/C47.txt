@@ -1,0 +1,16 @@
+function artio_comments(string $resourceKey): array
+{
+    $stmt = artio_db()->prepare('SELECT comments.id,comments.user_id,comments.body,comments.created_at,users.name FROM comments JOIN users ON users.id=comments.user_id WHERE resource_key=? AND comments.hidden=0 ORDER BY comments.id DESC LIMIT 100');
+    $stmt->execute([$resourceKey]);
+    return $stmt->fetchAll();
+}
+function artio_rate_limit(string $action, int $maximum, int $seconds): void
+{
+    $db = artio_db();
+    $bucket = hash('sha256', ($_SERVER['REMOTE_ADDR'] ?? 'local') . ':' . $action);
+    $stmt = $db->prepare('SELECT attempts,reset_at FROM auth_attempts WHERE bucket=?');
+    $stmt->execute([$bucket]); $row = $stmt->fetch(); $now = time();
+    if ($row && $row['reset_at'] > $now && $row['attempts'] >= $maximum) throw new RuntimeException('Bạn gửi quá nhanh. Vui lòng thử lại sau ít phút.', 429);
+    if (!$row) $db->prepare('INSERT INTO auth_attempts(bucket,attempts,reset_at) VALUES(?,1,?)')->execute([$bucket,$now+$seconds]);
+    elseif ($row['reset_at'] <= $now) $db->prepare('UPDATE auth_attempts SET attempts=1,reset_at=? WHERE bucket=?')->execute([$now+$seconds,$bucket]);
+    else $db->prepare('UPDATE auth_attempts SET attempts=attempts+1 WHERE bucket=?')->execute([$bucket]);

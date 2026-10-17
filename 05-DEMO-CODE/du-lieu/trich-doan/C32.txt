@@ -1,0 +1,29 @@
+<?php
+require __DIR__.'/bootstrap.php';require __DIR__.'/includes/layout.php';require __DIR__.'/includes/brushes.php';require __DIR__.'/includes/admin-ui.php';
+$user=artio_user();$isAdmin=($user['role']??'')==='admin';
+$editing=null;$showEditor=$isAdmin&&(isset($_GET['new'])||isset($_GET['edit']));
+if($showEditor&&isset($_GET['edit'])){$editing=artio_course((int)$_GET['edit'],null,true);if(!$editing){http_response_code(404);$showEditor=false;}}
+$view=in_array($_GET['view']??'',['dashboard','courses','categories','brushes','site'],true)?$_GET['view']:'dashboard';
+if($showEditor)$view='courses';
+$requestedSection=($_GET['section']??'')==='edges'?'inspiration':($_GET['section']??'');
+$siteSection=in_array($requestedSection,['hero','about','resources','beginners','new_share','closing','inspiration','contact'],true)?$requestedSection:'hero';
+$needsCourses=in_array($view,['dashboard','courses'],true)||($view==='site'&&in_array($siteSection,['beginners','new_share'],true));
+$courses=$isAdmin&&$needsCourses?artio_courses(null,true):[];
+$categories=$isAdmin&&($showEditor||$view==='categories')?artio_categories():[];
+function value(?array $row,string $key,string $default=''):string{return artio_h($row[$key]??$default);}
+function artio_brush_image_editor(string $image=''): void { ?>
+<div data-brush-image-editor><label>Ảnh minh họa</label><div class="image-editor">
+<div class="upload-preview"><img data-brush-image-preview src="<?=artio_h($image)?>" alt="Xem trước ảnh minh họa brush" <?=$image===''?'hidden':''?>><span data-brush-image-placeholder <?=$image!==''?'hidden':''?>>Ảnh minh họa brush</span></div>
+<div><label>Chọn ảnh từ máy<input type="file" data-brush-image-upload accept="image/jpeg,image/png,image/webp"><small>JPG, PNG, WebP · tối đa 6 MB</small></label><p data-brush-upload-status role="status"></p><label>Hoặc dùng đường dẫn ảnh<input name="image" required maxlength="2000" value="<?=artio_h($image)?>" placeholder="https://..."></label></div>
+</div></div>
+<?php }
+function artio_brush_editor(array $brush): void { ?>
+<details id="brush-<?=(int)$brush['id']?>" class="editor-card"><summary>Chỉnh sửa <?=artio_h($brush['title'])?></summary><form data-brush-form class="brush-admin-form">
+<input type="hidden" name="id" value="<?=(int)$brush['id']?>"><input type="hidden" name="version" value="<?=(int)$brush['version']?>"><input type="hidden" name="slug" value="<?=artio_h($brush['slug'])?>">
+<div class="editor-grid">
+<?php foreach(['title'=>'Tên brush','artist'=>'Tác giả / nhà phát hành','type'=>'Phần mềm / loại','tag'=>'Nhãn','image'=>'Ảnh minh họa','source'=>'Link nguồn chính thức','shared_at'=>'Ngày thêm'] as $field=>$label): ?><?php if($field==='image'): artio_brush_image_editor((string)$brush['image']); else: ?><label><?=$label?><input name="<?=$field?>" type="<?=$field==='source'?'url':($field==='shared_at'?'date':'text')?>" required maxlength="<?=$field==='image'||$field==='source'?2000:190?>" value="<?=artio_h($brush[$field])?>"></label><?php endif; endforeach; ?>
+<label>Trạng thái<select name="status"><option value="published" <?=$brush['status']==='published'?'selected':''?>>Đã xuất bản</option><option value="draft" <?=$brush['status']==='draft'?'selected':''?>>Bản nháp</option></select></label>
+<?php foreach(['description'=>'Mô tả','usage'=>'Ghi chú sử dụng'] as $field=>$label): ?><label class="span-2"><?=$label?><textarea name="<?=$field?>" required maxlength="8000" rows="3"><?=artio_h($brush[$field])?></textarea></label><?php endforeach; ?></div><button class="orange-btn">Lưu thay đổi ↗</button><p role="status" class="form-status"></p></form></details>
+<?php }
+artio_head('Quản trị nội dung',true); ?>
+<body class="admin-page"><?php artio_header(); ?>

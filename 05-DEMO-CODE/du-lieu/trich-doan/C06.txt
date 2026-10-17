@@ -1,0 +1,25 @@
+<body class="catalog-body account-page collection-page search-page"><?php artio_header(); ?>
+<main id="main-content" class="catalog-page page-width">
+  <div class="catalog-intro"><div><p class="eyebrow orange-eyebrow">GÓC SÁNG TẠO CỦA BẠN</p><h1>Bộ sưu tập<br><em>của bạn.</em></h1></div><p class="heading-note">Khóa học và bộ cọ bạn đã lưu để khám phá sau.</p></div>
+  <nav class="collection-filters" aria-label="Loại tài nguyên đã lưu">
+    <?php foreach(['all'=>['Tất cả',$total],'courses'=>['Khóa học',count($courses)],'brushes'=>['Brush',count($brushes)]] as $type=>[$label,$count]): ?>
+    <a class="outline-btn" href="account.php?type=<?=$type?>" <?=$filter===$type?'aria-current="page"':''?>><?=$label?> <span><?=$count?></span></a>
+    <?php endforeach; ?>
+  </nav>
+  <div class="catalog-count"><span><strong><?=str_pad((string)$visibleCount,2,'0',STR_PAD_LEFT)?></strong> <?=$filter==='courses'?'khóa học':($filter==='brushes'?'bộ cọ':'tài nguyên')?> đã lưu</span></div>
+  <?php if($visibleCount===0): ?>
+    <div class="empty-state"><span class="empty-icon" aria-hidden="true">✳</span>
+      <?php if($total===0): ?><h2>Bộ sưu tập của bạn đang trống.</h2><p>Lưu khóa học và bộ cọ bạn thích để dễ tìm lại sau.</p>
+      <?php elseif($filter==='brushes'): ?><h2>Bạn chưa lưu bộ cọ nào.</h2><p>Khám phá thư viện và lưu những bộ cọ bạn thích.</p>
+      <?php else: ?><h2>Bạn chưa lưu khóa học nào.</h2><p>Khám phá thư viện và lưu những khóa học bạn thích.</p><?php endif; ?>
+      <div class="collection-empty-actions">
+        <?php if($total===0||$filter!=='brushes'): ?><a class="orange-btn" href="courses.php">Khám phá khóa học <?=artio_icon('arrow')?></a><?php endif; ?>
+        <?php if($total===0||$filter==='brushes'): ?><a class="outline-btn" href="brush.php">Khám phá brush <?=artio_icon('arrow')?></a><?php endif; ?>
+      </div>
+    </div>
+  <?php endif; ?>
+  <?php if($courses&&$filter!=='brushes'): ?><section class="search-result-group" aria-labelledby="collection-courses"><h2 id="collection-courses">Khóa học <small><?=count($courses)?></small></h2><div class="maku-course-grid"><?php foreach($courses as $course) artio_card($course,true); ?></div></section><?php endif; ?>
+  <?php if($brushes&&$filter!=='courses'): ?><section class="search-result-group" aria-labelledby="collection-brushes"><h2 id="collection-brushes">Brush <small><?=count($brushes)?></small></h2><div class="brush-grid">
+    <?php foreach($brushes as $brush): ?><article class="brush-card"><a href="brush-detail.php?slug=<?=urlencode($brush['slug'])?>"><div class="brush-card-image"><img src="<?=artio_h($brush['image'])?>" alt="<?=artio_h($brush['title'])?>" loading="lazy" data-fallback></div><div class="brush-card-meta"><h3><?=artio_h($brush['title'])?></h3><div class="course-card-link">Khám phá nội dung <?=artio_icon('arrow')?></div></div></a><button class="text-link collection-remove" type="button" data-save-brush="<?=(int)$brush['id']?>" data-saved="true" data-collection-remove aria-label="Bỏ lưu <?=artio_h($brush['title'])?>">Bỏ lưu <?=artio_icon('bookmark')?></button></article><?php endforeach; ?>
+  </div></section><?php endif; ?>
+</main><?php artio_footer(); ?></body></html>

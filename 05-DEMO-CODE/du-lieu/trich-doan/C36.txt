@@ -1,0 +1,15 @@
+    if ($action==='category_save') {
+        $name=text_field($data,'name',80);$slug=text_field($data,'slug',100);$id=(int)($data['id']??0);
+        if ($name==='' || !preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/',$slug)) reply(422,'Điền tên và đường dẫn không dấu, dùng dấu gạch ngang.');
+        $db->beginTransaction();
+        if ($id) {
+            $s=$db->prepare('SELECT name FROM categories WHERE id=?');$s->execute([$id]);$old=$s->fetchColumn();
+            if (!$old) throw new RuntimeException('Danh mục không tồn tại.',404);
+            $db->prepare('UPDATE categories SET name=?,slug=? WHERE id=?')->execute([$name,$slug,$id]);
+            $db->prepare('UPDATE courses SET category=?,version=version+1 WHERE category=?')->execute([$name,$old]);
+        } else {
+            $db->prepare('INSERT INTO categories(name,slug) VALUES(?,?)')->execute([$name,$slug]);
+            $id=(int)$db->lastInsertId();
+        }
+        $db->commit();reply(200,'Đã lưu danh mục.',['id'=>$id]);
+    }

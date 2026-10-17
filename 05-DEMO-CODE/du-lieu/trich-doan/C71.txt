@@ -1,0 +1,43 @@
+// Artwork drifts down and fades as the black interlude leaves the viewport.
+(() => {
+    const bridge = document.querySelector('.art-bridge');
+    if (!bridge) return;
+    const pieces = [...bridge.querySelectorAll('.art-bridge-piece')];
+    const distances = pieces.map(piece => parseFloat(piece.style.getPropertyValue('--fall')) || 0);
+    const copy = bridge.querySelector('.art-bridge-copy');
+    const background = bridge.querySelector('.art-bridge-background');
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const clamp = value => Math.max(0, Math.min(1, value));
+    let frame = 0;
+    let visible = true;
+    let lastProgress = -1;
+    function paint() {
+        frame = 0;
+        const rect = bridge.getBoundingClientRect();
+        const progress = reduced.matches ? 0 : clamp(-rect.top / (rect.height * .85));
+        if (Math.abs(progress - lastProgress) < .001) return;
+        lastProgress = progress;
+        const opacity = (1 - clamp((progress - .15) / .85)).toFixed(3);
+        const driftScale = innerWidth <= 760 ? .35 : 1;
+        pieces.forEach((piece, index) => {
+            piece.style.translate = `0 ${(progress * distances[index] * driftScale).toFixed(1)}px`;
+            piece.style.opacity = opacity;
+        });
+        background.style.setProperty('--bridge-opacity', opacity);
+        copy.style.opacity = (1 - clamp(progress / .75)).toFixed(3);
+    }
+    function schedule() { if (visible && !frame) frame = requestAnimationFrame(paint); }
+    if ('IntersectionObserver' in window) {
+        new IntersectionObserver(([entry]) => {
+            visible = entry.isIntersecting;
+            pieces.forEach(piece => { piece.style.willChange = visible && !reduced.matches ? 'translate, opacity' : 'auto'; });
+            if (visible) schedule();
+            else if (frame) { cancelAnimationFrame(frame); frame = 0; }
+        }).observe(bridge);
+    }
+    addEventListener('scroll', schedule, { passive: true });
+    addEventListener('resize', () => { lastProgress = -1; schedule(); }, { passive: true });
+    addEventListener('pageshow', schedule);
+    reduced.addEventListener('change', schedule);
+    paint();
+})();

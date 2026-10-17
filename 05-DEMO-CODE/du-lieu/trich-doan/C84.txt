@@ -1,0 +1,12 @@
+  <section class="resource-collections page-width" id="tai-nguyen">
+    <div class="section-index">03 / RESOURCE TYPES</div>
+    <div class="collection-heading"><h2 data-gallery-reveal="heading"><?=artio_content_heading($site['resources_title'])?></h2><p data-gallery-reveal><?=nl2br(artio_h($site['resources_text']))?></p></div>
+    <div class="collection-grid">
+      <a class="collection-feature" href="courses.php" data-gallery-reveal="image" data-reveal-from="left">
+        <img src="<?=artio_h($site['courses_poster'])?>" width="1100" height="1557" loading="lazy" alt="Nhân vật fantasy giữa không gian kiến trúc và hoa lá">
+        
+        <div class="collection-feature-copy"><h3>Khóa học<br>& hướng dẫn.</h3><span><?=count($courses)?> tài nguyên <span aria-hidden="true">↗</span></span></div>
+      </a>
+      <a class="collection-feature collection-brush-poster" href="brush.php" data-gallery-reveal="image" data-reveal-from="right"><img src="<?=artio_h($site['brush_poster'])?>" width="1000" height="1164" loading="lazy" alt="Ảnh minh họa nhóm tài nguyên brush"><div class="collection-feature-copy"><h3>Brush<br>library.</h3><span><?=count($brushes)?> nguồn brush <span aria-hidden="true">↗</span></span></div></a>
+    </div>
+  </section>

@@ -1,0 +1,11 @@
+.home-gallery .closing-art > img { transition: scale 260ms ease; }
+.home-gallery .service-art img { transition: transform 260ms ease; }
+  .home-gallery .service-panel:hover .service-art img,
+  .home-gallery .starter-slide:hover img { transform: scale(1.045); scale: none; }
+  /* Scroll animation owns transform; hover zoom uses its own scale. */
+  .home-gallery .closing-art:hover > img { scale: 1.045; }
+.home-gallery .service-panel:focus-within .service-art img,
+.home-gallery .starter-slide:focus-within img { transform: scale(1.045); }
+@media (prefers-reduced-motion: reduce) {
+  .home-gallery :is(.collection-feature, .service-panel, .starter-slide, .closing-art) img { transition: none; transform: none !important; scale: none; }
+}

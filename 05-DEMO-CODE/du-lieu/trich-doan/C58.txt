@@ -1,0 +1,3 @@
+"%PHP_BIN%" -d upload_max_filesize=6M -d post_max_size=8M -d display_errors=0 -S 127.0.0.1:8082 router.php
+pause
+exit /b 0

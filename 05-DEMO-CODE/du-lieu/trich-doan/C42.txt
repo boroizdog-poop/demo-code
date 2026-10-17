@@ -1,0 +1,27 @@
+function artio_config(string $key, mixed $default = null): mixed
+{
+    static $local;
+    $local ??= is_file(__DIR__ . '/config.local.php') ? require __DIR__ . '/config.local.php' : [];
+    $value = getenv('ARTIO_' . strtoupper($key));
+    return $value !== false ? $value : ($local[$key] ?? $default);
+}
+
+function artio_db(): PDO
+{
+    static $db;
+    if ($db instanceof PDO) return $db;
+    $driver = artio_config('db_driver', 'mysql');
+    $dsn = $driver === 'sqlite'
+        ? 'sqlite:' . artio_config('db_path', __DIR__ . '/storage/artio.sqlite')
+        : 'mysql:host=' . artio_config('db_host', '127.0.0.1') . ';port=' . artio_config('db_port', '3306') . ';dbname=' . artio_config('db_name', 'artio') . ';charset=utf8mb4';
+    $db = new PDO($dsn, artio_config('db_user', 'root'), artio_config('db_pass', ''), [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES => false,
+    ]);
+    if ($driver === 'sqlite') {
+        $db->exec('PRAGMA foreign_keys = ON');
+        $db->exec('PRAGMA busy_timeout = 5000');
+    }
+    return $db;
+}

@@ -1,0 +1,15 @@
+function artio_header(string $active=''): void { $user=artio_user(); $contact=artio_facebook_url() ?: 'https://www.facebook.com/profile.php?id=61594846690066'; $contactExternal=str_starts_with($contact,'https://'); $hero=$active==='home'; ?>
+<?php if($hero): ?>
+<header class="artio-header">
+  <button class="artio-brand hero-logo-trigger" type="button" aria-label="Mở danh mục Artio" aria-expanded="false" aria-controls="mobile-nav" aria-haspopup="dialog"><img src="assets/landing/hero/362ec.png" alt="Artio" width="86" height="86"></button>
+  <nav class="artio-navigation" aria-label="Điều hướng chính"><a href="courses.php">Khóa học</a><a href="brush.php">Brushes</a><a href="<?=artio_h($contact)?>" <?=$contactExternal?'target="_blank" rel="noopener noreferrer"':''?>>Liên hệ</a></nav>
+  <div class="artio-account"><a class="artio-search-toggle" href="search.php#catalog-search" aria-label="Tìm tài nguyên"><?=artio_icon('search')?></a>
+  <?php if($user): ?><a class="artio-account-link artio-login" href="<?=$user['role']==='admin'?'admin.php':'account.php'?>"><?=$user['role']==='admin'?'Quản trị':'Tài khoản'?></a><button class="artio-account-link artio-login" data-logout>Đăng xuất</button><?php else: ?><button class="artio-account-link artio-login" data-open-auth data-auth-start="login">Đăng nhập</button><button class="artio-account-link artio-signup" data-open-auth data-auth-start="register">Đăng ký</button><?php endif; ?>
+  </div>
+</header>
+<?php else: ?>
+<a class="skip-link" href="#main-content">Chuyển đến nội dung</a>
+<header class="maku-header">
+<div class="header-start"><button class="icon-btn mobile-nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Mở menu"><?=artio_icon('menu')?></button><span class="header-caption">Digital art gallery</span></div>
+<a href="index.php" class="maku-logo" aria-label="Artio - Trang chủ"><img src="assets/images/artio-logo.png" width="291" height="202" alt="Artio"></a>
+<div class="maku-actions"><a class="icon-btn search-toggle" href="search.php#catalog-search" aria-label="Tìm tài nguyên"><?=artio_icon('search')?></a>

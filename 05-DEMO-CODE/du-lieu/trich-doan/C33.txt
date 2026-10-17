@@ -1,0 +1,14 @@
+<?php
+/* Admin presentation mirrors the public homepage; content still uses the
+   existing schema and save endpoints. */
+function artio_admin_sections(): array {
+    return [
+        'hero'=>['number'=>'01','title'=>'Hero đầu trang','anchor'=>'kham-pha','image'=>'hero_image','copy'=>'hero_title','note'=>'Tên ARTIO, lời giới thiệu và ba ảnh mở đầu.'],
+        'inspiration'=>['number'=>'01B','title'=>'Không gian tranh','anchor'=>'inspiration','image'=>'edge_left_image','copy'=>'inspiration_title','note'=>'Chuyển cảnh sau Hero: tiêu đề và sáu tranh nổi trong không gian tối.'],
+        'about'=>['number'=>'02','title'=>'About ARTIO','anchor'=>'ve-artio','image'=>'about_image','copy'=>'about_title','note'=>'Giới thiệu ARTIO và hai cột tranh tự cuộn.'],
+        'resources'=>['number'=>'03','title'=>'Các loại tài nguyên','anchor'=>'tai-nguyen','image'=>'courses_poster','copy'=>'resources_title','note'=>'Hai lối vào Khóa học và Brush.'],
+        'beginners'=>['number'=>'04','title'=>'Dành cho người mới','anchor'=>'cho-nguoi-moi','image'=>'about_detail_image','copy'=>'beginners_title','note'=>'Tiêu đề và mô tả cho các thẻ hướng dẫn cơ bản.'],
+        'new_share'=>['number'=>'05','title'=>'New Share','anchor'=>'new-share','image'=>'brush_poster','copy'=>'new_share_title','note'=>'Tiêu đề của carousel tài nguyên mới nhất.'],
+        'closing'=>['number'=>'06','title'=>'Phần kết & footer','anchor'=>'tiep-tuc','image'=>'closing_image','copy'=>'closing_title','note'=>'Lời kết, ảnh cuối trang và tên đơn vị.'],
+    ];
+}

@@ -1,0 +1,118 @@
+ĐỐI CHIẾU BỘ DEMO CODE — 16/10/2026
+
+104/104 đoạn trích khớp mã nguồn hiện tại và số dòng.
+335 ảnh PNG, giữ nền code đen, chữ tô màu và bảng tiêu đề xanh.
+21 mục đã cập nhật sau khi sửa điều kiện hover.
+292 dòng trong bảng đối chiếu hiệu ứng đã đồng bộ.
+Không có liên kết file bị thiếu; không có ảnh PNG thừa trong thư mục anh.
+Các ảnh cũ cùng tên đã được thay bằng ảnh mới; không có ảnh thừa cần xóa.
+Mã nguồn website không thay đổi trong lần cập nhật tài liệu này.
+Chưa kiểm thử tương tác web trong lần cập nhật tài liệu.
+
+C01 | index.php | 1-23 | OK
+C02 | index.php | 25-46 | OK
+C03 | courses.php | 13-28 | OK
+C04 | search.php | 23-39 | OK
+C05 | brush.php | 1-4 | OK
+C06 | account.php | 13-37 | OK
+C07 | course.php | 11-25 | OK
+C08 | brush-detail.php | 6-10 | OK
+C09 | assets/gallery.css | 144-149 | OK
+C10 | assets/resource-cards.css | 145-182 | OK
+C11 | assets/landing.css | 57-72 | OK
+C12 | assets/landing.js | 62-95 | OK
+C13 | assets/gallery.js | 1-34 | OK
+C14 | assets/gallery.css | 239-257 | OK
+C15 | assets/landing.js | 24-60 | OK
+C16 | assets/gallery.js | 35-91 | OK
+C17 | assets/comments.css | 14-26 | OK
+C18 | assets/comments.js | 1-30 | OK
+C19 | search.php | 1-22 | OK
+C20 | courses.php | 4-11 | OK
+C21 | bootstrap.php | 18-36 | OK
+C22 | assets/app.js | 1-28 | OK
+C23 | api.php | 29-50 | OK
+C24 | includes/layout.php | 82-90 | OK
+C25 | assets/app.js | 192-207 | OK
+C26 | api.php | 57-65 | OK
+C27 | api.php | 66-78 | OK
+C28 | account.php | 1-12 | OK
+C29 | api.php | 79-89 | OK
+C30 | api.php | 90-97 | OK
+C31 | includes/comments.php | 1-24 | OK
+C32 | admin.php | 1-29 | OK
+C33 | includes/admin-ui.php | 1-14 | OK
+C34 | api.php | 98-114 | OK
+C35 | api.php | 154-165 | OK
+C36 | api.php | 166-180 | OK
+C37 | api.php | 123-153 | OK
+C38 | api.php | 181-208 | OK
+C39 | api.php | 209-229 | OK
+C40 | assets/admin.js | 279-304 | OK
+C41 | assets/admin.js | 173-188 | OK
+C42 | config.php | 4-31 | OK
+C43 | config.local.example.php | 1-7 | OK
+C44 | scripts/setup.php | 1-18 | OK
+C45 | scripts/migrate-data-model.php | 1-34 | OK
+C46 | scripts/migrate-saved-brushes.php | 1-9 | OK
+C47 | bootstrap.php | 123-138 | OK
+C48 | includes/layout.php | 6-37 | OK
+C49 | includes/layout.php | 38-52 | OK
+C50 | bootstrap.php | 1-16 | OK
+C51 | bootstrap.php | 38-60 | OK
+C52 | assets/app.js | 48-65 | OK
+C53 | router.php | 1-11 | OK
+C54 | assets/resource-cards.css | 1-23 | OK
+C55 | assets/app.js | 209-221 | OK
+C56 | assets/app.js | 222-236 | OK
+C57 | scripts/migrate-data-model.php | 27-63 | OK
+C58 | CHAY-ARTIO.cmd | 39-42 | OK
+C59 | index.php | 103-117 | OK
+C60 | index.php | 119-133 | OK
+C61 | assets/gallery.css | 444-471 | OK
+C62 | assets/landing.css | 384-394 | OK
+C63 | assets/landing.css | 451-463 | OK
+C64 | assets/landing.js | 97-114 | OK
+C65 | assets/landing.js | 116-176 | OK
+C66 | assets/landing.css | 317-345 | OK
+C67 | assets/landing.js | 178-207 | OK
+C68 | assets/landing.css | 137-156 | OK
+C69 | assets/landing.css | 403-413 | OK
+C70 | assets/landing.js | 209-249 | OK
+C71 | assets/landing.js | 251-293 | OK
+C72 | assets/landing.js | 295-389 | OK
+C73 | assets/gallery.js | 92-145 | OK
+C74 | assets/site-refinements.css | 20-51 | OK
+C75 | assets/site-refinements.css | 152-184 | OK
+C76 | assets/style.css | 195-237 | OK
+C77 | assets/style.css | 48-63 | OK
+C78 | assets/resource-cards.css | 60-105 | OK
+C79 | assets/app.js | 164-191 | OK
+C80 | assets/admin.css | 394-412 | OK
+C81 | assets/admin.css | 414-449 | OK
+C82 | assets/admin.js | 5-37 | OK
+R01 | assets/admin-navigation.js | 1-34 | OK
+R02 | assets/admin.css | 1-451 | OK
+R03 | assets/admin.js | 1-381 | OK
+R04 | assets/app.js | 1-237 | OK
+R05 | assets/comments.css | 1-50 | OK
+R06 | assets/comments.js | 1-30 | OK
+R07 | assets/gallery.css | 1-490 | OK
+R08 | assets/gallery.js | 1-146 | OK
+R09 | assets/landing.css | 1-478 | OK
+R10 | assets/landing.js | 1-391 | OK
+R11 | assets/resource-cards.css | 1-193 | OK
+R12 | assets/site-refinements.css | 1-194 | OK
+R13 | assets/style.css | 1-404 | OK
+R14 | index.php | 1-142 | OK
+R15 | includes/layout.php | 1-115 | OK
+R16 | includes/comments.php | 1-24 | OK
+R17 | admin.php | 1-61 | OK
+R18 | includes/admin-ui.php | 1-88 | OK
+C83 | index.php | 73-87 | OK
+C84 | index.php | 89-100 | OK
+C85 | index.php | 48-69 | OK
+C86 | index.php | 136-140 | OK
+Đối chiếu sau khi bỏ danh mục Công cụ & brush: 104/104 đoạn trích vẫn khớp. C44 chụp dòng 1–18; dòng danh mục sửa ở dòng 26 nằm ngoài ảnh. Đã cập nhật mã đối chiếu toàn file setup.php. Không cần tạo lại ảnh. Ảnh thừa: 0. Không sửa mã nguồn website.
+
+Sắp xếp lại: một mục lục chính gồm 6 phần, 86 mục chức năng; 18 bản toàn file thu gọn cuối trang. Dữ liệu hỗ trợ chuyển vào du-lieu; trang phụ chuyển vào tham-khao. Đã kiểm tra tất cả đường dẫn file và neo HTML, đủ 104 mục và 335 ảnh, không có ảnh thừa. Đoạn trích vẫn khớp nguồn; không sửa mã nguồn web.

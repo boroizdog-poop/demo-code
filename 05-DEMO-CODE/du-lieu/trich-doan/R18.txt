@@ -1,0 +1,87 @@
+<?php
+/* Admin presentation mirrors the public homepage; content still uses the
+   existing schema and save endpoints. */
+function artio_admin_sections(): array {
+    return [
+        'hero'=>['number'=>'01','title'=>'Hero đầu trang','anchor'=>'kham-pha','image'=>'hero_image','copy'=>'hero_title','note'=>'Tên ARTIO, lời giới thiệu và ba ảnh mở đầu.'],
+        'inspiration'=>['number'=>'01B','title'=>'Không gian tranh','anchor'=>'inspiration','image'=>'edge_left_image','copy'=>'inspiration_title','note'=>'Chuyển cảnh sau Hero: tiêu đề và sáu tranh nổi trong không gian tối.'],
+        'about'=>['number'=>'02','title'=>'About ARTIO','anchor'=>'ve-artio','image'=>'about_image','copy'=>'about_title','note'=>'Giới thiệu ARTIO và hai cột tranh tự cuộn.'],
+        'resources'=>['number'=>'03','title'=>'Các loại tài nguyên','anchor'=>'tai-nguyen','image'=>'courses_poster','copy'=>'resources_title','note'=>'Hai lối vào Khóa học và Brush.'],
+        'beginners'=>['number'=>'04','title'=>'Dành cho người mới','anchor'=>'cho-nguoi-moi','image'=>'about_detail_image','copy'=>'beginners_title','note'=>'Tiêu đề và mô tả cho các thẻ hướng dẫn cơ bản.'],
+        'new_share'=>['number'=>'05','title'=>'New Share','anchor'=>'new-share','image'=>'brush_poster','copy'=>'new_share_title','note'=>'Tiêu đề của carousel tài nguyên mới nhất.'],
+        'closing'=>['number'=>'06','title'=>'Phần kết & footer','anchor'=>'tiep-tuc','image'=>'closing_image','copy'=>'closing_title','note'=>'Lời kết, ảnh cuối trang và tên đơn vị.'],
+    ];
+}
+function artio_admin_section_image(string $section, array $content, array $courses): string {
+    if($section==='beginners') {
+        foreach($courses as $course)if($course['status']==='published'&&$course['level']==='Tân thủ')return $course['image_url'];
+    }
+    if($section==='new_share') {
+        $items=[];
+        foreach($courses as $course)if($course['status']==='published')$items[]=['date'=>$course['updated_at']??$course['created_at']??'','image'=>$course['image_url']];
+        foreach(artio_brushes() as $brush)$items[]=['date'=>$brush['shared_at']??'','image'=>$brush['image']];
+        usort($items,fn($a,$b)=>strcmp($b['date'],$a['date']));
+        if($items)return $items[0]['image'];
+    }
+    return $content[artio_admin_sections()[$section]['image']];
+}
+function artio_admin_nav(string $view, string $section, bool $showEditor, array $user): void { ?>
+<aside class="admin-sidebar">
+  <div class="admin-sidebar-title"><span class="admin-studio-mark">A</span><div><strong>ARTIO Studio</strong><small>Quản trị nội dung</small></div></div>
+  <details class="admin-navigation" open><summary>Chọn khu vực quản trị <span aria-hidden="true">⌄</span></summary><nav aria-label="Điều hướng quản trị">
+    <a href="admin.php" <?=$view==='dashboard'?'aria-current="page"':''?> class="<?=$view==='dashboard'?'active':''?>">Tổng quan website</a>
+    <p class="admin-nav-label">TRANG CHỦ · 7 KHU VỰC</p>
+    <?php foreach(artio_admin_sections() as $key=>$meta): ?><a href="admin.php?view=site&amp;section=<?=$key?>" <?=$view==='site'&&$section===$key?'aria-current="page"':''?> class="<?=$view==='site'&&$section===$key?'active':''?>"><span class="admin-nav-number"><?=$meta['number']?></span><?=$meta['title']?></a><?php endforeach; ?>
+    <p class="admin-nav-label">THƯ VIỆN TÀI NGUYÊN</p>
+    <a href="admin.php?view=courses" <?=($view==='courses'||$showEditor)?'aria-current="page"':''?> class="<?=$view==='courses'||$showEditor?'active':''?>">Khóa học & hướng dẫn</a>
+    <a href="admin.php?view=brushes" <?=($view==='brushes')?'aria-current="page"':''?> class="<?=$view==='brushes'?'active':''?>">Brush library</a>
+    <a href="admin.php?view=categories" <?=($view==='categories')?'aria-current="page"':''?> class="<?=$view==='categories'?'active':''?>">Danh mục khóa học</a>
+    <p class="admin-nav-label">THIẾT LẬP CHUNG</p>
+    <a href="admin.php?view=site&amp;section=contact" <?=$view==='site'&&$section==='contact'?'aria-current="page"':''?> class="<?=$view==='site'&&$section==='contact'?'active':''?>">Menu & liên hệ Facebook</a>
+  </nav></details>
+  <div class="admin-side-note"><span>Đang đăng nhập</span><strong><?=artio_h($user['name'])?></strong><a href="index.php" target="_blank" rel="noopener">Mở website ↗</a></div>
+</aside>
+<?php }
+function artio_admin_dashboard(array $courses): void {
+    $content=artio_site_content(); $published=count(array_filter($courses,fn($c)=>$c['status']==='published'));
+    $brushCount=(int)artio_db()->query("SELECT COUNT(*) FROM brushes WHERE status='published'")->fetchColumn(); ?>
+<div class="admin-topline"><div><p class="eyebrow orange-eyebrow">ARTIO / TỔNG QUAN</p><h1>Website của bạn.</h1><p class="admin-page-description">Chọn đúng phần bạn muốn sửa. Thứ tự bên dưới giống trang chủ đang hiển thị.</p></div><a class="outline-btn" href="index.php" target="_blank" rel="noopener">Xem website ↗</a></div>
+<div class="admin-overview-stats"><a href="admin.php?view=courses"><strong><?=$published?></strong><span>Khóa học đã xuất bản</span><small>Quản lý khóa học ↗</small></a><a href="admin.php?view=brushes"><strong><?=$brushCount?></strong><span>Brush đã xuất bản</span><small>Quản lý brush ↗</small></a><a href="admin.php?view=courses"><strong><?=count($courses)-$published?></strong><span>Khóa học đang soạn</span><small>Xem bản nháp ↗</small></a></div>
+<div class="admin-list-head"><div><h2>Bản đồ trang chủ</h2><p class="muted">7 khu vực · sửa chữ và ảnh tại từng khu vực</p></div></div>
+<div class="admin-section-grid">
+<?php foreach(artio_admin_sections() as $key=>$meta): ?><article class="admin-section-card"><a class="admin-section-thumb" href="admin.php?view=site&amp;section=<?=$key?>"><img src="<?=artio_h(artio_admin_section_image($key,$content,$courses))?>" alt="" loading="lazy"><span><?=$meta['number']?></span><b><?=nl2br(artio_h($content[$meta['copy']]))?></b></a><div><h3><?=$meta['title']?></h3><p><?=$meta['note']?></p><div class="admin-section-links"><a href="admin.php?view=site&amp;section=<?=$key?>">Chỉnh sửa phần này ↗</a><a href="index.php#<?=$meta['anchor']?>" target="_blank" rel="noopener">Xem ngoài web</a></div></div></article><?php endforeach; ?>
+</div>
+<div class="admin-source-note"><div><strong>Nội dung lấy từ thư viện</strong><p>Phần người mới hiển thị tất cả khóa học đã xuất bản thuộc nhóm Gợi ý cho người mới. New Share tự chọn bốn khóa học/brush mới nhất và tự chuyển slide.</p></div><a class="outline-btn" href="admin.php?new=1">Thêm khóa học +</a><a class="outline-btn" href="admin.php?view=brushes#add-brush">Thêm brush +</a></div>
+<?php }
+function artio_admin_site_editor(string $section, array $courses): void {
+    $schema=artio_site_schema(); $content=artio_site_content(); $sections=artio_admin_sections();
+    if($section==='contact'): ?>
+<div class="admin-topline"><div><p class="eyebrow orange-eyebrow">THIẾT LẬP CHUNG</p><h1>Menu & liên hệ.</h1><p class="admin-page-description">Đường dẫn dùng chung cho “Liên hệ” trên menu và footer.</p></div><a class="outline-btn" href="index.php" target="_blank" rel="noopener">Xem website ↗</a></div>
+<form class="editor-card" data-site-settings id="site-contact"><div class="editor-heading"><h2>Liên hệ Facebook</h2></div><label>Trang Facebook của ARTIO<input name="facebook_url" type="url" maxlength="2000" placeholder="https://www.facebook.com/..." value="<?=artio_h(artio_facebook_url())?>"><small>Để trống sẽ dùng trang Facebook mặc định của ARTIO.</small></label><div class="admin-save-row"><button class="orange-btn">Lưu đường dẫn</button><p class="form-status" role="status"></p></div></form>
+<?php return; endif;
+    $meta=$sections[$section]??['number'=>'','title'=>$schema[$section]['title'],'anchor'=>'','note'=>'Ảnh trang trí dự phòng. Các ảnh này hiện đang được ẩn trên website.'];
+    $fields=$schema[$section]['fields']; ?>
+<div class="admin-topline"><div><p class="eyebrow orange-eyebrow"><?=$meta['number']?'TRANG CHỦ / PHẦN '.$meta['number']:'THIẾT LẬP CHUNG'?></p><h1><?=artio_h($meta['title'])?></h1><p class="admin-page-description"><?=artio_h($meta['note'])?></p></div><a class="outline-btn" href="index.php<?=$meta['anchor']?'#'.$meta['anchor']:''?>" target="_blank" rel="noopener">Xem phần này ngoài web ↗</a></div>
+<?php if(isset($sections[$section])): ?>
+<nav class="admin-section-tabs" aria-label="Các phần trang chủ"><?php foreach($sections as $key=>$item): ?><a href="admin.php?view=site&amp;section=<?=$key?>" <?=$section===$key?'aria-current="page"':''?>><span><?=$item['number']?></span><?=$item['title']?></a><?php endforeach; ?></nav>
+<div class="admin-context-preview"><img src="<?=artio_h(artio_admin_section_image($section,$content,$courses))?>" alt="Ảnh của phần <?=artio_h($meta['title'])?>" data-section-preview-image><div><span>ĐANG HIỂN THỊ TRÊN TRANG CHỦ</span><h2 data-section-preview-title><?=artio_h($content[$meta['copy']])?></h2><p>Ảnh và chữ xem trước sẽ thay đổi theo nội dung bạn nhập. Nhấn lưu để áp dụng lên website.</p></div></div>
+<?php endif; ?>
+<form class="editor-card admin-section-editor" data-site-content data-preview-title="<?=artio_h($meta['copy']??'')?>" data-preview-image="<?=artio_h($meta['image']??'')?>" id="site-<?=artio_h($section)?>">
+<input type="hidden" name="section" value="<?=artio_h($section)?>">
+<div class="editor-heading"><div><h2>Chữ & nội dung</h2><p>Chỉnh từng trường tương ứng với phần đang xem.</p></div><span data-save-state>Đã lưu</span></div>
+<div class="editor-grid">
+<?php foreach($fields as $name=>$field): $type=$field['type']??'text'; if($type==='image')continue; ?>
+<label class="<?=$type==='textarea'?'span-2':''?>"><?=artio_h($field['label'])?>
+<?php if($type==='textarea'): ?><textarea name="<?=artio_h($name)?>" required rows="<?=$name==='about_text'?5:3?>" maxlength="<?=$field['max']?>"><?=artio_h($content[$name])?></textarea><small>Phím Enter để xuống dòng.</small><?php else: ?><input name="<?=artio_h($name)?>" required maxlength="<?=$field['max']??2000?>" value="<?=artio_h($content[$name])?>"><?php endif; ?>
+</label><?php endforeach; ?></div>
+<?php $imageFields=array_filter($fields,fn($f)=>($f['type']??'')==='image'); if($imageFields): ?>
+<div class="admin-form-divider"><h2>Hình ảnh</h2><p>Chọn ảnh từ máy hoặc dán đường dẫn. Mỗi ảnh có vị trí riêng trên trang.</p></div>
+<div class="admin-image-grid">
+<?php foreach($imageFields as $name=>$field): ?><div class="admin-image-field" data-content-field><div class="admin-image-field-heading"><h3><?=artio_h($field['label'])?></h3></div><img class="admin-content-preview" src="<?=artio_h($content[$name])?>" alt="Xem trước <?=artio_h($field['label'])?>" loading="lazy"><label>Chọn ảnh mới<input type="file" accept="image/jpeg,image/png,image/webp" data-content-upload="<?=artio_h($name)?>"><small>JPG, PNG, WebP · tối đa 6 MB</small></label><label>Đường dẫn ảnh<input name="<?=artio_h($name)?>" required maxlength="2000" value="<?=artio_h($content[$name])?>"><small>Ảnh tải lên sẽ điền đường dẫn tự động.</small></label></div><?php endforeach; ?>
+</div><?php endif; ?>
+<div class="admin-save-row"><button class="orange-btn" type="submit">Lưu phần <?=artio_h($meta['title'])?> ↗</button><p class="form-status" role="status"></p></div>
+</form>
+<?php if(in_array($section,['beginners','new_share','resources'],true)): ?>
+<div class="admin-source-note"><div><strong><?=$section==='beginners'?'Các thẻ người mới lấy từ đâu?':($section==='new_share'?'Các slide New Share lấy từ đâu?':'Nội dung trong hai thư viện')?></strong><p><?=$section==='beginners'?'Hiển thị tất cả khóa học đã xuất bản thuộc nhóm Gợi ý cho người mới, không giới hạn số thẻ. Chỉnh nhóm giới thiệu, tiêu đề, ảnh và mô tả tại trình biên soạn khóa học.':($section==='new_share'?'Tự gộp bốn khóa học/brush đã xuất bản mới nhất theo ngày cập nhật. Carousel tự chuyển mỗi 4,2 giây; nút tạm dừng cho phép dừng khi cần đọc.':'Poster sửa ở phần Hình ảnh trên đây. Danh sách bên trong được cập nhật từ các khóa học và brush đã xuất bản.')?></p></div><a class="outline-btn" href="admin.php?view=courses">Quản lý khóa học ↗</a><a class="outline-btn" href="admin.php?view=brushes">Quản lý brush ↗</a></div>
+<?php endif; ?>
+<?php }

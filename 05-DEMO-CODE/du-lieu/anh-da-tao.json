@@ -1,0 +1,3537 @@
+﻿[
+    {
+        "id":  "C01",
+        "pictures":  [
+                         {
+                             "file":  "anh/C01-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  1,
+                             "lastLine":  23,
+                             "width":  2200,
+                             "height":  1334
+                         }
+                     ]
+    },
+    {
+        "id":  "C02",
+        "pictures":  [
+                         {
+                             "file":  "anh/C02-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  25,
+                             "lastLine":  45,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C02-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  46,
+                             "lastLine":  46,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C03",
+        "pictures":  [
+                         {
+                             "file":  "anh/C03-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  13,
+                             "lastLine":  25,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C03-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  25,
+                             "lastLine":  28,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C04",
+        "pictures":  [
+                         {
+                             "file":  "anh/C04-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  23,
+                             "lastLine":  36,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C04-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  36,
+                             "lastLine":  39,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C05",
+        "pictures":  [
+                         {
+                             "file":  "anh/C05-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  1,
+                             "lastLine":  4,
+                             "width":  2200,
+                             "height":  894
+                         }
+                     ]
+    },
+    {
+        "id":  "C06",
+        "pictures":  [
+                         {
+                             "file":  "anh/C06-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  13,
+                             "lastLine":  29,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C06-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  30,
+                             "lastLine":  37,
+                             "width":  2200,
+                             "height":  1026
+                         }
+                     ]
+    },
+    {
+        "id":  "C07",
+        "pictures":  [
+                         {
+                             "file":  "anh/C07-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  11,
+                             "lastLine":  16,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C07-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  16,
+                             "lastLine":  25,
+                             "width":  2200,
+                             "height":  1070
+                         }
+                     ]
+    },
+    {
+        "id":  "C08",
+        "pictures":  [
+                         {
+                             "file":  "anh/C08-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  6,
+                             "lastLine":  10,
+                             "width":  2200,
+                             "height":  1202
+                         }
+                     ]
+    },
+    {
+        "id":  "C12",
+        "pictures":  [
+                         {
+                             "file":  "anh/C12-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  62,
+                             "lastLine":  85,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C12-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  85,
+                             "lastLine":  95,
+                             "width":  2200,
+                             "height":  762
+                         }
+                     ]
+    },
+    {
+        "id":  "C13",
+        "pictures":  [
+                         {
+                             "file":  "anh/C13-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  1,
+                             "lastLine":  24,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C13-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  25,
+                             "lastLine":  34,
+                             "width":  2200,
+                             "height":  718
+                         }
+                     ]
+    },
+    {
+        "id":  "C15",
+        "pictures":  [
+                         {
+                             "file":  "anh/C15-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  24,
+                             "lastLine":  49,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C15-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  50,
+                             "lastLine":  60,
+                             "width":  2200,
+                             "height":  762
+                         }
+                     ]
+    },
+    {
+        "id":  "C16",
+        "pictures":  [
+                         {
+                             "file":  "anh/C16-01.png",
+                             "part":  1,
+                             "total":  3,
+                             "firstLine":  35,
+                             "lastLine":  60,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C16-02.png",
+                             "part":  2,
+                             "total":  3,
+                             "firstLine":  61,
+                             "lastLine":  85,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C16-03.png",
+                             "part":  3,
+                             "total":  3,
+                             "firstLine":  86,
+                             "lastLine":  91,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C17",
+        "pictures":  [
+                         {
+                             "file":  "anh/C17-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  14,
+                             "lastLine":  26,
+                             "width":  2200,
+                             "height":  1378
+                         }
+                     ]
+    },
+    {
+        "id":  "C18",
+        "pictures":  [
+                         {
+                             "file":  "anh/C18-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  1,
+                             "lastLine":  25,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C18-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  26,
+                             "lastLine":  30,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C19",
+        "pictures":  [
+                         {
+                             "file":  "anh/C19-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  1,
+                             "lastLine":  21,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C19-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  22,
+                             "lastLine":  22,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C20",
+        "pictures":  [
+                         {
+                             "file":  "anh/C20-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  4,
+                             "lastLine":  11,
+                             "width":  2200,
+                             "height":  718
+                         }
+                     ]
+    },
+    {
+        "id":  "C21",
+        "pictures":  [
+                         {
+                             "file":  "anh/C21-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  18,
+                             "lastLine":  36,
+                             "width":  2200,
+                             "height":  1422
+                         }
+                     ]
+    },
+    {
+        "id":  "C22",
+        "pictures":  [
+                         {
+                             "file":  "anh/C22-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  1,
+                             "lastLine":  26,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C22-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  27,
+                             "lastLine":  28,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C23",
+        "pictures":  [
+                         {
+                             "file":  "anh/C23-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  29,
+                             "lastLine":  48,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C23-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  48,
+                             "lastLine":  50,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C24",
+        "pictures":  [
+                         {
+                             "file":  "anh/C24-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  82,
+                             "lastLine":  90,
+                             "width":  2200,
+                             "height":  762
+                         }
+                     ]
+    },
+    {
+        "id":  "C25",
+        "pictures":  [
+                         {
+                             "file":  "anh/C25-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  192,
+                             "lastLine":  207,
+                             "width":  2200,
+                             "height":  1026
+                         }
+                     ]
+    },
+    {
+        "id":  "C26",
+        "pictures":  [
+                         {
+                             "file":  "anh/C26-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  57,
+                             "lastLine":  65,
+                             "width":  2200,
+                             "height":  806
+                         }
+                     ]
+    },
+    {
+        "id":  "C27",
+        "pictures":  [
+                         {
+                             "file":  "anh/C27-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  66,
+                             "lastLine":  78,
+                             "width":  2200,
+                             "height":  982
+                         }
+                     ]
+    },
+    {
+        "id":  "C28",
+        "pictures":  [
+                         {
+                             "file":  "anh/C28-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  1,
+                             "lastLine":  12,
+                             "width":  2200,
+                             "height":  894
+                         }
+                     ]
+    },
+    {
+        "id":  "C29",
+        "pictures":  [
+                         {
+                             "file":  "anh/C29-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  79,
+                             "lastLine":  89,
+                             "width":  2200,
+                             "height":  894
+                         }
+                     ]
+    },
+    {
+        "id":  "C30",
+        "pictures":  [
+                         {
+                             "file":  "anh/C30-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  90,
+                             "lastLine":  97,
+                             "width":  2200,
+                             "height":  718
+                         }
+                     ]
+    },
+    {
+        "id":  "C31",
+        "pictures":  [
+                         {
+                             "file":  "anh/C31-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  1,
+                             "lastLine":  15,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C31-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  15,
+                             "lastLine":  24,
+                             "width":  2200,
+                             "height":  982
+                         }
+                     ]
+    },
+    {
+        "id":  "C32",
+        "pictures":  [
+                         {
+                             "file":  "anh/C32-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  1,
+                             "lastLine":  17,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C32-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  17,
+                             "lastLine":  29,
+                             "width":  2200,
+                             "height":  1378
+                         }
+                     ]
+    },
+    {
+        "id":  "C33",
+        "pictures":  [
+                         {
+                             "file":  "anh/C33-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  1,
+                             "lastLine":  14,
+                             "width":  2200,
+                             "height":  1246
+                         }
+                     ]
+    },
+    {
+        "id":  "C34",
+        "pictures":  [
+                         {
+                             "file":  "anh/C34-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  98,
+                             "lastLine":  114,
+                             "width":  2200,
+                             "height":  1026
+                         }
+                     ]
+    },
+    {
+        "id":  "C35",
+        "pictures":  [
+                         {
+                             "file":  "anh/C35-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  154,
+                             "lastLine":  165,
+                             "width":  2200,
+                             "height":  894
+                         }
+                     ]
+    },
+    {
+        "id":  "C36",
+        "pictures":  [
+                         {
+                             "file":  "anh/C36-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  166,
+                             "lastLine":  180,
+                             "width":  2200,
+                             "height":  1026
+                         }
+                     ]
+    },
+    {
+        "id":  "C37",
+        "pictures":  [
+                         {
+                             "file":  "anh/C37-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  123,
+                             "lastLine":  143,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C37-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  144,
+                             "lastLine":  153,
+                             "width":  2200,
+                             "height":  850
+                         }
+                     ]
+    },
+    {
+        "id":  "C38",
+        "pictures":  [
+                         {
+                             "file":  "anh/C38-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  181,
+                             "lastLine":  198,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C38-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  199,
+                             "lastLine":  208,
+                             "width":  2200,
+                             "height":  1202
+                         }
+                     ]
+    },
+    {
+        "id":  "C39",
+        "pictures":  [
+                         {
+                             "file":  "anh/C39-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  209,
+                             "lastLine":  229,
+                             "width":  2200,
+                             "height":  1422
+                         }
+                     ]
+    },
+    {
+        "id":  "C40",
+        "pictures":  [
+                         {
+                             "file":  "anh/C40-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  279,
+                             "lastLine":  298,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C40-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  299,
+                             "lastLine":  304,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C41",
+        "pictures":  [
+                         {
+                             "file":  "anh/C41-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  173,
+                             "lastLine":  188,
+                             "width":  2200,
+                             "height":  1114
+                         }
+                     ]
+    },
+    {
+        "id":  "C42",
+        "pictures":  [
+                         {
+                             "file":  "anh/C42-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  4,
+                             "lastLine":  28,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C42-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  29,
+                             "lastLine":  31,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C43",
+        "pictures":  [
+                         {
+                             "file":  "anh/C43-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  1,
+                             "lastLine":  7,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C44",
+        "pictures":  [
+                         {
+                             "file":  "anh/C44-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  1,
+                             "lastLine":  14,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C44-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  15,
+                             "lastLine":  18,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C45",
+        "pictures":  [
+                         {
+                             "file":  "anh/C45-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  1,
+                             "lastLine":  20,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C45-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  21,
+                             "lastLine":  34,
+                             "width":  2200,
+                             "height":  1158
+                         }
+                     ]
+    },
+    {
+        "id":  "C46",
+        "pictures":  [
+                         {
+                             "file":  "anh/C46-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  1,
+                             "lastLine":  9,
+                             "width":  2200,
+                             "height":  718
+                         }
+                     ]
+    },
+    {
+        "id":  "C47",
+        "pictures":  [
+                         {
+                             "file":  "anh/C47-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  123,
+                             "lastLine":  138,
+                             "width":  2200,
+                             "height":  1202
+                         }
+                     ]
+    },
+    {
+        "id":  "C49",
+        "pictures":  [
+                         {
+                             "file":  "anh/C49-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  38,
+                             "lastLine":  50,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C49-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  51,
+                             "lastLine":  52,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C50",
+        "pictures":  [
+                         {
+                             "file":  "anh/C50-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  1,
+                             "lastLine":  16,
+                             "width":  2200,
+                             "height":  1026
+                         }
+                     ]
+    },
+    {
+        "id":  "C51",
+        "pictures":  [
+                         {
+                             "file":  "anh/C51-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  38,
+                             "lastLine":  60,
+                             "width":  2200,
+                             "height":  1334
+                         }
+                     ]
+    },
+    {
+        "id":  "C52",
+        "pictures":  [
+                         {
+                             "file":  "anh/C52-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  48,
+                             "lastLine":  65,
+                             "width":  2200,
+                             "height":  1114
+                         }
+                     ]
+    },
+    {
+        "id":  "C53",
+        "pictures":  [
+                         {
+                             "file":  "anh/C53-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  1,
+                             "lastLine":  11,
+                             "width":  2200,
+                             "height":  850
+                         }
+                     ]
+    },
+    {
+        "id":  "C54",
+        "pictures":  [
+                         {
+                             "file":  "anh/C54-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  1,
+                             "lastLine":  22,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C54-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  23,
+                             "lastLine":  23,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C55",
+        "pictures":  [
+                         {
+                             "file":  "anh/C55-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  209,
+                             "lastLine":  221,
+                             "width":  2200,
+                             "height":  1026
+                         }
+                     ]
+    },
+    {
+        "id":  "C56",
+        "pictures":  [
+                         {
+                             "file":  "anh/C56-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  222,
+                             "lastLine":  236,
+                             "width":  2200,
+                             "height":  982
+                         }
+                     ]
+    },
+    {
+        "id":  "C57",
+        "pictures":  [
+                         {
+                             "file":  "anh/C57-01.png",
+                             "part":  1,
+                             "total":  3,
+                             "firstLine":  27,
+                             "lastLine":  41,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C57-02.png",
+                             "part":  2,
+                             "total":  3,
+                             "firstLine":  42,
+                             "lastLine":  59,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C57-03.png",
+                             "part":  3,
+                             "total":  3,
+                             "firstLine":  60,
+                             "lastLine":  63,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C58",
+        "pictures":  [
+                         {
+                             "file":  "anh/C58-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  39,
+                             "lastLine":  42,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C59",
+        "pictures":  [
+                         {
+                             "file":  "anh/C59-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  103,
+                             "lastLine":  117,
+                             "width":  2200,
+                             "height":  1202
+                         }
+                     ]
+    },
+    {
+        "id":  "C60",
+        "pictures":  [
+                         {
+                             "file":  "anh/C60-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  119,
+                             "lastLine":  133,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C60-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  133,
+                             "lastLine":  133,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C64",
+        "pictures":  [
+                         {
+                             "file":  "anh/C64-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  97,
+                             "lastLine":  114,
+                             "width":  2200,
+                             "height":  1070
+                         }
+                     ]
+    },
+    {
+        "id":  "C65",
+        "pictures":  [
+                         {
+                             "file":  "anh/C65-01.png",
+                             "part":  1,
+                             "total":  3,
+                             "firstLine":  116,
+                             "lastLine":  140,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C65-02.png",
+                             "part":  2,
+                             "total":  3,
+                             "firstLine":  141,
+                             "lastLine":  166,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C65-03.png",
+                             "part":  3,
+                             "total":  3,
+                             "firstLine":  167,
+                             "lastLine":  176,
+                             "width":  2200,
+                             "height":  718
+                         }
+                     ]
+    },
+    {
+        "id":  "C67",
+        "pictures":  [
+                         {
+                             "file":  "anh/C67-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  178,
+                             "lastLine":  203,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C67-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  204,
+                             "lastLine":  207,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C70",
+        "pictures":  [
+                         {
+                             "file":  "anh/C70-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  209,
+                             "lastLine":  231,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C70-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  232,
+                             "lastLine":  249,
+                             "width":  2200,
+                             "height":  1114
+                         }
+                     ]
+    },
+    {
+        "id":  "C71",
+        "pictures":  [
+                         {
+                             "file":  "anh/C71-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  251,
+                             "lastLine":  276,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C71-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  277,
+                             "lastLine":  293,
+                             "width":  2200,
+                             "height":  1070
+                         }
+                     ]
+    },
+    {
+        "id":  "C72",
+        "pictures":  [
+                         {
+                             "file":  "anh/C72-01.png",
+                             "part":  1,
+                             "total":  4,
+                             "firstLine":  295,
+                             "lastLine":  318,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C72-02.png",
+                             "part":  2,
+                             "total":  4,
+                             "firstLine":  319,
+                             "lastLine":  343,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C72-03.png",
+                             "part":  3,
+                             "total":  4,
+                             "firstLine":  344,
+                             "lastLine":  369,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C72-04.png",
+                             "part":  4,
+                             "total":  4,
+                             "firstLine":  370,
+                             "lastLine":  389,
+                             "width":  2200,
+                             "height":  1246
+                         }
+                     ]
+    },
+    {
+        "id":  "C73",
+        "pictures":  [
+                         {
+                             "file":  "anh/C73-01.png",
+                             "part":  1,
+                             "total":  3,
+                             "firstLine":  92,
+                             "lastLine":  117,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C73-02.png",
+                             "part":  2,
+                             "total":  3,
+                             "firstLine":  118,
+                             "lastLine":  139,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C73-03.png",
+                             "part":  3,
+                             "total":  3,
+                             "firstLine":  140,
+                             "lastLine":  145,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C76",
+        "pictures":  [
+                         {
+                             "file":  "anh/C76-01.png",
+                             "part":  1,
+                             "total":  3,
+                             "firstLine":  195,
+                             "lastLine":  209,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C76-02.png",
+                             "part":  2,
+                             "total":  3,
+                             "firstLine":  210,
+                             "lastLine":  230,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C76-03.png",
+                             "part":  3,
+                             "total":  3,
+                             "firstLine":  231,
+                             "lastLine":  237,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C77",
+        "pictures":  [
+                         {
+                             "file":  "anh/C77-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  48,
+                             "lastLine":  63,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C77-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  63,
+                             "lastLine":  63,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C78",
+        "pictures":  [
+                         {
+                             "file":  "anh/C78-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  60,
+                             "lastLine":  82,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C78-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  82,
+                             "lastLine":  105,
+                             "width":  2200,
+                             "height":  1378
+                         }
+                     ]
+    },
+    {
+        "id":  "C79",
+        "pictures":  [
+                         {
+                             "file":  "anh/C79-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  164,
+                             "lastLine":  187,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C79-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  188,
+                             "lastLine":  191,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C80",
+        "pictures":  [
+                         {
+                             "file":  "anh/C80-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  394,
+                             "lastLine":  409,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C80-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  410,
+                             "lastLine":  412,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C81",
+        "pictures":  [
+                         {
+                             "file":  "anh/C81-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  414,
+                             "lastLine":  436,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C81-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  437,
+                             "lastLine":  449,
+                             "width":  2200,
+                             "height":  894
+                         }
+                     ]
+    },
+    {
+        "id":  "C82",
+        "pictures":  [
+                         {
+                             "file":  "anh/C82-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  5,
+                             "lastLine":  30,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C82-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  31,
+                             "lastLine":  37,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "R01",
+        "pictures":  [
+                         {
+                             "file":  "anh/R01-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  1,
+                             "lastLine":  25,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R01-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  26,
+                             "lastLine":  34,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "R03",
+        "pictures":  [
+                         {
+                             "file":  "anh/R03-01.png",
+                             "part":  1,
+                             "total":  18,
+                             "firstLine":  1,
+                             "lastLine":  26,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R03-02.png",
+                             "part":  2,
+                             "total":  18,
+                             "firstLine":  27,
+                             "lastLine":  49,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R03-03.png",
+                             "part":  3,
+                             "total":  18,
+                             "firstLine":  50,
+                             "lastLine":  74,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R03-04.png",
+                             "part":  4,
+                             "total":  18,
+                             "firstLine":  75,
+                             "lastLine":  97,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R03-05.png",
+                             "part":  5,
+                             "total":  18,
+                             "firstLine":  98,
+                             "lastLine":  123,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R03-06.png",
+                             "part":  6,
+                             "total":  18,
+                             "firstLine":  124,
+                             "lastLine":  147,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R03-07.png",
+                             "part":  7,
+                             "total":  18,
+                             "firstLine":  148,
+                             "lastLine":  171,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R03-08.png",
+                             "part":  8,
+                             "total":  18,
+                             "firstLine":  172,
+                             "lastLine":  194,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R03-09.png",
+                             "part":  9,
+                             "total":  18,
+                             "firstLine":  195,
+                             "lastLine":  218,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R03-10.png",
+                             "part":  10,
+                             "total":  18,
+                             "firstLine":  219,
+                             "lastLine":  241,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R03-11.png",
+                             "part":  11,
+                             "total":  18,
+                             "firstLine":  242,
+                             "lastLine":  261,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R03-12.png",
+                             "part":  12,
+                             "total":  18,
+                             "firstLine":  262,
+                             "lastLine":  275,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R03-13.png",
+                             "part":  13,
+                             "total":  18,
+                             "firstLine":  275,
+                             "lastLine":  293,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R03-14.png",
+                             "part":  14,
+                             "total":  18,
+                             "firstLine":  294,
+                             "lastLine":  316,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R03-15.png",
+                             "part":  15,
+                             "total":  18,
+                             "firstLine":  317,
+                             "lastLine":  337,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R03-16.png",
+                             "part":  16,
+                             "total":  18,
+                             "firstLine":  338,
+                             "lastLine":  359,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R03-17.png",
+                             "part":  17,
+                             "total":  18,
+                             "firstLine":  360,
+                             "lastLine":  380,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R03-18.png",
+                             "part":  18,
+                             "total":  18,
+                             "firstLine":  381,
+                             "lastLine":  381,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "R04",
+        "pictures":  [
+                         {
+                             "file":  "anh/R04-01.png",
+                             "part":  1,
+                             "total":  10,
+                             "firstLine":  1,
+                             "lastLine":  26,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R04-02.png",
+                             "part":  2,
+                             "total":  10,
+                             "firstLine":  27,
+                             "lastLine":  52,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R04-03.png",
+                             "part":  3,
+                             "total":  10,
+                             "firstLine":  53,
+                             "lastLine":  76,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R04-04.png",
+                             "part":  4,
+                             "total":  10,
+                             "firstLine":  77,
+                             "lastLine":  98,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R04-05.png",
+                             "part":  5,
+                             "total":  10,
+                             "firstLine":  99,
+                             "lastLine":  120,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R04-06.png",
+                             "part":  6,
+                             "total":  10,
+                             "firstLine":  121,
+                             "lastLine":  146,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R04-07.png",
+                             "part":  7,
+                             "total":  10,
+                             "firstLine":  147,
+                             "lastLine":  171,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R04-08.png",
+                             "part":  8,
+                             "total":  10,
+                             "firstLine":  172,
+                             "lastLine":  196,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R04-09.png",
+                             "part":  9,
+                             "total":  10,
+                             "firstLine":  196,
+                             "lastLine":  217,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R04-10.png",
+                             "part":  10,
+                             "total":  10,
+                             "firstLine":  218,
+                             "lastLine":  237,
+                             "width":  2200,
+                             "height":  1202
+                         }
+                     ]
+    },
+    {
+        "id":  "R06",
+        "pictures":  [
+                         {
+                             "file":  "anh/R06-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  1,
+                             "lastLine":  25,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R06-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  26,
+                             "lastLine":  30,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "R08",
+        "pictures":  [
+                         {
+                             "file":  "anh/R08-01.png",
+                             "part":  1,
+                             "total":  6,
+                             "firstLine":  1,
+                             "lastLine":  24,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R08-02.png",
+                             "part":  2,
+                             "total":  6,
+                             "firstLine":  25,
+                             "lastLine":  50,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R08-03.png",
+                             "part":  3,
+                             "total":  6,
+                             "firstLine":  51,
+                             "lastLine":  75,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R08-04.png",
+                             "part":  4,
+                             "total":  6,
+                             "firstLine":  76,
+                             "lastLine":  100,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R08-05.png",
+                             "part":  5,
+                             "total":  6,
+                             "firstLine":  101,
+                             "lastLine":  126,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R08-06.png",
+                             "part":  6,
+                             "total":  6,
+                             "firstLine":  127,
+                             "lastLine":  146,
+                             "width":  2200,
+                             "height":  1334
+                         }
+                     ]
+    },
+    {
+        "id":  "R10",
+        "pictures":  [
+                         {
+                             "file":  "anh/R10-01.png",
+                             "part":  1,
+                             "total":  16,
+                             "firstLine":  1,
+                             "lastLine":  26,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R10-02.png",
+                             "part":  2,
+                             "total":  16,
+                             "firstLine":  27,
+                             "lastLine":  52,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R10-03.png",
+                             "part":  3,
+                             "total":  16,
+                             "firstLine":  53,
+                             "lastLine":  77,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R10-04.png",
+                             "part":  4,
+                             "total":  16,
+                             "firstLine":  78,
+                             "lastLine":  101,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R10-05.png",
+                             "part":  5,
+                             "total":  16,
+                             "firstLine":  102,
+                             "lastLine":  126,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R10-06.png",
+                             "part":  6,
+                             "total":  16,
+                             "firstLine":  127,
+                             "lastLine":  152,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R10-07.png",
+                             "part":  7,
+                             "total":  16,
+                             "firstLine":  153,
+                             "lastLine":  178,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R10-08.png",
+                             "part":  8,
+                             "total":  16,
+                             "firstLine":  179,
+                             "lastLine":  204,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R10-09.png",
+                             "part":  9,
+                             "total":  16,
+                             "firstLine":  205,
+                             "lastLine":  227,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R10-10.png",
+                             "part":  10,
+                             "total":  16,
+                             "firstLine":  228,
+                             "lastLine":  252,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R10-11.png",
+                             "part":  11,
+                             "total":  16,
+                             "firstLine":  253,
+                             "lastLine":  278,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R10-12.png",
+                             "part":  12,
+                             "total":  16,
+                             "firstLine":  279,
+                             "lastLine":  303,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R10-13.png",
+                             "part":  13,
+                             "total":  16,
+                             "firstLine":  304,
+                             "lastLine":  327,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R10-14.png",
+                             "part":  14,
+                             "total":  16,
+                             "firstLine":  328,
+                             "lastLine":  352,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R10-15.png",
+                             "part":  15,
+                             "total":  16,
+                             "firstLine":  353,
+                             "lastLine":  377,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R10-16.png",
+                             "part":  16,
+                             "total":  16,
+                             "firstLine":  378,
+                             "lastLine":  391,
+                             "width":  2200,
+                             "height":  938
+                         }
+                     ]
+    },
+    {
+        "id":  "R14",
+        "pictures":  [
+                         {
+                             "file":  "anh/R14-01.png",
+                             "part":  1,
+                             "total":  8,
+                             "firstLine":  1,
+                             "lastLine":  25,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R14-02.png",
+                             "part":  2,
+                             "total":  8,
+                             "firstLine":  26,
+                             "lastLine":  46,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R14-03.png",
+                             "part":  3,
+                             "total":  8,
+                             "firstLine":  47,
+                             "lastLine":  63,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R14-04.png",
+                             "part":  4,
+                             "total":  8,
+                             "firstLine":  63,
+                             "lastLine":  80,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R14-05.png",
+                             "part":  5,
+                             "total":  8,
+                             "firstLine":  81,
+                             "lastLine":  98,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R14-06.png",
+                             "part":  6,
+                             "total":  8,
+                             "firstLine":  99,
+                             "lastLine":  116,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R14-07.png",
+                             "part":  7,
+                             "total":  8,
+                             "firstLine":  117,
+                             "lastLine":  132,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R14-08.png",
+                             "part":  8,
+                             "total":  8,
+                             "firstLine":  133,
+                             "lastLine":  142,
+                             "width":  2200,
+                             "height":  1246
+                         }
+                     ]
+    },
+    {
+        "id":  "R16",
+        "pictures":  [
+                         {
+                             "file":  "anh/R16-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  1,
+                             "lastLine":  15,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R16-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  15,
+                             "lastLine":  24,
+                             "width":  2200,
+                             "height":  982
+                         }
+                     ]
+    },
+    {
+        "id":  "R17",
+        "pictures":  [
+                         {
+                             "file":  "anh/R17-01.png",
+                             "part":  1,
+                             "total":  8,
+                             "firstLine":  1,
+                             "lastLine":  17,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R17-02.png",
+                             "part":  2,
+                             "total":  8,
+                             "firstLine":  17,
+                             "lastLine":  30,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R17-03.png",
+                             "part":  3,
+                             "total":  8,
+                             "firstLine":  31,
+                             "lastLine":  38,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R17-04.png",
+                             "part":  4,
+                             "total":  8,
+                             "firstLine":  38,
+                             "lastLine":  40,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R17-05.png",
+                             "part":  5,
+                             "total":  8,
+                             "firstLine":  40,
+                             "lastLine":  49,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R17-06.png",
+                             "part":  6,
+                             "total":  8,
+                             "firstLine":  49,
+                             "lastLine":  52,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R17-07.png",
+                             "part":  7,
+                             "total":  8,
+                             "firstLine":  52,
+                             "lastLine":  59,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R17-08.png",
+                             "part":  8,
+                             "total":  8,
+                             "firstLine":  59,
+                             "lastLine":  61,
+                             "width":  2200,
+                             "height":  982
+                         }
+                     ]
+    },
+    {
+        "id":  "R18",
+        "pictures":  [
+                         {
+                             "file":  "anh/R18-01.png",
+                             "part":  1,
+                             "total":  7,
+                             "firstLine":  1,
+                             "lastLine":  17,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R18-02.png",
+                             "part":  2,
+                             "total":  7,
+                             "firstLine":  18,
+                             "lastLine":  36,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R18-03.png",
+                             "part":  3,
+                             "total":  7,
+                             "firstLine":  37,
+                             "lastLine":  50,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R18-04.png",
+                             "part":  4,
+                             "total":  7,
+                             "firstLine":  51,
+                             "lastLine":  62,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R18-05.png",
+                             "part":  5,
+                             "total":  7,
+                             "firstLine":  62,
+                             "lastLine":  75,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R18-06.png",
+                             "part":  6,
+                             "total":  7,
+                             "firstLine":  75,
+                             "lastLine":  85,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R18-07.png",
+                             "part":  7,
+                             "total":  7,
+                             "firstLine":  86,
+                             "lastLine":  88,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C83",
+        "pictures":  [
+                         {
+                             "file":  "anh/C83-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  73,
+                             "lastLine":  87,
+                             "width":  2200,
+                             "height":  1158
+                         }
+                     ]
+    },
+    {
+        "id":  "C84",
+        "pictures":  [
+                         {
+                             "file":  "anh/C84-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  89,
+                             "lastLine":  100,
+                             "width":  2200,
+                             "height":  1070
+                         }
+                     ]
+    },
+    {
+        "id":  "C85",
+        "pictures":  [
+                         {
+                             "file":  "anh/C85-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  48,
+                             "lastLine":  64,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C85-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  64,
+                             "lastLine":  69,
+                             "width":  2200,
+                             "height":  718
+                         }
+                     ]
+    },
+    {
+        "id":  "C86",
+        "pictures":  [
+                         {
+                             "file":  "anh/C86-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  136,
+                             "lastLine":  140,
+                             "width":  2200,
+                             "height":  762
+                         }
+                     ]
+    },
+    {
+        "id":  "C09",
+        "pictures":  [
+                         {
+                             "file":  "anh/C09-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  144,
+                             "lastLine":  149,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C10",
+        "pictures":  [
+                         {
+                             "file":  "anh/C10-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  145,
+                             "lastLine":  169,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C10-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  169,
+                             "lastLine":  182,
+                             "width":  2200,
+                             "height":  1026
+                         }
+                     ]
+    },
+    {
+        "id":  "C11",
+        "pictures":  [
+                         {
+                             "file":  "anh/C11-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  57,
+                             "lastLine":  72,
+                             "width":  2200,
+                             "height":  1114
+                         }
+                     ]
+    },
+    {
+        "id":  "C14",
+        "pictures":  [
+                         {
+                             "file":  "anh/C14-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  239,
+                             "lastLine":  257,
+                             "width":  2200,
+                             "height":  1334
+                         }
+                     ]
+    },
+    {
+        "id":  "C48",
+        "pictures":  [
+                         {
+                             "file":  "anh/C48-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  6,
+                             "lastLine":  26,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C48-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  27,
+                             "lastLine":  37,
+                             "width":  2200,
+                             "height":  762
+                         }
+                     ]
+    },
+    {
+        "id":  "C61",
+        "pictures":  [
+                         {
+                             "file":  "anh/C61-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  444,
+                             "lastLine":  466,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C61-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  467,
+                             "lastLine":  471,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "C62",
+        "pictures":  [
+                         {
+                             "file":  "anh/C62-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  384,
+                             "lastLine":  394,
+                             "width":  2200,
+                             "height":  806
+                         }
+                     ]
+    },
+    {
+        "id":  "C63",
+        "pictures":  [
+                         {
+                             "file":  "anh/C63-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  451,
+                             "lastLine":  463,
+                             "width":  2200,
+                             "height":  938
+                         }
+                     ]
+    },
+    {
+        "id":  "C66",
+        "pictures":  [
+                         {
+                             "file":  "anh/C66-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  317,
+                             "lastLine":  335,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C66-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  336,
+                             "lastLine":  345,
+                             "width":  2200,
+                             "height":  806
+                         }
+                     ]
+    },
+    {
+        "id":  "C68",
+        "pictures":  [
+                         {
+                             "file":  "anh/C68-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  137,
+                             "lastLine":  151,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C68-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  152,
+                             "lastLine":  156,
+                             "width":  2200,
+                             "height":  718
+                         }
+                     ]
+    },
+    {
+        "id":  "C69",
+        "pictures":  [
+                         {
+                             "file":  "anh/C69-01.png",
+                             "part":  1,
+                             "total":  1,
+                             "firstLine":  403,
+                             "lastLine":  413,
+                             "width":  2200,
+                             "height":  806
+                         }
+                     ]
+    },
+    {
+        "id":  "C74",
+        "pictures":  [
+                         {
+                             "file":  "anh/C74-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  20,
+                             "lastLine":  42,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C74-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  43,
+                             "lastLine":  51,
+                             "width":  2200,
+                             "height":  762
+                         }
+                     ]
+    },
+    {
+        "id":  "C75",
+        "pictures":  [
+                         {
+                             "file":  "anh/C75-01.png",
+                             "part":  1,
+                             "total":  2,
+                             "firstLine":  152,
+                             "lastLine":  173,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/C75-02.png",
+                             "part":  2,
+                             "total":  2,
+                             "firstLine":  173,
+                             "lastLine":  184,
+                             "width":  2200,
+                             "height":  894
+                         }
+                     ]
+    },
+    {
+        "id":  "R02",
+        "pictures":  [
+                         {
+                             "file":  "anh/R02-01.png",
+                             "part":  1,
+                             "total":  23,
+                             "firstLine":  1,
+                             "lastLine":  21,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R02-02.png",
+                             "part":  2,
+                             "total":  23,
+                             "firstLine":  22,
+                             "lastLine":  41,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R02-03.png",
+                             "part":  3,
+                             "total":  23,
+                             "firstLine":  42,
+                             "lastLine":  62,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R02-04.png",
+                             "part":  4,
+                             "total":  23,
+                             "firstLine":  62,
+                             "lastLine":  87,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R02-05.png",
+                             "part":  5,
+                             "total":  23,
+                             "firstLine":  88,
+                             "lastLine":  113,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R02-06.png",
+                             "part":  6,
+                             "total":  23,
+                             "firstLine":  114,
+                             "lastLine":  139,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R02-07.png",
+                             "part":  7,
+                             "total":  23,
+                             "firstLine":  140,
+                             "lastLine":  160,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R02-08.png",
+                             "part":  8,
+                             "total":  23,
+                             "firstLine":  161,
+                             "lastLine":  177,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R02-09.png",
+                             "part":  9,
+                             "total":  23,
+                             "firstLine":  178,
+                             "lastLine":  194,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R02-10.png",
+                             "part":  10,
+                             "total":  23,
+                             "firstLine":  195,
+                             "lastLine":  210,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R02-11.png",
+                             "part":  11,
+                             "total":  23,
+                             "firstLine":  210,
+                             "lastLine":  228,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R02-12.png",
+                             "part":  12,
+                             "total":  23,
+                             "firstLine":  228,
+                             "lastLine":  242,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R02-13.png",
+                             "part":  13,
+                             "total":  23,
+                             "firstLine":  242,
+                             "lastLine":  261,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R02-14.png",
+                             "part":  14,
+                             "total":  23,
+                             "firstLine":  262,
+                             "lastLine":  274,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R02-15.png",
+                             "part":  15,
+                             "total":  23,
+                             "firstLine":  275,
+                             "lastLine":  293,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R02-16.png",
+                             "part":  16,
+                             "total":  23,
+                             "firstLine":  294,
+                             "lastLine":  315,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R02-17.png",
+                             "part":  17,
+                             "total":  23,
+                             "firstLine":  316,
+                             "lastLine":  335,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R02-18.png",
+                             "part":  18,
+                             "total":  23,
+                             "firstLine":  336,
+                             "lastLine":  358,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R02-19.png",
+                             "part":  19,
+                             "total":  23,
+                             "firstLine":  359,
+                             "lastLine":  381,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R02-20.png",
+                             "part":  20,
+                             "total":  23,
+                             "firstLine":  382,
+                             "lastLine":  403,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R02-21.png",
+                             "part":  21,
+                             "total":  23,
+                             "firstLine":  403,
+                             "lastLine":  418,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R02-22.png",
+                             "part":  22,
+                             "total":  23,
+                             "firstLine":  419,
+                             "lastLine":  444,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R02-23.png",
+                             "part":  23,
+                             "total":  23,
+                             "firstLine":  444,
+                             "lastLine":  451,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "R05",
+        "pictures":  [
+                         {
+                             "file":  "anh/R05-01.png",
+                             "part":  1,
+                             "total":  3,
+                             "firstLine":  1,
+                             "lastLine":  16,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R05-02.png",
+                             "part":  2,
+                             "total":  3,
+                             "firstLine":  17,
+                             "lastLine":  31,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R05-03.png",
+                             "part":  3,
+                             "total":  3,
+                             "firstLine":  31,
+                             "lastLine":  50,
+                             "width":  2200,
+                             "height":  1246
+                         }
+                     ]
+    },
+    {
+        "id":  "R07",
+        "pictures":  [
+                         {
+                             "file":  "anh/R07-01.png",
+                             "part":  1,
+                             "total":  23,
+                             "firstLine":  1,
+                             "lastLine":  19,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R07-02.png",
+                             "part":  2,
+                             "total":  23,
+                             "firstLine":  19,
+                             "lastLine":  39,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R07-03.png",
+                             "part":  3,
+                             "total":  23,
+                             "firstLine":  40,
+                             "lastLine":  62,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R07-04.png",
+                             "part":  4,
+                             "total":  23,
+                             "firstLine":  63,
+                             "lastLine":  88,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R07-05.png",
+                             "part":  5,
+                             "total":  23,
+                             "firstLine":  89,
+                             "lastLine":  112,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R07-06.png",
+                             "part":  6,
+                             "total":  23,
+                             "firstLine":  113,
+                             "lastLine":  132,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R07-07.png",
+                             "part":  7,
+                             "total":  23,
+                             "firstLine":  133,
+                             "lastLine":  157,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R07-08.png",
+                             "part":  8,
+                             "total":  23,
+                             "firstLine":  158,
+                             "lastLine":  181,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R07-09.png",
+                             "part":  9,
+                             "total":  23,
+                             "firstLine":  182,
+                             "lastLine":  200,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R07-10.png",
+                             "part":  10,
+                             "total":  23,
+                             "firstLine":  201,
+                             "lastLine":  223,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R07-11.png",
+                             "part":  11,
+                             "total":  23,
+                             "firstLine":  224,
+                             "lastLine":  247,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R07-12.png",
+                             "part":  12,
+                             "total":  23,
+                             "firstLine":  248,
+                             "lastLine":  268,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R07-13.png",
+                             "part":  13,
+                             "total":  23,
+                             "firstLine":  269,
+                             "lastLine":  289,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R07-14.png",
+                             "part":  14,
+                             "total":  23,
+                             "firstLine":  290,
+                             "lastLine":  307,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R07-15.png",
+                             "part":  15,
+                             "total":  23,
+                             "firstLine":  308,
+                             "lastLine":  328,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R07-16.png",
+                             "part":  16,
+                             "total":  23,
+                             "firstLine":  329,
+                             "lastLine":  352,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R07-17.png",
+                             "part":  17,
+                             "total":  23,
+                             "firstLine":  353,
+                             "lastLine":  371,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R07-18.png",
+                             "part":  18,
+                             "total":  23,
+                             "firstLine":  372,
+                             "lastLine":  388,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R07-19.png",
+                             "part":  19,
+                             "total":  23,
+                             "firstLine":  389,
+                             "lastLine":  413,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R07-20.png",
+                             "part":  20,
+                             "total":  23,
+                             "firstLine":  414,
+                             "lastLine":  438,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R07-21.png",
+                             "part":  21,
+                             "total":  23,
+                             "firstLine":  439,
+                             "lastLine":  462,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R07-22.png",
+                             "part":  22,
+                             "total":  23,
+                             "firstLine":  463,
+                             "lastLine":  482,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R07-23.png",
+                             "part":  23,
+                             "total":  23,
+                             "firstLine":  483,
+                             "lastLine":  490,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "R09",
+        "pictures":  [
+                         {
+                             "file":  "anh/R09-01.png",
+                             "part":  1,
+                             "total":  24,
+                             "firstLine":  1,
+                             "lastLine":  18,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R09-02.png",
+                             "part":  2,
+                             "total":  24,
+                             "firstLine":  19,
+                             "lastLine":  35,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R09-03.png",
+                             "part":  3,
+                             "total":  24,
+                             "firstLine":  35,
+                             "lastLine":  55,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R09-04.png",
+                             "part":  4,
+                             "total":  24,
+                             "firstLine":  56,
+                             "lastLine":  77,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R09-05.png",
+                             "part":  5,
+                             "total":  24,
+                             "firstLine":  78,
+                             "lastLine":  100,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R09-06.png",
+                             "part":  6,
+                             "total":  24,
+                             "firstLine":  101,
+                             "lastLine":  118,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R09-07.png",
+                             "part":  7,
+                             "total":  24,
+                             "firstLine":  119,
+                             "lastLine":  135,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R09-08.png",
+                             "part":  8,
+                             "total":  24,
+                             "firstLine":  135,
+                             "lastLine":  150,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R09-09.png",
+                             "part":  9,
+                             "total":  24,
+                             "firstLine":  151,
+                             "lastLine":  166,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R09-10.png",
+                             "part":  10,
+                             "total":  24,
+                             "firstLine":  166,
+                             "lastLine":  181,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R09-11.png",
+                             "part":  11,
+                             "total":  24,
+                             "firstLine":  182,
+                             "lastLine":  201,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R09-12.png",
+                             "part":  12,
+                             "total":  24,
+                             "firstLine":  202,
+                             "lastLine":  225,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R09-13.png",
+                             "part":  13,
+                             "total":  24,
+                             "firstLine":  226,
+                             "lastLine":  248,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R09-14.png",
+                             "part":  14,
+                             "total":  24,
+                             "firstLine":  249,
+                             "lastLine":  273,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R09-15.png",
+                             "part":  15,
+                             "total":  24,
+                             "firstLine":  274,
+                             "lastLine":  297,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R09-16.png",
+                             "part":  16,
+                             "total":  24,
+                             "firstLine":  298,
+                             "lastLine":  319,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R09-17.png",
+                             "part":  17,
+                             "total":  24,
+                             "firstLine":  320,
+                             "lastLine":  339,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R09-18.png",
+                             "part":  18,
+                             "total":  24,
+                             "firstLine":  340,
+                             "lastLine":  354,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R09-19.png",
+                             "part":  19,
+                             "total":  24,
+                             "firstLine":  354,
+                             "lastLine":  370,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R09-20.png",
+                             "part":  20,
+                             "total":  24,
+                             "firstLine":  370,
+                             "lastLine":  393,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R09-21.png",
+                             "part":  21,
+                             "total":  24,
+                             "firstLine":  393,
+                             "lastLine":  414,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R09-22.png",
+                             "part":  22,
+                             "total":  24,
+                             "firstLine":  415,
+                             "lastLine":  438,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R09-23.png",
+                             "part":  23,
+                             "total":  24,
+                             "firstLine":  439,
+                             "lastLine":  462,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R09-24.png",
+                             "part":  24,
+                             "total":  24,
+                             "firstLine":  463,
+                             "lastLine":  478,
+                             "width":  2200,
+                             "height":  1158
+                         }
+                     ]
+    },
+    {
+        "id":  "R11",
+        "pictures":  [
+                         {
+                             "file":  "anh/R11-01.png",
+                             "part":  1,
+                             "total":  9,
+                             "firstLine":  1,
+                             "lastLine":  22,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R11-02.png",
+                             "part":  2,
+                             "total":  9,
+                             "firstLine":  23,
+                             "lastLine":  46,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R11-03.png",
+                             "part":  3,
+                             "total":  9,
+                             "firstLine":  47,
+                             "lastLine":  70,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R11-04.png",
+                             "part":  4,
+                             "total":  9,
+                             "firstLine":  71,
+                             "lastLine":  93,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R11-05.png",
+                             "part":  5,
+                             "total":  9,
+                             "firstLine":  94,
+                             "lastLine":  119,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R11-06.png",
+                             "part":  6,
+                             "total":  9,
+                             "firstLine":  120,
+                             "lastLine":  143,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R11-07.png",
+                             "part":  7,
+                             "total":  9,
+                             "firstLine":  144,
+                             "lastLine":  168,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R11-08.png",
+                             "part":  8,
+                             "total":  9,
+                             "firstLine":  169,
+                             "lastLine":  190,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R11-09.png",
+                             "part":  9,
+                             "total":  9,
+                             "firstLine":  190,
+                             "lastLine":  193,
+                             "width":  2200,
+                             "height":  674
+                         }
+                     ]
+    },
+    {
+        "id":  "R12",
+        "pictures":  [
+                         {
+                             "file":  "anh/R12-01.png",
+                             "part":  1,
+                             "total":  9,
+                             "firstLine":  1,
+                             "lastLine":  25,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R12-02.png",
+                             "part":  2,
+                             "total":  9,
+                             "firstLine":  26,
+                             "lastLine":  47,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R12-03.png",
+                             "part":  3,
+                             "total":  9,
+                             "firstLine":  48,
+                             "lastLine":  73,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R12-04.png",
+                             "part":  4,
+                             "total":  9,
+                             "firstLine":  74,
+                             "lastLine":  94,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R12-05.png",
+                             "part":  5,
+                             "total":  9,
+                             "firstLine":  94,
+                             "lastLine":  116,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R12-06.png",
+                             "part":  6,
+                             "total":  9,
+                             "firstLine":  117,
+                             "lastLine":  139,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R12-07.png",
+                             "part":  7,
+                             "total":  9,
+                             "firstLine":  140,
+                             "lastLine":  161,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R12-08.png",
+                             "part":  8,
+                             "total":  9,
+                             "firstLine":  161,
+                             "lastLine":  183,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R12-09.png",
+                             "part":  9,
+                             "total":  9,
+                             "firstLine":  184,
+                             "lastLine":  194,
+                             "width":  2200,
+                             "height":  762
+                         }
+                     ]
+    },
+    {
+        "id":  "R13",
+        "pictures":  [
+                         {
+                             "file":  "anh/R13-01.png",
+                             "part":  1,
+                             "total":  19,
+                             "firstLine":  1,
+                             "lastLine":  24,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R13-02.png",
+                             "part":  2,
+                             "total":  19,
+                             "firstLine":  25,
+                             "lastLine":  49,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R13-03.png",
+                             "part":  3,
+                             "total":  19,
+                             "firstLine":  50,
+                             "lastLine":  63,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R13-04.png",
+                             "part":  4,
+                             "total":  19,
+                             "firstLine":  64,
+                             "lastLine":  81,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R13-05.png",
+                             "part":  5,
+                             "total":  19,
+                             "firstLine":  81,
+                             "lastLine":  100,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R13-06.png",
+                             "part":  6,
+                             "total":  19,
+                             "firstLine":  100,
+                             "lastLine":  121,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R13-07.png",
+                             "part":  7,
+                             "total":  19,
+                             "firstLine":  122,
+                             "lastLine":  140,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R13-08.png",
+                             "part":  8,
+                             "total":  19,
+                             "firstLine":  141,
+                             "lastLine":  160,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R13-09.png",
+                             "part":  9,
+                             "total":  19,
+                             "firstLine":  161,
+                             "lastLine":  179,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R13-10.png",
+                             "part":  10,
+                             "total":  19,
+                             "firstLine":  180,
+                             "lastLine":  197,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R13-11.png",
+                             "part":  11,
+                             "total":  19,
+                             "firstLine":  197,
+                             "lastLine":  215,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R13-12.png",
+                             "part":  12,
+                             "total":  19,
+                             "firstLine":  216,
+                             "lastLine":  237,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R13-13.png",
+                             "part":  13,
+                             "total":  19,
+                             "firstLine":  237,
+                             "lastLine":  261,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R13-14.png",
+                             "part":  14,
+                             "total":  19,
+                             "firstLine":  262,
+                             "lastLine":  286,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R13-15.png",
+                             "part":  15,
+                             "total":  19,
+                             "firstLine":  287,
+                             "lastLine":  310,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R13-16.png",
+                             "part":  16,
+                             "total":  19,
+                             "firstLine":  311,
+                             "lastLine":  334,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R13-17.png",
+                             "part":  17,
+                             "total":  19,
+                             "firstLine":  335,
+                             "lastLine":  360,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R13-18.png",
+                             "part":  18,
+                             "total":  19,
+                             "firstLine":  361,
+                             "lastLine":  386,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R13-19.png",
+                             "part":  19,
+                             "total":  19,
+                             "firstLine":  387,
+                             "lastLine":  404,
+                             "width":  2200,
+                             "height":  1202
+                         }
+                     ]
+    },
+    {
+        "id":  "R15",
+        "pictures":  [
+                         {
+                             "file":  "anh/R15-01.png",
+                             "part":  1,
+                             "total":  7,
+                             "firstLine":  1,
+                             "lastLine":  18,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R15-02.png",
+                             "part":  2,
+                             "total":  7,
+                             "firstLine":  19,
+                             "lastLine":  41,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R15-03.png",
+                             "part":  3,
+                             "total":  7,
+                             "firstLine":  41,
+                             "lastLine":  53,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R15-04.png",
+                             "part":  4,
+                             "total":  7,
+                             "firstLine":  53,
+                             "lastLine":  67,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R15-05.png",
+                             "part":  5,
+                             "total":  7,
+                             "firstLine":  68,
+                             "lastLine":  82,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R15-06.png",
+                             "part":  6,
+                             "total":  7,
+                             "firstLine":  83,
+                             "lastLine":  101,
+                             "width":  2200,
+                             "height":  1422
+                         },
+                         {
+                             "file":  "anh/R15-07.png",
+                             "part":  7,
+                             "total":  7,
+                             "firstLine":  102,
+                             "lastLine":  115,
+                             "width":  2200,
+                             "height":  1378
+                         }
+                     ]
+    }
+]

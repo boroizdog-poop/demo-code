@@ -1,0 +1,15 @@
+  <section class="gallery-about page-width" id="ve-artio">
+    <div class="section-index">02 / ABOUT</div>
+    <div class="about-intro" data-gallery-reveal><h2><?=artio_content_heading($site['about_title'])?></h2><p><?=nl2br(artio_h($site['about_text']))?></p><a class="editorial-link" href="courses.php">Mở thư viện <span aria-hidden="true">↗</span></a></div>
+    <div class="about-rolling-gallery" aria-label="Bộ sưu tập tranh digital art">
+      <div class="art-roll-columns">
+      <?php foreach([['about_image', [1.28,.78,1.28,.92,1.5,1.28,.92]], ['about_detail_image', [.78,1.5,.78,.92,1.5,.78,1.28]]] as $column=>$gallery): ?>
+        <div class="art-roll-window"><div class="art-roll-track">
+          <?php for($i=0;$i<7;$i++): $field=$i===0?$gallery[0]:'about_gallery_'.($column*6+$i); ?>
+          <figure class="art-roll-item" style="--art-ratio:<?=$gallery[1][$i]?>"><img src="<?=artio_h($site[$field])?>" alt="Tranh digital art trong bộ sưu tập ARTIO · <?=($column*7+$i+1)?>" loading="lazy" decoding="async" data-fallback></figure>
+          <?php endfor; ?>
+        </div></div>
+      <?php endforeach; ?>
+      </div>
+    </div>
+  </section>

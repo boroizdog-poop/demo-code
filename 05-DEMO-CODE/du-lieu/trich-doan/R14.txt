@@ -1,0 +1,141 @@
+<?php
+declare(strict_types=1);
+require __DIR__.'/bootstrap.php';
+require __DIR__.'/includes/layout.php';
+$courses = artio_courses();
+require __DIR__.'/includes/brushes.php';
+$brushes=artio_brushes();
+$site=artio_site_content();
+$featured = array_values(array_filter($courses, fn($course) => $course['level'] === 'Tân thủ'));
+
+$shareItems = [];
+foreach ($courses as $course) {
+    $shareItems[] = ['kind' => 'course', 'date' => (string)($course['updated_at'] ?? $course['created_at'] ?? ''), 'resource' => $course];
+}
+foreach ($brushes as $brush) {
+    $shareItems[] = ['kind' => 'brush', 'date' => (string)($brush['shared_at'] ?? ''), 'resource' => $brush];
+}
+usort($shareItems, static fn(array $a, array $b): int => strcmp($b['date'], $a['date']));
+$newShares = array_slice($shareItems, 0, 4);
+$needsAuth = !artio_user();
+artio_head('Gallery tài nguyên digital art', false, true); ?>
+<body class="gallery-home">
+<a class="skip-link" href="#main-content">Chuyển đến nội dung</a>
+<main id="main-content">
+    <div class="artio-hero-shell" id="kham-pha">
+        <section class="artio-hero" aria-labelledby="hero-title" >
+            <div class="artio-artwork" aria-hidden="true">
+                <img decoding="async" class="artio-hero-image" src="<?=artio_h($site['hero_image'])?>" fetchpriority="high" alt="">
+                <div class="artio-hero-shade"></div>
+                <img decoding="async" class="artio-hero-vector" src="assets/landing/hero/275b3.svg" alt="">
+            </div>
+            <?php artio_header('home'); ?>
+            <span class="artio-slide-number" aria-hidden="true">01</span>
+            <div class="artio-vertical-rule" aria-hidden="true"></div>
+            <h1 id="hero-title" style="--hero-title-size:<?=min(105.5,527.5/max(5,count(preg_split('//u',$site['hero_title'],-1,PREG_SPLIT_NO_EMPTY))))?>px"><?=artio_h($site['hero_title'])?></h1>
+            <p class="artio-subtitle"><?=artio_h($site['hero_label'])?></p>
+            <div class="artio-intro">
+                <p><?=nl2br(artio_h($site['hero_text']))?></p>
+                <a class="artio-explore" href="#tai-nguyen" aria-label="Khám phá khóa học">
+                    <img decoding="async" src="assets/landing/hero/d8c88.svg" alt=""><span aria-hidden="true">→</span>
+                </a>
+            </div>
+            <a class="artio-scroll-cue" href="#inspiration">SCROLL<span aria-hidden="true">↓</span></a>
+            <div class="artio-portrait" aria-label="Khám phá brush"><img decoding="async" src="<?=artio_h($site['hero_small_one'])?>" alt="Minh họa nhân vật với sắc xanh rực rỡ" width="155" height="225"></div>
+            <div class="artio-eye-crop" aria-label="Khám phá khóa học"><img decoding="async" src="<?=artio_h($site['hero_small_two'])?>" alt="Cận cảnh đôi mắt trong tranh minh họa" width="192" height="114"></div>
+            <p class="artio-motto"><span>LEARN</span><span>EXPLORE</span><span>CREATE</span></p>
+            <img decoding="async" class="artio-detail-vector artio-detail-vector-one" src="assets/landing/hero/f1348.svg" alt="" aria-hidden="true">
+        </section>
+    </div>
+
+    <section class="art-bridge" id="inspiration" aria-label="Không gian tranh digital art">
+        <div class="art-bridge-stage">
+            <div class="art-bridge-background" aria-hidden="true">
+                <img src="assets/images/light-study.webp" alt="" decoding="async" style="--x:18%;--y:9%;--w:8%;--ratio:1.4;--tilt:-18deg;--turn:32deg;--pitch:12deg">
+                <img src="assets/images/anime-portrait.webp" alt="" decoding="async" style="--x:46%;--y:6%;--w:6%;--ratio:1;--tilt:14deg;--turn:-38deg;--pitch:-16deg">
+                <img src="assets/images/hero-world.webp" alt="" decoding="async" style="--x:83%;--y:14%;--w:7%;--ratio:.8;--tilt:-12deg;--turn:42deg;--pitch:8deg">
+                <img src="assets/images/winter-world.webp" alt="" decoding="async" style="--x:8%;--y:76%;--w:9%;--ratio:1.5;--tilt:16deg;--turn:-28deg;--pitch:24deg">
+                <img src="assets/images/brush-study.webp" alt="" decoding="async" style="--x:43%;--y:84%;--w:7%;--ratio:1;--tilt:-22deg;--turn:35deg;--pitch:-12deg">
+                <img src="assets/images/first-creation.webp" alt="" decoding="async" style="--x:72%;--y:77%;--w:8%;--ratio:1.3;--tilt:20deg;--turn:-42deg;--pitch:18deg">
+            </div>
+            <figure class="art-bridge-piece" style="--ratio:.8;--fall:240;--tilt:-6deg"><img src="<?=artio_h($site['edge_left_image'])?>" alt="Tranh nhân vật fantasy trong sắc xanh" decoding="async"></figure>
+            <figure class="art-bridge-piece" style="--ratio:1.3;--fall:65;--tilt:4deg"><img src="<?=artio_h($site['inspiration_image_two'])?>" alt="Thế giới mùa đông trong tranh minh họa" decoding="async"></figure>
+            <figure class="art-bridge-piece" style="--ratio:1.5;--fall:130;--tilt:-4deg"><img src="<?=artio_h($site['inspiration_image_three'])?>" alt="Tranh digital art trong thư viện Artio" decoding="async"></figure>
+            <figure class="art-bridge-piece" style="--ratio:1.5;--fall:180;--tilt:5deg"><img src="<?=artio_h($site['inspiration_image_four'])?>" alt="Nghiên cứu nét cọ và màu sắc" decoding="async"></figure>
+            <figure class="art-bridge-piece" style="--ratio:1.2;--fall:85;--tilt:-5deg"><img src="<?=artio_h($site['inspiration_image_five'])?>" alt="Tranh minh họa của Redum" decoding="async"></figure>
+            <figure class="art-bridge-piece" style="--ratio:.8;--fall:270;--tilt:6deg"><img src="<?=artio_h($site['edge_right_image'])?>" alt="Tranh fantasy với kiến trúc và hoa lá" decoding="async"></figure>
+            <div class="art-bridge-copy"><span><?=artio_h($site['inspiration_label'])?></span><p><?=nl2br(artio_h($site['inspiration_title']))?></p><a href="#ve-artio">Khám phá ARTIO <span aria-hidden="true">↓</span></a></div>
+        </div>
+    </section>
+
+
+<div class="home-gallery">
+  <section class="gallery-about page-width" id="ve-artio">
+    <div class="section-index">02 / ABOUT</div>
+    <div class="about-intro" data-gallery-reveal><h2><?=artio_content_heading($site['about_title'])?></h2><p><?=nl2br(artio_h($site['about_text']))?></p><a class="editorial-link" href="courses.php">Mở thư viện <span aria-hidden="true">↗</span></a></div>
+    <div class="about-rolling-gallery" aria-label="Bộ sưu tập tranh digital art">
+      <div class="art-roll-columns">
+      <?php foreach([['about_image', [1.28,.78,1.28,.92,1.5,1.28,.92]], ['about_detail_image', [.78,1.5,.78,.92,1.5,.78,1.28]]] as $column=>$gallery): ?>
+        <div class="art-roll-window"><div class="art-roll-track">
+          <?php for($i=0;$i<7;$i++): $field=$i===0?$gallery[0]:'about_gallery_'.($column*6+$i); ?>
+          <figure class="art-roll-item" style="--art-ratio:<?=$gallery[1][$i]?>"><img src="<?=artio_h($site[$field])?>" alt="Tranh digital art trong bộ sưu tập ARTIO · <?=($column*7+$i+1)?>" loading="lazy" decoding="async" data-fallback></figure>
+          <?php endfor; ?>
+        </div></div>
+      <?php endforeach; ?>
+      </div>
+    </div>
+  </section>
+
+  <section class="resource-collections page-width" id="tai-nguyen">
+    <div class="section-index">03 / RESOURCE TYPES</div>
+    <div class="collection-heading"><h2 data-gallery-reveal="heading"><?=artio_content_heading($site['resources_title'])?></h2><p data-gallery-reveal><?=nl2br(artio_h($site['resources_text']))?></p></div>
+    <div class="collection-grid">
+      <a class="collection-feature" href="courses.php" data-gallery-reveal="image" data-reveal-from="left">
+        <img src="<?=artio_h($site['courses_poster'])?>" width="1100" height="1557" loading="lazy" alt="Nhân vật fantasy giữa không gian kiến trúc và hoa lá">
+        
+        <div class="collection-feature-copy"><h3>Khóa học<br>& hướng dẫn.</h3><span><?=count($courses)?> tài nguyên <span aria-hidden="true">↗</span></span></div>
+      </a>
+      <a class="collection-feature collection-brush-poster" href="brush.php" data-gallery-reveal="image" data-reveal-from="right"><img src="<?=artio_h($site['brush_poster'])?>" width="1000" height="1164" loading="lazy" alt="Ảnh minh họa nhóm tài nguyên brush"><div class="collection-feature-copy"><h3>Brush<br>library.</h3><span><?=count($brushes)?> nguồn brush <span aria-hidden="true">↗</span></span></div></a>
+    </div>
+  </section>
+
+  <div class="gallery-ribbon" aria-label="Learn, create, explore"><div class="gallery-ribbon-track"><span>LEARN <i>✳</i> CREATE <i>✳</i> EXPLORE <i>✳</i></span><span aria-hidden="true">LEARN <i>✳</i> CREATE <i>✳</i> EXPLORE <i>✳</i></span></div></div>
+
+  <section class="starter-section page-width" id="cho-nguoi-moi">
+    <div class="section-index">04 / FOR BEGINNERS</div>
+    <div class="starter-head"><h2 data-gallery-reveal="heading"><?=artio_content_heading($site['beginners_title'])?></h2><p data-gallery-reveal><?=nl2br(artio_h($site['beginners_text']))?></p></div>
+    <div class="service-stack" aria-label="Lộ trình khám phá cho người mới">
+      <?php foreach($featured as $i=>$course): ?>
+      <article class="service-panel" style="--panel-index:<?=$i?>">
+        <div class="service-panel-top"><span>0<?=($i+1)?> / <?=artio_h($course['category'])?></span><span aria-hidden="true">↗</span></div>
+        <div class="service-panel-content"><div class="service-copy"><h3 data-gallery-reveal><?=artio_h($course['title'])?></h3><p><?=artio_h($course['excerpt'])?></p><a class="outline-light" href="course.php?id=<?=(int)$course['id']?>" <?=$needsAuth?'data-auth-gate':''?>>Bắt đầu khám phá <?=artio_icon('arrow')?></a></div>
+        <a class="service-art" href="course.php?id=<?=(int)$course['id']?>" aria-label="Khám phá <?=artio_h($course['title'])?>" <?=$needsAuth?'data-auth-gate':''?>><img src="<?=artio_h($course['image_url'])?>" alt="<?=artio_h($course['title'])?>" loading="lazy" decoding="async" data-fallback></a></div>
+      </article>
+      <?php endforeach; ?>
+      <?php if(!$featured): ?><p class="muted">Tài nguyên cho người mới đang được cập nhật.</p><?php endif; ?>
+    </div>
+  </section>
+
+  <section class="new-share page-width" id="new-share">
+    <div class="section-index">05 / NEW SHARE</div><div data-reveal-container><div class="new-share-head" data-gallery-reveal><div><p class="share-kicker">New share</p><h2><?=artio_h($site['new_share_title'])?></h2></div><a class="share-more" href="#tai-nguyen" aria-label="Khám phá tất cả tài nguyên">More <span aria-hidden="true">⟶</span></a></div></div>
+    <div class="starter-carousel new-share-carousel" data-gallery-reveal data-carousel role="region" aria-roledescription="carousel" aria-label="Các tài nguyên mới" tabindex="0">
+      <?php foreach($newShares as $i=>$item):
+        $resource=$item['resource']; $isBrush=$item['kind']==='brush';
+        $href=$isBrush ? 'brush-detail.php?slug='.urlencode($resource['slug']) : 'course.php?id='.(int)$resource['id'];
+        $image=$isBrush ? $resource['image'] : $resource['image_url'];
+      ?>
+      <article class="starter-slide share-item <?=$i===0?'is-active':''?>" data-slide="<?=$i?>"><a href="<?=artio_h($href)?>" aria-label="Khám phá <?=artio_h($resource['title'])?>" <?=$needsAuth?'data-auth-gate':''?>>
+        <div class="starter-slide-art"><span class="slide-number">0<?=($i+1)?></span><img src="<?=artio_h($image)?>" alt="<?=$isBrush?'Ảnh minh họa cho ':''?><?=artio_h($resource['title'])?>" loading="lazy" decoding="async" data-fallback></div>
+        <div class="starter-slide-copy"><span class="resource-kind resource-kind-label"><?=$isBrush ? 'BRUSH' : 'Khóa học &amp; hướng dẫn'?></span><h3><?=artio_h($resource['title'])?></h3><span class="editorial-link">Xem tài nguyên ↗</span></div>
+      </a></article>
+      <?php endforeach; ?>
+    </div>
+    <div class="carousel-controls"><button type="button" data-carousel-toggle aria-label="Tạm dừng chuyển động" aria-pressed="false" hidden><span aria-hidden="true">Ⅱ</span></button><button type="button" data-carousel-prev aria-label="Tài nguyên trước"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 12H3m6-6-6 6 6 6"/></svg></button><span data-carousel-status role="status" aria-live="polite">01 / <?=str_pad((string)count($newShares),2,'0',STR_PAD_LEFT)?></span><button type="button" data-carousel-next aria-label="Tài nguyên tiếp theo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 12h18m-6-6 6 6-6 6"/></svg></button></div>
+  </section>
+
+  <section class="gallery-closing page-width" id="tiep-tuc"><div class="closing-art" data-gallery-reveal="image"><img src="<?=artio_h($site['closing_image'])?>" width="950" height="1571" loading="lazy" alt="Nhân vật fantasy trong sắc xanh"></div><div class="closing-copy" data-gallery-reveal><div class="section-index">06 / CONTINUE</div><h2><?=artio_content_heading($site['closing_title'])?></h2><a class="orange-btn" href="courses.php">Xem tất cả khóa học ↗</a><a class="text-link closing-contact" href="brush.php">Xem tất cả brush ↗</a></div></section>
+</div>
+</main>
+<?php if(artio_is_admin()): ?><nav class="admin-quick-edit" aria-label="Chỉnh sửa trang chủ"><b>Quản trị nội dung</b><a href="admin.php?view=site">Sửa chữ và ảnh trang chủ ↗</a><a href="admin.php?view=courses">Quản lý khóa học ↗</a><a href="admin.php?view=brushes">Quản lý brush ↗</a></nav><?php endif; ?>
+<?php artio_footer(); ?>
+</body></html>

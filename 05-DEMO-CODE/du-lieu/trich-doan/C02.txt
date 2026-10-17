@@ -1,0 +1,22 @@
+    <div class="artio-hero-shell" id="kham-pha">
+        <section class="artio-hero" aria-labelledby="hero-title" >
+            <div class="artio-artwork" aria-hidden="true">
+                <img decoding="async" class="artio-hero-image" src="<?=artio_h($site['hero_image'])?>" fetchpriority="high" alt="">
+                <div class="artio-hero-shade"></div>
+                <img decoding="async" class="artio-hero-vector" src="assets/landing/hero/275b3.svg" alt="">
+            </div>
+            <?php artio_header('home'); ?>
+            <span class="artio-slide-number" aria-hidden="true">01</span>
+            <div class="artio-vertical-rule" aria-hidden="true"></div>
+            <h1 id="hero-title" style="--hero-title-size:<?=min(105.5,527.5/max(5,count(preg_split('//u',$site['hero_title'],-1,PREG_SPLIT_NO_EMPTY))))?>px"><?=artio_h($site['hero_title'])?></h1>
+            <p class="artio-subtitle"><?=artio_h($site['hero_label'])?></p>
+            <div class="artio-intro">
+                <p><?=nl2br(artio_h($site['hero_text']))?></p>
+                <a class="artio-explore" href="#tai-nguyen" aria-label="Khám phá khóa học">
+                    <img decoding="async" src="assets/landing/hero/d8c88.svg" alt=""><span aria-hidden="true">→</span>
+                </a>
+            </div>
+            <a class="artio-scroll-cue" href="#inspiration">SCROLL<span aria-hidden="true">↓</span></a>
+            <div class="artio-portrait" aria-label="Khám phá brush"><img decoding="async" src="<?=artio_h($site['hero_small_one'])?>" alt="Minh họa nhân vật với sắc xanh rực rỡ" width="155" height="225"></div>
+            <div class="artio-eye-crop" aria-label="Khám phá khóa học"><img decoding="async" src="<?=artio_h($site['hero_small_two'])?>" alt="Cận cảnh đôi mắt trong tranh minh họa" width="192" height="114"></div>
+            <p class="artio-motto"><span>LEARN</span><span>EXPLORE</span><span>CREATE</span></p>

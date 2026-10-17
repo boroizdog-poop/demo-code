@@ -1,0 +1,13 @@
+  const lesson = lessons[button.dataset.lesson]; if (!lesson) return;
+  $('#lesson-title').textContent = lesson.title; $('#lesson-content').textContent = lesson.content || 'Bài học chưa có nội dung chi tiết.';
+  const player = $('#lesson-player'); player.replaceChildren();
+  if (lesson.url) {
+    const url = new URL(lesson.url); let id = '';
+    if (url.hostname === 'youtu.be') id = url.pathname.slice(1);
+    if (['www.youtube.com','youtube.com','www.youtube-nocookie.com'].includes(url.hostname)) id = url.searchParams.get('v') || url.pathname.split('/').pop();
+    if (/^[\w-]{11}$/.test(id)) { const frame = document.createElement('iframe'); frame.src = 'https://www.youtube-nocookie.com/embed/'+id; frame.title=lesson.title; frame.allowFullscreen=true;player.append(frame); }
+    else { const link=document.createElement('a');link.href=lesson.url;link.target='_blank';link.rel='noopener noreferrer';link.className='outline-btn';link.textContent='Mở video bài học ↗';player.append(link); }
+  }
+  $('#lesson-dialog').showModal();
+}));
+$('#lesson-dialog')?.addEventListener('close', () => $('#lesson-player').replaceChildren());

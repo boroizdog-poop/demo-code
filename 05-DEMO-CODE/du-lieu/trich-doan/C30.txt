@@ -1,0 +1,8 @@
+    if ($action==='comment_hide') {
+        $user=artio_user();if(!$user) reply(401,'Hãy đăng nhập.');
+        $stmt=$db->prepare('SELECT user_id FROM comments WHERE id=?');$stmt->execute([(int)($data['id']??0)]);$owner=$stmt->fetchColumn();
+        if (!$owner) reply(404,'Không tìm thấy bình luận.');
+        if ((int)$owner!==(int)$user['id'] && $user['role']!=='admin') reply(403,'Bạn không có quyền ẩn bình luận này.');
+        $db->prepare('UPDATE comments SET hidden=1 WHERE id=?')->execute([(int)$data['id']]);
+        reply(200,'Đã ẩn bình luận.');
+    }

@@ -1,0 +1,13 @@
+.resource-comments [data-comment-list] { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 14px; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: #d5d8dc transparent; }
+.resource-comments .comment { display: flex; flex-direction: column; flex: 0 0 calc((100% - 32px) / 3); min-width: 0; height: 380px; min-height: 0; overflow: hidden; padding: 24px; border: 0; border-radius: 28px; background: #f0f2f4; scroll-snap-align: start; }
+.resource-comments .comment::before { content: none; }
+.resource-comments .comment :is(.comment-card-top, .comment-quote, .comment-meta) { flex-shrink: 0; }
+.resource-comments .comment .comment-meta { max-height: 96px; overflow-y: auto; }
+.resource-comments .comment .comment-card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.resource-comments .comment-avatar { display: grid; place-items: center; flex-shrink: 0; width: 42px; height: 42px; border-radius: 50%; background: #e0e6eb; color: #4a5a69; font: 600 18px/1 var(--body); text-transform: uppercase; }
+.resource-comments .comment-card-label { padding: 8px 12px; border: 1px solid #d0d5da; border-radius: 100px; color: #666d75; font: 500 10px/1.4 var(--body); }
+.resource-comments .comment-quote { display: block; margin-top: 28px; height: 36px; color: #8aa7c6; font: 700 58px/1 Georgia, serif; }
+.resource-comments .comment .comment-message { flex: 1 1 0; min-height: 0; margin: 10px 0 20px; overflow-y: auto; color: #18191b; font: 400 clamp(18px, 1.7vw, 25px)/1.4 var(--body); letter-spacing: -.035em; overflow-wrap: anywhere; scrollbar-width: thin; }
+.resource-comments .comment .comment-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; margin-top: auto; padding-left: 14px; border-left: 1px solid #c9ced4; }
+.resource-comments .comment strong { color: #262a30; font: 500 13px/1.5 var(--body); overflow-wrap: anywhere; }
+.resource-comments .comment time { color: #777e86; font: 400 11px/1.5 var(--body); }

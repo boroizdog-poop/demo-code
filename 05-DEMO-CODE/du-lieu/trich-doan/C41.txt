@@ -1,0 +1,16 @@
+  event.preventDefault();if(form.getAttribute('aria-busy')==='true')return;
+  const revision=formRevisions.get(form), status=$('.form-status',form);setAdminBusy(form,true);status.textContent='Đang lưu brush...';
+  try {
+    const result=await postApi({action:'brush_save',...Object.fromEntries(new FormData(form))});
+    status.textContent=result.message;status.className=result.ok?'form-status form-success':'form-status form-error';
+    if(result.ok){
+      savedFormId(form,'id',result.id);savedFormId(form,'version',result.version);
+      if(revision===formRevisions.get(form))dirtyForms.delete(form);
+      if(revision===formRevisions.get(form)){
+        try{await refreshSavedBrush(form,result.id,revision);}catch{status.textContent=result.message+' Danh sách chưa cập nhật; bạn có thể tải lại trang khi thuận tiện.';}
+      }
+    }
+  } finally {setAdminBusy(form,false);}
+}));
+}
+initAdminResourceForms();

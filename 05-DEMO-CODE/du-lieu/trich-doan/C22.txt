@@ -1,0 +1,28 @@
+'use strict';
+const $ = (selector, root = document) => root.querySelector(selector);
+const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+// Skip identical catalog requests; changed searches still use native GET forms.
+(() => {
+  $$('form.catalog-filters[method="get"]').forEach(form => {
+    const fields = $$('input[name="q"], select[name="category"], select[name="sort"]', form);
+    if (!fields.length) return;
+    const state = defaults => JSON.stringify(fields.map(field => {
+      const initial = field.tagName === 'SELECT'
+        ? ([...field.options].find(option => option.defaultSelected) || field.options[0])?.value || ''
+        : field.defaultValue;
+      const value = defaults ? initial : field.value;
+      return [field.name, field.name === 'q' ? value.trim() : value];
+    }));
+    const applied = state(true);
+    // A legacy courses URL can contain q although its filter form has no q field.
+    // Submitting that form clears q, so it must remain a meaningful request.
+    const clearsLegacyQuery = !fields.some(field => field.name === 'q')
+      && !!new URLSearchParams(location.search).get('q')?.trim();
+    form.addEventListener('submit', event => {
+      if (!clearsLegacyQuery && state(false) === applied) {
+        event.preventDefault();
+        document.getElementById('catalog-results')?.scrollIntoView({block: 'start'});
+      }
+    });
+  });
+})();

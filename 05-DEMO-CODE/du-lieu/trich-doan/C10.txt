@@ -1,0 +1,38 @@
+/* Lift the full resource card while its artwork keeps its existing hover zoom. */
+:is(.course-library-page, .brush-page, .search-page) :is(.maku-course-card, .brush-card) {
+  position: relative;
+  border-radius: 16px;
+  transition: transform 600ms cubic-bezier(.22, 1, .36, 1), opacity 600ms cubic-bezier(.22, 1, .36, 1), translate 550ms cubic-bezier(.22, 1, .36, 1);
+}
+:is(.course-library-page, .brush-page, .search-page) :is(.maku-course-card, .brush-card)::after {
+  content: "";
+  position: absolute;
+  inset: -12px -12px -14px;
+  z-index: -1;
+  border-radius: 24px;
+  background: var(--canvas);
+  box-shadow: 0 20px 42px -16px #18191b35;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 550ms cubic-bezier(.22, 1, .36, 1);
+}
+:is(.course-library-page, .brush-page, .search-page) :is(.maku-course-media, .brush-card-image) img {
+  transition: transform 650ms cubic-bezier(.22, 1, .36, 1);
+}
+  :is(.course-library-page, .brush-page, .search-page) :is(.maku-course-card, .brush-card):hover {
+    translate: 0 -8px;
+  }
+  :is(.course-library-page, .brush-page, .search-page) :is(.maku-course-card, .brush-card):hover::after { opacity: 1; }
+:is(.course-library-page, .brush-page, .search-page) :is(.maku-course-card, .brush-card):focus-within {
+  translate: 0 -8px;
+}
+:is(.course-library-page, .brush-page, .search-page) :is(.maku-course-card, .brush-card):focus-within::after { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  :is(.course-library-page, .brush-page, .search-page) :is(.maku-course-card, .brush-card) {
+    transition: none;
+    transform: none;
+    translate: none;
+  }
+  :is(.course-library-page, .brush-page, .search-page) :is(.maku-course-card, .brush-card):is(:hover, :focus-within) { transform: none; translate: none; }
+  :is(.course-library-page, .brush-page, .search-page) :is(.maku-course-card, .brush-card)::after,
+  :is(.course-library-page, .brush-page, .search-page) :is(.maku-course-media, .brush-card-image) img { transition: none; }

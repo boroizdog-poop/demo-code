@@ -1,0 +1,57 @@
+if (carousel) {
+  const slides = [...carousel.querySelectorAll('[data-slide]')];
+  const previous = document.querySelector('[data-carousel-prev]');
+  const next = document.querySelector('[data-carousel-next]');
+  const status = document.querySelector('[data-carousel-status]');
+  const toggle = document.querySelector('[data-carousel-toggle]');
+  const pauseReasons = new Set();
+  let active = 0, pendingFrame = 0, autoTimer = 0, autoDirection = 1;
+  // Advance only while visible; reader interaction pauses autoplay.
+  let userPaused = false, resumeTimer = 0;
+  pauseReasons.add('offscreen');
+  const select = index => {
+    active = index;
+    slides.forEach((slide, i) => slide.classList.toggle('is-active', i === active));
+    previous.disabled = active === 0;
+    next.disabled = active === slides.length - 1;
+    status.textContent = `${String(active + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+  };
+  const go = (index, keyboard = false, automatic = false) => {
+    if (!slides.length) return;
+    index = Math.max(0, Math.min(slides.length - 1, index));
+    if (!automatic) pauseBriefly();
+    select(index);
+    const slide = slides[index];
+    carousel.scrollTo({left: slide.offsetLeft - (carousel.clientWidth - slide.offsetWidth) / 2,
+      behavior: keyboard || motionPreference.matches ? 'instant' : 'smooth'});
+  };
+  previous.addEventListener('click', event => go(active - 1, event.detail === 0));
+  next.addEventListener('click', event => go(active + 1, event.detail === 0));
+  carousel.addEventListener('keydown', event => {
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    const index = event.key === 'Home' ? 0 : event.key === 'End' ? slides.length - 1 : active + (event.key === 'ArrowRight' ? 1 : -1);
+    go(index, true);
+    slides[active]?.querySelector('a').focus({preventScroll: true});
+  });
+  carousel.addEventListener('focusin', event => {
+    const index = slides.findIndex(slide => slide.contains(event.target));
+    if (index >= 0 && index !== active) go(index, true);
+  });
+  carousel.addEventListener('scroll', () => {
+    if (pendingFrame) return;
+    pendingFrame = requestAnimationFrame(() => {
+      pendingFrame = 0;
+      const center = carousel.scrollLeft + carousel.clientWidth / 2;
+      let closest = 0, distance = Infinity;
+      slides.forEach((slide, index) => {
+        const delta = Math.abs(slide.offsetLeft + slide.offsetWidth / 2 - center);
+        if (delta < distance) { distance = delta; closest = index; }
+      });
+      if (closest !== active) select(closest);
+    });
+  }, {passive: true});
+  window.addEventListener('resize', () => {
+    if (!slides.length) return;
+    carousel.scrollTo({left: slides[active].offsetLeft - (carousel.clientWidth - slides[active].offsetWidth) / 2, behavior: 'instant'});
+  }, {passive: true});

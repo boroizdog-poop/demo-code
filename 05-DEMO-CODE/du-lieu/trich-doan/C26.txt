@@ -1,0 +1,9 @@
+    if ($action==='save_course') {
+        $user=artio_user();if(!$user) reply(401,'Hãy đăng nhập để lưu khóa học.');
+        $id=(int)($data['id']??0);if(!artio_course($id)) reply(404,'Không tìm thấy khóa học.');
+        $saved=(bool)($data['saved']??true);
+        $s=$db->prepare('SELECT course_id FROM saved_courses WHERE user_id=? AND course_id=?');$s->execute([$user['id'],$id]);
+        if ($saved && !$s->fetch()) $db->prepare('INSERT INTO saved_courses(user_id,course_id) VALUES(?,?)')->execute([$user['id'],$id]);
+        if (!$saved) $db->prepare('DELETE FROM saved_courses WHERE user_id=? AND course_id=?')->execute([$user['id'],$id]);
+        reply(200,$saved?'Đã lưu vào tài khoản của bạn.':'Đã bỏ lưu khóa học.',['saved'=>$saved]);
+    }

@@ -1,0 +1,21 @@
+KẾT QUẢ KIỂM TRA GÓI BÀN GIAO ARTIO - 07/10/2026
+
+1. Source PHP/CSS/JavaScript và assets khớp bản local mới nhất.
+2. Kiểm cú pháp toàn bộ PHP trong source: đạt.
+3. HTTP integration: đạt toàn bộ nhóm kiểm thử auth, CSRF, tìm kiếm tiếng Việt,
+   CMS, upload, nháp/xuất bản, version, bình luận, phân quyền và quan hệ dữ liệu.
+4. Database mẫu: integrity_check đạt; foreign_key_check không có lỗi.
+   Có 6 khóa học, 3 brush, 4 danh mục, 1 admin và 7 giá trị CMS công khai.
+   Không kèm dữ liệu tài khoản người học, lưu khóa học, bình luận hoặc hộp thư.
+5. Giải nén ZIP vào thư mục tạm, chạy setup-local.sh với PHP_BIN và cổng riêng:
+   đăng nhập admin/admin thành công; 10 route/file tải được; route riêng bị chặn.
+6. Hướng dẫn: kiểm liên kết nội bộ và ảnh; xem bố cục trực tiếp trong trình duyệt.
+7. Báo cáo PDF: 11 trang; đã render và xem từng trang, sơ đồ và ảnh minh họa.
+8. ZIP: kiểm CRC, giải nén và so sánh từng file với thư mục bàn giao.
+
+Môi trường kiểm tra: macOS, PHP và PDO SQLite. Script Windows đã kiểm nội dung,
+chưa chạy trên Windows thật. Nhánh MySQL chưa kiểm với máy chủ MySQL.
+Kiểm màn hình nhỏ trong trình duyệt chưa thay thế thử trên điện thoại thật.
+
+Tài khoản demo local: username admin; password admin.
+Mở 00-BAT-DAU.html trong cùng thư mục hướng dẫn để đọc từ đầu.

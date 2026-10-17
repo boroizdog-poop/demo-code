@@ -1,0 +1,21 @@
+        $fields['category_id']=(int)$categoryQuery->fetchColumn();
+        $id=(int)($data['id']??0);
+        $fields['image_credit']=text_field($data,'image_credit',190);
+        $imageSource=text_field($data,'image_source_url',2000);
+        if ($imageSource!=='' && (!filter_var($imageSource,FILTER_VALIDATE_URL) || parse_url($imageSource,PHP_URL_SCHEME)!=='https')) reply(422,'Link nguồn ảnh phải bắt đầu bằng https://.');
+        $fields['image_source_url']=$imageSource;
+        if ($id) {
+            $set=implode(',',array_map(fn($k)=>"$k=?",array_keys($fields)));
+            $s=$db->prepare("UPDATE courses SET $set,version=version+1,updated_at=CURRENT_TIMESTAMP WHERE id=? AND version=?");
+            $s->execute([...array_values($fields),$id,(int)($data['version']??0)]);
+            if (!$s->rowCount()) reply(409,'Khóa học đã được cập nhật ở nơi khác. Tải lại trang trước khi sửa tiếp.');
+        } else {
+            $db->prepare('INSERT INTO courses('.implode(',',array_keys($fields)).') VALUES('.implode(',',array_fill(0,count($fields),'?')).')')->execute(array_values($fields));$id=(int)$db->lastInsertId();
+        }
+        $s=$db->prepare('SELECT version FROM courses WHERE id=?');$s->execute([$id]);
+        reply(200,$status==='draft'?'Đã lưu bản nháp.':'Đã xuất bản khóa học.',['id'=>$id,'version'=>(int)$s->fetchColumn(),'status'=>$status]);
+    }
+    reply(400,'Thao tác không tồn tại.');
+} catch (JsonException $e) { reply(422,'JSON không hợp lệ.'); }
+catch (PDOException $e) {
+    if (isset($db) && $db->inTransaction()) $db->rollBack();

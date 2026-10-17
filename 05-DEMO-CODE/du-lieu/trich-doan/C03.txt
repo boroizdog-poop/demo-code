@@ -1,0 +1,16 @@
+artio_head('Thư viện khóa học');
+?>
+<body class="catalog-body course-library-page">
+<?php artio_header('courses'); ?>
+<main id="main-content" class="catalog-page page-width">
+  <div class="catalog-intro"><div><p class="eyebrow orange-eyebrow">ARTIO / THE CREATIVE LIBRARY</p><h1>Khóa học<br><em>& hướng dẫn.</em></h1></div></div>
+  <form class="catalog-filters library-filters" method="get" action="courses.php#catalog-results" id="catalog-search">
+    <details class="catalog-filter-disclosure" open><summary><span>Bộ lọc</span><span class="filter-summary"><?=artio_h($filterSummary)?></span></summary><div class="catalog-filter-fields"><label>Chủ đề<select name="category"><option value="">Tất cả chủ đề</option><?php foreach($categories as $cat): ?><option <?=$category===$cat['name']?'selected':''?>><?=artio_h($cat['name'])?></option><?php endforeach; ?></select></label><label>Sắp xếp<select name="sort"><option value="new">Mới nhất</option><option value="title" <?=$sort==='title'?'selected':''?>>Tên A–Z</option><?php if($sort==='price'): ?><option value="price" selected>Giá tăng dần</option><?php endif; ?></select></label></div></details>
+    <button class="orange-btn" type="submit">Áp dụng <?=artio_icon('arrow')?></button>
+  </form>
+  <div class="catalog-count" id="catalog-results"><span><strong><?=str_pad((string)count($courses),2,'0',STR_PAD_LEFT)?></strong> Khóa học <?=$needle!==''||$activeFilterCount?'phù hợp':'để khám phá'?></span><?php if($needle!==''||$activeFilterCount): ?><a href="courses.php">Xóa bộ lọc ×</a><?php else: ?><span class="catalog-view-note">Thư viện tài nguyên học vẽ.</span><?php endif; ?></div>
+  <h2 class="sr-only">Các khóa học trong thư viện</h2><div class="maku-course-grid"><?php foreach($courses as $c) artio_card($c); ?></div>
+  <?php if(!$courses): ?><div class="empty-state"><span class="empty-icon" aria-hidden="true">✳</span><h2>Chưa tìm thấy khóa học.</h2><p>Thử một từ khóa ngắn hơn hoặc bỏ bớt bộ lọc.</p><a class="outline-btn" href="courses.php">Xem tất cả khóa học <?=artio_icon('arrow')?></a></div><?php endif; ?>
+</main>
+<?php artio_footer(); ?>
+</body></html>

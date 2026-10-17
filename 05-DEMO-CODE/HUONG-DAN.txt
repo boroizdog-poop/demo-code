@@ -1,0 +1,15 @@
+BỘ DEMO CODE ARTIO
+
+BẮT ĐẦU: mở 00-MUC-LUC.html.
+
+6 phần: Giao diện các trang; Hiệu ứng; Chức năng người dùng; Quản trị; Database; Khởi chạy và cấu hình.
+Mỗi mục có tên chức năng, vị trí file, giải thích ngắn và ảnh code.
+Bấm ảnh để xem lớn. Các file đầy đủ nằm ở phần Tham khảo thêm cuối mục lục, mặc định thu gọn.
+
+CÁC THƯ MỤC
+anh: 335 ảnh code đang được tài liệu sử dụng.
+tham-khao: bảng tra hiệu ứng và trang chủ theo khu vực.
+du-lieu: dữ liệu JSON, đoạn trích, báo cáo kiểm tra và công cụ dựng ảnh; không cần mở khi thuyết trình.
+
+DỰNG LẠI ẢNH: chạy du-lieu/TAO-ANH.ps1. Công cụ đọc dữ liệu trong du-lieu và ghi ảnh vào anh. Công cụ không tự đồng bộ mã nguồn.
+Không thay đổi mã nguồn web hoặc database trong lần sắp xếp này.

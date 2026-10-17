@@ -1,0 +1,12 @@
+    if ($action==='upload') {
+        $file=$_FILES['image']??null;
+        if (!$file || $file['error']!==UPLOAD_ERR_OK) reply(422,'Không tải được ảnh. Chọn ảnh dưới 6 MB.');
+        if ($file['size']>6*1024*1024) reply(422,'Ảnh tối đa 6 MB.');
+        $mime=(new finfo(FILEINFO_MIME_TYPE))->file($file['tmp_name']);
+        $types=['image/jpeg'=>'jpg','image/png'=>'png','image/webp'=>'webp'];
+        $size=@getimagesize($file['tmp_name']);
+        if (!isset($types[$mime]) || !$size || $size[0]>8000 || $size[1]>8000) reply(422,'Chỉ chấp nhận ảnh JPG, PNG, WebP; tối đa 8000 px mỗi chiều.');
+        $path='uploads/'.bin2hex(random_bytes(16)).'.'.$types[$mime];
+        if (!move_uploaded_file($file['tmp_name'],__DIR__.'/'.$path)) reply(500,'Không lưu được ảnh trên máy chủ.');
+        reply(200,'Ảnh đã tải lên. Lưu khóa học để áp dụng.',['url'=>$path]);
+    }

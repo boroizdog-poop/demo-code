@@ -1,0 +1,22 @@
+        else $db->prepare('UPDATE auth_attempts SET attempts=attempts+1 WHERE bucket=?')->execute([$bucket]);
+        $email=strtolower(text_field($data,'email',190));$password=$data['password']??'';
+        // Password whitespace is significant; bcrypt accepts at most 72 bytes.
+        if (!is_string($password) || strlen($password)>72 || str_contains($password,"\0")) reply(422,'Mật khẩu không hợp lệ hoặc vượt quá 72 byte.');
+        if ($action==='register') {
+            if (!filter_var($email,FILTER_VALIDATE_EMAIL)) reply(422,'Vui lòng nhập email hợp lệ.');
+            $name=text_field($data,'name',120);
+            if (strlen($name)<2 || strlen($password)<10) reply(422,'Tên tối thiểu 2 ký tự; mật khẩu tối thiểu 10 ký tự.');
+            if ($password!==($data['confirm_password']??'')) reply(422,'Mật khẩu nhập lại chưa khớp.');
+            $db->prepare('INSERT INTO users(name,email,password_hash,role) VALUES(?,?,?,?)')->execute([$name,$email,password_hash($password,PASSWORD_DEFAULT),'student']);
+            $userId=(int)$db->lastInsertId();
+        } else {
+            if (!filter_var($email,FILTER_VALIDATE_EMAIL) && !preg_match('/^[a-z0-9][a-z0-9_-]{1,79}$/',$email)) reply(422,'Nhập email hoặc tên đăng nhập hợp lệ.');
+            $s=$db->prepare('SELECT id,password_hash FROM users WHERE email=? OR username=?');$s->execute([$email,$email]);$u=$s->fetch();
+            if (!$u || !password_verify($password,$u['password_hash'])) reply(401,'Tên đăng nhập hoặc mật khẩu chưa đúng.');
+            $userId=(int)$u['id'];
+        }
+        session_regenerate_id(true);$_SESSION['user_id']=$userId;$_SESSION['csrf']=bin2hex(random_bytes(32));
+        $db->prepare('DELETE FROM auth_attempts WHERE bucket=?')->execute([$bucket]);
+        reply(200,$action==='register'?'Tài khoản đã được tạo.':'Đăng nhập thành công.',['user'=>artio_user(),'csrf'=>artio_csrf()]);
+    }
+    if ($action==='logout') { $_SESSION=[];session_regenerate_id(true);reply(200,'Đã đăng xuất.',['csrf'=>artio_csrf()]); }

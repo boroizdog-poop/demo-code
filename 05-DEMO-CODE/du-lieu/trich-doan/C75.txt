@@ -1,0 +1,33 @@
+.mobile-nav { width: min(680px, 100vw); padding: 24px 42px 40px; transition: transform 450ms cubic-bezier(.22,1,.36,1), opacity 350ms ease, display 450ms allow-discrete, overlay 450ms allow-discrete; }
+.mobile-nav { background: #000; }
+.mobile-nav[open] { transition-duration: 650ms, 450ms, 650ms, 650ms; }
+.mobile-nav::backdrop { transition: opacity 450ms ease, display 450ms allow-discrete, overlay 450ms allow-discrete; }
+.drawer-top { justify-content: end; margin-bottom: 24px; }
+.mobile-nav nav a { font-size: clamp(38px, 4.5vw, 62px); line-height: 1.18; align-items: center; gap: 24px; padding-block: 22px; }
+.mobile-nav nav small { min-width: 16px; }
+.mobile-nav nav a > span { margin-left: auto; align-self: center; }
+.mobile-nav nav a[aria-current] { color: var(--orange); }
+.mobile-nav nav a { opacity: 0; transform: translateY(14px); transition: opacity 450ms ease, transform 600ms cubic-bezier(.22,1,.36,1); }
+.mobile-nav[open] nav a { opacity: 1; transform: none; }
+.mobile-nav[open] nav a:nth-child(1) { transition-delay: 80ms; }
+.mobile-nav[open] nav a:nth-child(2) { transition-delay: 150ms; }
+.mobile-nav[open] nav a:nth-child(3) { transition-delay: 220ms; }
+.mobile-nav[open] nav a:nth-child(4) { transition-delay: 290ms; }
+@starting-style { .mobile-nav[open] nav a { opacity: 0; transform: translateY(14px); } }
+.catalog-filter-fields { grid-template-columns: 1fr 1fr; }
+.auth-submit { justify-content: center; }
+.gallery-edge-art { display: none; }
+.hero-floating-art, .immersive-artwork, .hero-copy { will-change: auto; }
+@media (max-width: 760px) {
+  .mobile-nav { width: 100vw; padding: max(20px, env(safe-area-inset-top)) 24px max(30px, env(safe-area-inset-bottom)); }
+  .mobile-nav nav a { font-size: 46px; padding-block: 22px; }
+  .catalog-filter-fields { grid-template-columns: 1fr; }
+  .library-filters > .orange-btn { width: 100%; }
+  .comment-form textarea { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .service-panel { position: relative; top: auto; }
+  .mobile-nav, .mobile-nav[open] { transform: none; transition: opacity 100ms, display 100ms allow-discrete, overlay 100ms allow-discrete; }
+  .mobile-nav::backdrop { transition: opacity 100ms, display 100ms allow-discrete, overlay 100ms allow-discrete; }
+  .mobile-nav nav a { opacity: 1; transform: none; transition: opacity 100ms; transition-delay: 0ms; }
+  @starting-style { .mobile-nav[open] nav a { opacity: 1; transform: none; } }

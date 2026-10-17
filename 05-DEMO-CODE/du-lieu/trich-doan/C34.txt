@@ -1,0 +1,17 @@
+    artio_require_admin();
+    if ($action==='site_content_save') {
+        $section=text_field($data,'section',40);$schema=artio_site_schema();
+        if(!isset($schema[$section])) reply(422,'Phần nội dung không hợp lệ.');
+        $fields=[];
+        foreach($schema[$section]['fields'] as $name=>$field) {
+            $value=text_field($data,$name,$field['max']??2000);
+            if($value==='') reply(422,'Điền '.$field['label'].'.');
+            if(($field['type']??'')==='image') $value=artio_image_url($value);
+            $fields['content_'.$name]=$value;
+        }
+        $db->beginTransaction();
+        $delete=$db->prepare('DELETE FROM site_settings WHERE name=?');
+        $insert=$db->prepare('INSERT INTO site_settings(name,value) VALUES(?,?)');
+        foreach($fields as $name=>$value) {$delete->execute([$name]);$insert->execute([$name,$value]);}
+        $db->commit();reply(200,'Đã lưu. Trang chủ đã cập nhật nội dung.');
+    }

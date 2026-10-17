@@ -1,0 +1,33 @@
+// Keep visual feedback and unsaved-change protection consistent across forms.
+const formRevisions = new WeakMap();
+function trackAdminForm(form) {
+  formRevisions.set(form,0);
+  const changed=()=>{formRevisions.set(form,formRevisions.get(form)+1);dirtyForms.add(form);};
+  form.addEventListener('input',changed);
+  form.addEventListener('change',changed);
+}
+function setAdminBusy(form, busy, activeButton) {
+  if(busy) form.setAttribute('aria-busy','true'); else form.removeAttribute('aria-busy');
+  const buttons=$$('button[type="submit"],button:not([type])',form);
+  const active=activeButton||buttons[0];
+  buttons.forEach(button=>{
+    button.setAttribute('aria-disabled',String(busy));
+    if(busy&&button===active) button.setAttribute('aria-busy','true'); else button.removeAttribute('aria-busy');
+  });
+}
+document.addEventListener('click',event=>{
+  if(event.target.closest('button[aria-disabled="true"]')) event.preventDefault();
+});
+$$('[data-site-settings]').forEach(trackAdminForm);
+const adminNavigation = $('.admin-navigation');
+if(adminNavigation) {
+  const compactNavigation = matchMedia('(max-width: 800px)');
+  adminNavigation.open = !compactNavigation.matches;
+  compactNavigation.addEventListener('change', event => { adminNavigation.open=!event.matches; });
+}
+if(location.hash==='#add-brush') $('#add-brush')?.setAttribute('open','');
+$('[data-open-brush-create]')?.addEventListener('click',event=>{
+  const panel=$('#add-brush');if(!panel)return;
+  event.preventDefault();panel.open=true;
+  panel.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+});

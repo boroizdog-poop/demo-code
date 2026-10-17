@@ -1,0 +1,22 @@
+        </section>
+    </div>
+
+    <section class="art-bridge" id="inspiration" aria-label="Không gian tranh digital art">
+        <div class="art-bridge-stage">
+            <div class="art-bridge-background" aria-hidden="true">
+                <img src="assets/images/light-study.webp" alt="" decoding="async" style="--x:18%;--y:9%;--w:8%;--ratio:1.4;--tilt:-18deg;--turn:32deg;--pitch:12deg">
+                <img src="assets/images/anime-portrait.webp" alt="" decoding="async" style="--x:46%;--y:6%;--w:6%;--ratio:1;--tilt:14deg;--turn:-38deg;--pitch:-16deg">
+                <img src="assets/images/hero-world.webp" alt="" decoding="async" style="--x:83%;--y:14%;--w:7%;--ratio:.8;--tilt:-12deg;--turn:42deg;--pitch:8deg">
+                <img src="assets/images/winter-world.webp" alt="" decoding="async" style="--x:8%;--y:76%;--w:9%;--ratio:1.5;--tilt:16deg;--turn:-28deg;--pitch:24deg">
+                <img src="assets/images/brush-study.webp" alt="" decoding="async" style="--x:43%;--y:84%;--w:7%;--ratio:1;--tilt:-22deg;--turn:35deg;--pitch:-12deg">
+                <img src="assets/images/first-creation.webp" alt="" decoding="async" style="--x:72%;--y:77%;--w:8%;--ratio:1.3;--tilt:20deg;--turn:-42deg;--pitch:18deg">
+            </div>
+            <figure class="art-bridge-piece" style="--ratio:.8;--fall:240;--tilt:-6deg"><img src="<?=artio_h($site['edge_left_image'])?>" alt="Tranh nhân vật fantasy trong sắc xanh" decoding="async"></figure>
+            <figure class="art-bridge-piece" style="--ratio:1.3;--fall:65;--tilt:4deg"><img src="<?=artio_h($site['inspiration_image_two'])?>" alt="Thế giới mùa đông trong tranh minh họa" decoding="async"></figure>
+            <figure class="art-bridge-piece" style="--ratio:1.5;--fall:130;--tilt:-4deg"><img src="<?=artio_h($site['inspiration_image_three'])?>" alt="Tranh digital art trong thư viện Artio" decoding="async"></figure>
+            <figure class="art-bridge-piece" style="--ratio:1.5;--fall:180;--tilt:5deg"><img src="<?=artio_h($site['inspiration_image_four'])?>" alt="Nghiên cứu nét cọ và màu sắc" decoding="async"></figure>
+            <figure class="art-bridge-piece" style="--ratio:1.2;--fall:85;--tilt:-5deg"><img src="<?=artio_h($site['inspiration_image_five'])?>" alt="Tranh minh họa của Redum" decoding="async"></figure>
+            <figure class="art-bridge-piece" style="--ratio:.8;--fall:270;--tilt:6deg"><img src="<?=artio_h($site['edge_right_image'])?>" alt="Tranh fantasy với kiến trúc và hoa lá" decoding="async"></figure>
+            <div class="art-bridge-copy"><span><?=artio_h($site['inspiration_label'])?></span><p><?=nl2br(artio_h($site['inspiration_title']))?></p><a href="#ve-artio">Khám phá ARTIO <span aria-hidden="true">↓</span></a></div>
+        </div>
+    </section>

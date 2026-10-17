@@ -1,0 +1,15 @@
+
+  <section class="starter-section page-width" id="cho-nguoi-moi">
+    <div class="section-index">04 / FOR BEGINNERS</div>
+    <div class="starter-head"><h2 data-gallery-reveal="heading"><?=artio_content_heading($site['beginners_title'])?></h2><p data-gallery-reveal><?=nl2br(artio_h($site['beginners_text']))?></p></div>
+    <div class="service-stack" aria-label="Lộ trình khám phá cho người mới">
+      <?php foreach($featured as $i=>$course): ?>
+      <article class="service-panel" style="--panel-index:<?=$i?>">
+        <div class="service-panel-top"><span>0<?=($i+1)?> / <?=artio_h($course['category'])?></span><span aria-hidden="true">↗</span></div>
+        <div class="service-panel-content"><div class="service-copy"><h3 data-gallery-reveal><?=artio_h($course['title'])?></h3><p><?=artio_h($course['excerpt'])?></p><a class="outline-light" href="course.php?id=<?=(int)$course['id']?>" <?=$needsAuth?'data-auth-gate':''?>>Bắt đầu khám phá <?=artio_icon('arrow')?></a></div>
+        <a class="service-art" href="course.php?id=<?=(int)$course['id']?>" aria-label="Khám phá <?=artio_h($course['title'])?>" <?=$needsAuth?'data-auth-gate':''?>><img src="<?=artio_h($course['image_url'])?>" alt="<?=artio_h($course['title'])?>" loading="lazy" decoding="async" data-fallback></a></div>
+      </article>
+      <?php endforeach; ?>
+      <?php if(!$featured): ?><p class="muted">Tài nguyên cho người mới đang được cập nhật.</p><?php endif; ?>
+    </div>
+  </section>

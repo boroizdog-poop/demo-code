@@ -1,0 +1,32 @@
+function artio_head(string $title, bool $admin=false, bool $home=false, bool $comments=false): void { ?>
+<!doctype html><html lang="vi" data-authenticated="<?=artio_user()?'true':'false'?>"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
+<meta name="theme-color" content="<?=$home?'#080808':($admin?'#f7f7f5':'#fcfcfc')?>"><meta name="color-scheme" content="light">
+<title><?=artio_h($title)?> — Artio</title><meta name="description" content="Gallery tài nguyên digital art: khóa học, hướng dẫn và brush được phân loại để dễ khám phá.">
+<meta name="csrf-token" content="<?=artio_csrf()?>">
+<?php if($admin): ?><script src="assets/admin-navigation.js?v=1"></script><?php endif; ?>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Instrument+Sans:wght@400;500;600;700&family=Merriweather:wght@400;700&display=block" rel="stylesheet">
+<!-- Shared styles: keep this order because later files refine earlier styles. -->
+<link rel="stylesheet" href="assets/landing/hero/fonts.css?v=1">
+<link rel="stylesheet" href="assets/style.css?v=22">
+<link rel="stylesheet" href="assets/gallery.css?v=19">
+<link rel="stylesheet" href="assets/site-refinements.css?v=10">
+<?php if($admin): ?>
+<link rel="stylesheet" href="assets/admin.css?v=10">
+<?php endif; ?>
+<script src="assets/app.js?v=18" defer></script>
+<?php if(!$admin): ?>
+<script src="assets/gallery.js?v=11" defer></script>
+<link rel="stylesheet" href="assets/resource-cards.css?v=22">
+<?php if($comments): ?>
+<link rel="stylesheet" href="assets/comments.css?v=9">
+<script src="assets/comments.js?v=1" defer></script>
+<?php endif; ?>
+<?php endif; ?>
+<?php if($home): ?>
+<link rel="preload" href="assets/landing/hero/baloo-2-medium.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="assets/landing.css?v=9">
+<script src="assets/landing.js?v=2" defer></script>
+<?php endif; ?>
+</head><?php }

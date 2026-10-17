@@ -1,0 +1,41 @@
+// Reveal the inspiration gallery with staggered artwork and text.
+(() => {
+    const bridge = document.querySelector('.art-bridge');
+    if (!bridge || !('IntersectionObserver' in window)) return;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const targets = [...bridge.querySelectorAll('.art-bridge-piece img, .art-bridge-background, .art-bridge-copy > *')];
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(({ target, isIntersecting }) => {
+            if (target.matches('.art-bridge-copy')) {
+                [...target.children].forEach(element => {
+                    if (isIntersecting) element.classList.add('bridge-entered');
+                    else if (!reduced.matches && !element.contains(document.activeElement)) element.classList.remove('bridge-entered');
+                });
+                return;
+            }
+            const text = target.parentElement.matches('.art-bridge-copy');
+            if (!isIntersecting) {
+                if (text && !reduced.matches && !target.contains(document.activeElement)) target.classList.remove('bridge-entered');
+                return;
+            }
+            target.classList.add('bridge-entered');
+            if (!text) observer.unobserve(target);
+        });
+    }, { threshold: .15, rootMargin: '0px 0px -32px 0px' });
+    function configure() {
+        observer.disconnect();
+        targets.forEach((target, index) => {
+            target.classList.add('bridge-entrance');
+            target.style.setProperty('--reveal-delay', `${(index % 3) * 80}ms`);
+            if (reduced.matches) target.classList.add('bridge-entered');
+            else if (target.parentElement.matches('.art-bridge-copy')) observer.observe(target.parentElement);
+            else if (!target.classList.contains('bridge-entered')) observer.observe(target);
+        });
+    }
+    configure();
+    reduced.addEventListener('change', configure);
+    bridge.addEventListener('focusin', () => {
+        targets.forEach(target => target.classList.add('bridge-entered'));
+        targets.filter(target => !target.parentElement.matches('.art-bridge-copy')).forEach(target => observer.unobserve(target));
+    });
+})();

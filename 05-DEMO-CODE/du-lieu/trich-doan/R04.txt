@@ -1,0 +1,236 @@
+'use strict';
+const $ = (selector, root = document) => root.querySelector(selector);
+const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+// Skip identical catalog requests; changed searches still use native GET forms.
+(() => {
+  $$('form.catalog-filters[method="get"]').forEach(form => {
+    const fields = $$('input[name="q"], select[name="category"], select[name="sort"]', form);
+    if (!fields.length) return;
+    const state = defaults => JSON.stringify(fields.map(field => {
+      const initial = field.tagName === 'SELECT'
+        ? ([...field.options].find(option => option.defaultSelected) || field.options[0])?.value || ''
+        : field.defaultValue;
+      const value = defaults ? initial : field.value;
+      return [field.name, field.name === 'q' ? value.trim() : value];
+    }));
+    const applied = state(true);
+    // A legacy courses URL can contain q although its filter form has no q field.
+    // Submitting that form clears q, so it must remain a meaningful request.
+    const clearsLegacyQuery = !fields.some(field => field.name === 'q')
+      && !!new URLSearchParams(location.search).get('q')?.trim();
+    form.addEventListener('submit', event => {
+      if (!clearsLegacyQuery && state(false) === applied) {
+        event.preventDefault();
+        document.getElementById('catalog-results')?.scrollIntoView({block: 'start'});
+      }
+    });
+  });
+})();
+let toastTimer;
+function bindImageFallback(image) {
+  const fallback = image.dataset.fallback || 'assets/image-fallback.svg';
+  const replace = () => {
+    if (image.dataset.fallbackApplied) return;
+    image.dataset.fallbackApplied = 'true';
+    image.src = fallback;
+  };
+  image.addEventListener('error', replace, {once: true});
+  if (image.complete && image.naturalWidth === 0 && image.getAttribute('src')) replace();
+}
+$$('img[data-fallback]').forEach(bindImageFallback);
+function toast(message) {
+  const box = $('.toast');
+  if (!box) return;
+  box.textContent = message;
+  box.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => box.classList.remove('show'), 4000);
+}
+async function postApi(body) {
+  const multipart = body instanceof FormData;
+  try {
+    const response = await fetch('api.php', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').content, ...(multipart ? {} : {'Content-Type': 'application/json'}) },
+      body: multipart ? body : JSON.stringify(body),
+    });
+    const result = await response.json();
+    if (result.csrf) $('meta[name="csrf-token"]').content = result.csrf;
+    return result;
+  } catch {
+    return {ok: false, message: 'Không kết nối được máy chủ. Dữ liệu chưa được lưu, hãy thử lại.'};
+  }
+}
+const authDialog = $('#auth-dialog');
+const authForm = $('#auth-form');
+let authMode = 'login';
+let authDestination = null;
+function openAuth(event) {
+  closeMenu();
+  if (authDialog && !authDialog.open) authDialog.showModal();
+  const requestedMode=event?.currentTarget?.dataset.authStart;
+  if (requestedMode) document.querySelector(`[data-auth-mode="${requestedMode}"]`)?.click();
+  if (authDestination || $('[data-resource-gate]')) $('.auth-subtitle', authDialog).textContent = 'Đăng nhập hoặc tạo tài khoản để mở tài nguyên bạn vừa chọn.';
+}
+$$('[data-open-auth]').forEach(button => button.addEventListener('click', openAuth));
+document.addEventListener('click', event => {
+  const link = event.target.closest('a[href]');
+  if (!link || document.documentElement.dataset.authenticated === 'true' || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  const target = new URL(link.href, location.href);
+  if (target.origin !== location.origin || !/(?:^|\/)(course|brush-detail)\.php$/.test(target.pathname)) return;
+  event.preventDefault();
+  authDestination = target.pathname + target.search + target.hash;
+  openAuth();
+});
+authDialog?.addEventListener('close', () => { authDestination = null; });
+
+
+$$('[data-close-dialog]').forEach(button => button.addEventListener('click', () => button.closest('dialog').close()));
+$$('dialog').forEach(dialog => {
+  dialog.addEventListener('click', event => { if (event.target === dialog) { const rect = dialog.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close(); } });
+});
+$$('[data-auth-mode]').forEach(button => button.addEventListener('click', () => {
+  authMode = button.dataset.authMode;
+  const register = authMode === 'register';
+  authForm.elements.email.type = register ? 'email' : 'text';
+  authForm.elements.email.autocomplete = register ? 'email' : 'username';
+  authForm.elements.email.placeholder = register ? 'ban@example.com' : 'Email hoặc tên đăng nhập';
+  $('label[for="auth-email"]').textContent = register ? 'Email' : 'Email hoặc tên đăng nhập';
+  authDialog.dataset.mode = authMode;
+  $$('[data-auth-mode]').forEach(tab => { tab.classList.toggle('active', tab === button); tab.setAttribute('aria-pressed', String(tab === button)); });
+  $$('.register-only').forEach(element => { element.hidden = !register; const input = $('input', element); if (input) { input.required = register; input.disabled = !register; } });
+  authForm.elements.password.autocomplete = register ? 'new-password' : 'current-password';
+  authForm.elements.password.minLength = register ? 10 : 1;
+  authForm.elements.password.setAttribute('enterkeyhint', register ? 'next' : 'done');
+  if (register) authForm.elements.password.setAttribute('aria-describedby', 'password-help');
+  else authForm.elements.password.removeAttribute('aria-describedby');
+  syncPasswordMatch();
+  $('#auth-title').textContent = register ? 'Tạo tài khoản.' : 'Mừng bạn trở lại.';
+  $('[data-auth-submit-label]').textContent = register ? 'Tạo tài khoản' : 'Đăng nhập';
+  $('#auth-error').textContent = '';
+  $('.auth-subtitle', authDialog).textContent = register ? 'Lưu khóa học và tham gia bình luận trong gallery.' : 'Lưu khóa học và trao đổi về các tài nguyên trong gallery.';
+}));
+function syncPasswordMatch(showFeedback = false) {
+  if (!authForm) return;
+  const confirmation = authForm.elements.confirm_password;
+  const mismatch = authMode === 'register' && confirmation.value !== '' && confirmation.value !== authForm.elements.password.value;
+  confirmation.setCustomValidity(mismatch ? 'Mật khẩu nhập lại chưa khớp.' : '');
+  const feedback = $('#password-match');
+  if (!mismatch) {
+    confirmation.removeAttribute('aria-invalid');
+    feedback.textContent = '';
+  } else if (showFeedback || confirmation.getAttribute('aria-invalid') === 'true') {
+    confirmation.setAttribute('aria-invalid', 'true');
+    feedback.textContent = 'Mật khẩu nhập lại chưa khớp.';
+  }
+}
+authForm?.elements.confirm_password.addEventListener('blur', () => syncPasswordMatch(true));
+authForm?.elements.confirm_password.addEventListener('invalid', () => syncPasswordMatch(true));
+authForm?.addEventListener('input', () => { syncPasswordMatch(); $('#auth-error').textContent = ''; });
+$$('[data-toggle-password]').forEach(button => button.addEventListener('click', () => {
+  const input = $('input', button.parentElement);
+  const visible = input.type === 'password'; input.type = visible ? 'text' : 'password';
+  if (authForm?.contains(input)) authForm.elements.confirm_password.type = input.type;
+  button.setAttribute('aria-label', visible ? 'Ẩn mật khẩu' : 'Hiện mật khẩu');
+  button.setAttribute('aria-pressed', String(visible));
+}));
+authForm?.addEventListener('submit', async event => {
+  event.preventDefault();
+  const button = $('[type="submit"]', authForm); button.disabled = true;
+  authForm.setAttribute('aria-busy', 'true');
+  $$('[data-auth-mode]').forEach(tab => { tab.disabled = true; });
+  $('[data-auth-submit-label]').textContent = 'Đang xử lý...';
+  $('#auth-error').textContent = '';
+  const result = await postApi({action: authMode, ...Object.fromEntries(new FormData(authForm))});
+  if (result.ok) {
+    if (authDestination) location.assign(authDestination);
+    else if ($('[data-resource-gate]')) location.reload();
+    else if (result.user?.role === 'admin') location.href = 'admin.php';
+    else location.reload();
+  } else $('#auth-error').textContent = result.message;
+  button.disabled = false;
+  authForm.removeAttribute('aria-busy');
+  $$('[data-auth-mode]').forEach(tab => { tab.disabled = false; });
+  $('[data-auth-submit-label]').textContent = authMode === 'register' ? 'Tạo tài khoản' : 'Đăng nhập';
+});
+$$('[data-logout]').forEach(button => button.addEventListener('click', async () => {
+  button.disabled = true; const result = await postApi({action:'logout'});
+  if (result.ok) location.href = 'index.php'; else { toast(result.message); button.disabled = false; }
+}));
+const menuButton = $('.mobile-nav-toggle');
+const menuTriggers = $$('.mobile-nav-toggle, .hero-logo-trigger');
+let lastMenuTrigger = menuButton;
+const menu = $('#mobile-nav');
+function syncMenu(open) {
+  menuTriggers.forEach(button => {
+    button.setAttribute('aria-expanded', String(open));
+    button.setAttribute('aria-label', button.classList.contains('hero-logo-trigger') ? (open ? 'Đóng danh mục Artio' : 'Mở danh mục Artio') : (open ? 'Đóng menu' : 'Mở menu'));
+  });
+}
+function closeMenu(restoreFocus = false) {
+  if (!menu?.open) return;
+  const focusInside = menu.contains(document.activeElement);
+  menu.close();
+  syncMenu(false);
+  if (restoreFocus && focusInside) lastMenuTrigger?.focus();
+}
+// Native dialog supplies focus trapping, Escape and an inert background on every screen size.
+menuTriggers.forEach(button => button.addEventListener('click', () => { lastMenuTrigger = button; if (menu.open) closeMenu(true); else { menu.showModal(); syncMenu(true); } }));
+menu?.addEventListener('close', () => syncMenu(false));
+$$('#mobile-nav a').forEach(link => link.addEventListener('click', () => closeMenu()));
+document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(true); });
+if ($('[data-resource-gate]')) openAuth();
+const catalogDisclosure = $('.catalog-filter-disclosure');
+if (catalogDisclosure) {
+  // Expanded HTML remains usable without JavaScript; desktop always shows the controls.
+  const compactFilters = matchMedia('(max-width: 760px)');
+  const syncFilters = () => { catalogDisclosure.open = !compactFilters.matches; };
+  syncFilters();
+  compactFilters.addEventListener('change', syncFilters);
+}
+$$('[data-save-course], [data-save-brush]').forEach(button => button.addEventListener('click', async () => {
+  button.disabled = true;
+  button.setAttribute('aria-busy', 'true');
+  const isBrush = button.hasAttribute('data-save-brush');
+  const result = await postApi({action: isBrush ? 'save_brush' : 'save_course', id: Number(isBrush ? button.dataset.saveBrush : button.dataset.saveCourse), saved: button.dataset.saved !== 'true'});
+  if (result.ok) {
+    if (button.hasAttribute('data-collection-remove')) { location.reload(); return; }
+    button.dataset.saved = String(result.saved);
+    button.setAttribute('aria-pressed', String(result.saved));
+    button.textContent = result.saved ? 'Đã lưu vào bộ sưu tập ✓' : 'Lưu vào bộ sưu tập';
+  } else if (result.message.includes('đăng nhập')) openAuth();
+  toast(result.message);
+  button.disabled = false;
+  button.removeAttribute('aria-busy');
+}));
+const lessons = JSON.parse($('#lesson-data')?.textContent || '{}');
+$$('[data-lesson]').forEach(button => button.addEventListener('click', () => {
+  const lesson = lessons[button.dataset.lesson]; if (!lesson) return;
+  $('#lesson-title').textContent = lesson.title; $('#lesson-content').textContent = lesson.content || 'Bài học chưa có nội dung chi tiết.';
+  const player = $('#lesson-player'); player.replaceChildren();
+  if (lesson.url) {
+    const url = new URL(lesson.url); let id = '';
+    if (url.hostname === 'youtu.be') id = url.pathname.slice(1);
+    if (['www.youtube.com','youtube.com','www.youtube-nocookie.com'].includes(url.hostname)) id = url.searchParams.get('v') || url.pathname.split('/').pop();
+    if (/^[\w-]{11}$/.test(id)) { const frame = document.createElement('iframe'); frame.src = 'https://www.youtube-nocookie.com/embed/'+id; frame.title=lesson.title; frame.allowFullscreen=true;player.append(frame); }
+    else { const link=document.createElement('a');link.href=lesson.url;link.target='_blank';link.rel='noopener noreferrer';link.className='outline-btn';link.textContent='Mở video bài học ↗';player.append(link); }
+  }
+  $('#lesson-dialog').showModal();
+}));
+$('#lesson-dialog')?.addEventListener('close', () => $('#lesson-player').replaceChildren());
+$$('[data-comment-form]').forEach(form => form.addEventListener('submit', async event => {
+  event.preventDefault();
+  const button = $('button', form), status = $('.form-status', form), body = $('textarea', form);
+  button.disabled = true; status.textContent = 'Đang gửi...';
+  const result = await postApi({action:'comment_add', resource_key:form.dataset.resource, body:body.value});
+  if (result.ok) { status.textContent = result.message; body.value = ''; location.hash = 'comments'; location.reload(); }
+  else { status.textContent = result.message; if (result.message.includes('đăng nhập')) openAuth(); }
+  button.disabled = false;
+}));
+$$('[data-hide-comment]').forEach(button => button.addEventListener('click', async () => {
+  button.disabled = true;
+  const result = await postApi({action: 'comment_hide', id: Number(button.dataset.hideComment)});
+  if (result.ok) location.reload();
+  else { toast(result.message); button.disabled = false; }
+}));

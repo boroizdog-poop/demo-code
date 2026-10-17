@@ -1,0 +1,13 @@
+    if ($action==='save_brush') {
+        $user=artio_user();if(!$user) reply(401,'Hãy đăng nhập để lưu brush.');
+        $id=filter_var($data['id']??null,FILTER_VALIDATE_INT);
+        if(!$id || $id<1 || !is_bool($data['saved']??null)) reply(422,'Yêu cầu lưu brush không hợp lệ.');
+        $saved=$data['saved'];
+        if($saved) {
+            $s=$db->prepare("SELECT id FROM brushes WHERE id=? AND status='published'");$s->execute([$id]);
+            if(!$s->fetch()) reply(404,'Không tìm thấy brush.');
+            $sql=$db->getAttribute(PDO::ATTR_DRIVER_NAME)==='sqlite'?'INSERT INTO saved_brushes(user_id,brush_id) VALUES(?,?) ON CONFLICT(user_id,brush_id) DO NOTHING':'INSERT INTO saved_brushes(user_id,brush_id) VALUES(?,?) ON DUPLICATE KEY UPDATE brush_id=VALUES(brush_id)';
+            $db->prepare($sql)->execute([$user['id'],$id]);
+        } else $db->prepare('DELETE FROM saved_brushes WHERE user_id=? AND brush_id=?')->execute([$user['id'],$id]);
+        reply(200,$saved?'Đã lưu brush vào bộ sưu tập.':'Đã bỏ lưu brush.',['saved'=>$saved]);
+    }

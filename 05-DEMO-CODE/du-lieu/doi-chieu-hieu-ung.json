@@ -1,0 +1,2434 @@
+{
+  "scope": [
+    "assets/admin-navigation.js",
+    "assets/admin.css",
+    "assets/admin.js",
+    "assets/app.js",
+    "assets/comments.css",
+    "assets/comments.js",
+    "assets/gallery.css",
+    "assets/gallery.js",
+    "assets/landing.css",
+    "assets/landing.js",
+    "assets/resource-cards.css",
+    "assets/site-refinements.css",
+    "assets/style.css"
+  ],
+  "sourceHashes": {
+    "assets/admin-navigation.js": "39d719cbafa051c0ebe45f924c75a7e9405afc1fb68e2ac9cf0ab0c7ee97424e",
+    "assets/admin.css": "bd8a67910dc5043e5165a296f48a861761b840200a123aa6b5401995ca33081c",
+    "assets/admin.js": "25949a472ab8c43e18e47fcb6419d75312a0d701f75fde0f96056293dc5b61dc",
+    "assets/app.js": "22e7837a7bfe7dc3d97bf261f7d01ef548cf98706d7007d6477a06ed450fe012",
+    "assets/comments.css": "374dd9609a5011ac5982c5bcca72f2a61e1920880937b38cdd1f46f2c2f90869",
+    "assets/comments.js": "3e0da744ad47426e6cf35e4da7ebf75885eb65108813f7bc66f814cf5de6a918",
+    "assets/gallery.css": "f220dfadd47e84ca1104939c0f2d7c9af131a70eb98a709756229149ee40d3b1",
+    "assets/gallery.js": "f3ac1fa4fd1c97016cc35f48355e7d44c723ca1937302358fe1306f4ef57bcaa",
+    "assets/landing.css": "1e4de0837085f445252ed68cd457470c766536e22cfce84c83cebf25eff4da73",
+    "assets/landing.js": "f51569c1f38931bd3160cb19fba2c979e67176089b371f7ff85764cc57adf994",
+    "assets/resource-cards.css": "225b322987ff8781830635d8a3116fe0fe5d91f0be9b60d2e5813fdf7d35864b",
+    "assets/site-refinements.css": "11b1d85c980ca75e0d439688dc4ea5b1ce363e22f19657e944508b3cdec69fe1",
+    "assets/style.css": "abb31d0bedc94c65ceff2e40ddd08aec48f536d90221709c644ec204745dea81"
+  },
+  "occurrences": [
+    {
+      "file": "assets/admin-navigation.js",
+      "line": 19,
+      "reference": "R01",
+      "topicIds": [],
+      "code": "  // Register early enough to restore before the incoming transition snapshot."
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 72,
+      "reference": "R02",
+      "topicIds": [],
+      "code": "  .builder-action:hover { background: #e1e5da; }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 156,
+      "reference": "R02",
+      "topicIds": [],
+      "code": ".admin-page :is(a,button,summary):focus-visible { outline: 2px solid var(--admin-focus); outline-offset: 3px; }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 161,
+      "reference": "R02",
+      "topicIds": [],
+      "code": ".admin-page .admin-sidebar:hover, .admin-page .admin-sidebar:focus-within { scrollbar-color: var(--admin-scrollbar) transparent; }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 164,
+      "reference": "R02",
+      "topicIds": [],
+      "code": ".admin-sidebar:hover::-webkit-scrollbar-thumb, .admin-sidebar:focus-within::-webkit-scrollbar-thumb { background: var(--admin-scrollbar); }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 189,
+      "reference": "R02",
+      "topicIds": [],
+      "code": ".admin-page .orange-btn, .admin-page .outline-btn, .admin-page .builder-action { min-height: 40px; max-width: 100%; padding: 8px 16px; gap: 8px; border-radius: 12px; font-size: 14px; font-weight: 500; line-height: 1.4; text-align: center; overflow-wrap: anywhere; transition: background-color 150ms ease; transform: none; box-shadow: none; }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 244,
+      "reference": "R02",
+      "topicIds": [],
+      "code": ".admin-page :is(input,textarea,select,.admin-select-trigger) { transition: border-color 140ms ease, box-shadow 140ms ease; }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 245,
+      "reference": "R02",
+      "topicIds": [],
+      "code": ".admin-page :is(input,textarea,select):focus { outline: 0; border-color: var(--admin-focus); box-shadow: 0 0 0 2px var(--admin-ring); }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 341,
+      "reference": "R02",
+      "topicIds": [],
+      "code": "  .admin-page .admin-sidebar a:hover, .admin-section-tabs a:not([aria-current]):hover, .admin-page .editor-progress a:hover, .admin-search-clear:hover { background: var(--admin-hover); }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 342,
+      "reference": "R02",
+      "topicIds": [],
+      "code": "  .admin-page .orange-btn:hover { background: var(--admin-primary-hover); border-color: var(--admin-primary-hover); }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 343,
+      "reference": "R02",
+      "topicIds": [],
+      "code": "  .admin-page .outline-btn:hover, .admin-page .builder-action:hover { background: var(--admin-hover); border-color: var(--admin-line-strong); }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 344,
+      "reference": "R02",
+      "topicIds": [],
+      "code": "  .admin-section-links a:first-child:hover { background: var(--admin-hover); }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 345,
+      "reference": "R02",
+      "topicIds": [],
+      "code": "  .admin-overview-stats > a:hover { border-color: var(--admin-line-strong); }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 401,
+      "reference": "R02",
+      "topicIds": [
+        "C80"
+      ],
+      "code": ".admin-page .admin-select-trigger svg { width: 16px; height: 16px; transition: transform 150ms ease; }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 403,
+      "reference": "R02",
+      "topicIds": [
+        "C80"
+      ],
+      "code": ".admin-page .admin-select-trigger:focus-visible, .admin-page .admin-select-trigger[aria-expanded=true] { outline: none; border-color: var(--admin-focus); box-shadow: 0 0 0 2px var(--admin-ring); }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 404,
+      "reference": "R02",
+      "topicIds": [
+        "C80"
+      ],
+      "code": ".admin-page .admin-select-options { position: fixed; inset: auto; margin: 0; padding: 4px; border: 1px solid var(--admin-line); border-radius: 16px; background: var(--admin-surface); box-shadow: 0 10px 20px rgb(0 0 0 / .1); overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--admin-scrollbar) transparent; opacity: 0; transform: translateY(-4px); transition: opacity 150ms ease,transform 150ms ease,display 150ms allow-discrete,overlay 150ms allow-discrete; }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 406,
+      "reference": "R02",
+      "topicIds": [
+        "C80"
+      ],
+      "code": "@starting-style { .admin-page .admin-select-options:popover-open { opacity: 0; transform: translateY(-4px); } }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 409,
+      "reference": "R02",
+      "topicIds": [
+        "C80"
+      ],
+      "code": ".admin-page .admin-select-option:hover, .admin-page .admin-select-option:focus-visible { outline: none; background: var(--admin-hover); }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 410,
+      "reference": "R02",
+      "topicIds": [
+        "C80"
+      ],
+      "code": "@media (prefers-reduced-motion:reduce) { .admin-page .admin-select-options, .admin-page .admin-select-trigger svg, .admin-page :is(input,textarea,select,.admin-select-trigger) { transition: none; } }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 416,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": ".admin-page button[aria-busy=true]::after { content: ''; position: absolute; inset: 0; margin: auto; width: 16px; height: 16px; border: 2px solid var(--admin-line-strong); border-top-color: var(--admin-body); border-radius: 50%; animation: admin-saving 700ms linear infinite; }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 418,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "@keyframes admin-saving { to { transform: rotate(360deg); } }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 419,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "@media (prefers-reduced-motion:reduce) { .admin-page button[aria-busy=true]::after { animation: none; } }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 423,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "/* Native page transitions preserve the admin shell without replacing live forms. */"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 424,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "@view-transition { navigation: auto; }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 425,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "@supports (view-transition-name: admin-sidebar) {"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 426,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "  .admin-page .maku-header { view-transition-name: admin-header; }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 427,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "  .admin-page .admin-sidebar { view-transition-name: admin-sidebar; }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 428,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "  .admin-page .admin-section-tabs { view-transition-name: admin-section-tabs; }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 429,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "  .admin-page .admin-content { view-transition-name: admin-content; }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 430,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "  ::view-transition-group(root),"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 431,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "  ::view-transition-group(admin-header),"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 432,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "  ::view-transition-group(admin-sidebar),"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 433,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "  ::view-transition-group(admin-section-tabs),"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 434,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "  ::view-transition-group(admin-content) { animation: none; }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 435,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "  ::view-transition-old(root),"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 436,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "  ::view-transition-old(admin-header),"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 437,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "  ::view-transition-old(admin-sidebar),"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 438,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "  ::view-transition-old(admin-section-tabs),"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 439,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "  ::view-transition-old(admin-content) { display: none; animation: none; }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 440,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "  ::view-transition-new(root),"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 441,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "  ::view-transition-new(admin-header),"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 442,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "  ::view-transition-new(admin-sidebar),"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 443,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "  ::view-transition-new(admin-section-tabs) { animation: none; mix-blend-mode: normal; }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 444,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "  ::view-transition-new(admin-content) { animation: admin-content-settle 140ms ease-out both; mix-blend-mode: normal; }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 446,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "@keyframes admin-content-settle { from { opacity: .96; } to { opacity: 1; } }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 448,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "  @view-transition { navigation: none; }"
+    },
+    {
+      "file": "assets/admin.css",
+      "line": 449,
+      "reference": "R02",
+      "topicIds": [
+        "C81"
+      ],
+      "code": "  ::view-transition-new(admin-content) { animation: none; }"
+    },
+    {
+      "file": "assets/admin.js",
+      "line": 36,
+      "reference": "R03",
+      "topicIds": [
+        "C82"
+      ],
+      "code": "  panel.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});"
+    },
+    {
+      "file": "assets/admin.js",
+      "line": 354,
+      "reference": "R03",
+      "topicIds": [],
+      "code": "      const selected=options[select.selectedIndex];selected?.scrollIntoView({block:'nearest'});focusOption(select.selectedIndex);"
+    },
+    {
+      "file": "assets/app.js",
+      "line": 24,
+      "reference": "R04",
+      "topicIds": [
+        "C22"
+      ],
+      "code": "        document.getElementById('catalog-results')?.scrollIntoView({block: 'start'});"
+    },
+    {
+      "file": "assets/app.js",
+      "line": 71,
+      "reference": "R04",
+      "topicIds": [],
+      "code": "  if (authDialog && !authDialog.open) authDialog.showModal();"
+    },
+    {
+      "file": "assets/app.js",
+      "line": 179,
+      "reference": "R04",
+      "topicIds": [
+        "C79"
+      ],
+      "code": "menuTriggers.forEach(button => button.addEventListener('click', () => { lastMenuTrigger = button; if (menu.open) closeMenu(true); else { menu.showModal(); syncMenu(true); } }));"
+    },
+    {
+      "file": "assets/app.js",
+      "line": 219,
+      "reference": "R04",
+      "topicIds": [
+        "C55"
+      ],
+      "code": "  $('#lesson-dialog').showModal();"
+    },
+    {
+      "file": "assets/comments.css",
+      "line": 14,
+      "reference": "R05",
+      "topicIds": [
+        "C17"
+      ],
+      "code": ".resource-comments [data-comment-list] { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 14px; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: #d5d8dc transparent; }"
+    },
+    {
+      "file": "assets/comments.css",
+      "line": 32,
+      "reference": "R05",
+      "topicIds": [],
+      "code": ".resource-comments .comment-form textarea:focus { outline: none; border: 0; box-shadow: none; }"
+    },
+    {
+      "file": "assets/comments.css",
+      "line": 35,
+      "reference": "R05",
+      "topicIds": [],
+      "code": "  .resource-comments .comment-form .outline-btn:not(:disabled):hover { background: #18191b; border-color: #18191b; color: #fff; }"
+    },
+    {
+      "file": "assets/comments.css",
+      "line": 40,
+      "reference": "R05",
+      "topicIds": [],
+      "code": ".resource-comments :is(.comments-controls button, [data-comment-list], .comment-message):focus-visible { outline: 2px solid #656b73; outline-offset: 3px; }"
+    },
+    {
+      "file": "assets/comments.js",
+      "line": 20,
+      "reference": "R06",
+      "topicIds": [
+        "C18"
+      ],
+      "code": "        track.scrollBy({left: direction * (card.getBoundingClientRect().width + gap), behavior: reduced.matches ? 'instant' : 'smooth'});"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 19,
+      "reference": "R07",
+      "topicIds": [],
+      "code": ".starter-slide { flex: 0 0 48%; scroll-snap-align: center; opacity: .65; transform: scale(.92); transform-origin: center; transition: transform 260ms var(--ease-out), opacity 180ms var(--ease-out); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 20,
+      "reference": "R07",
+      "topicIds": [],
+      "code": ".starter-slide.is-active, .starter-slide:focus-within { opacity: 1; transform: none; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 28,
+      "reference": "R07",
+      "topicIds": [],
+      "code": ".carousel-controls button { width: 46px; height: 46px; border: 1px solid #bbbeba; border-radius: 50%; background: transparent; font-size: 23px; transition: transform 100ms var(--ease-out); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 29,
+      "reference": "R07",
+      "topicIds": [],
+      "code": ".carousel-controls button:active { transform: scale(.94); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 58,
+      "reference": "R07",
+      "topicIds": [],
+      "code": ".maku-course-media img { object-position: center 30%; transition: transform 260ms ease; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 68,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "  .share-item a:hover img { transform: scale(1.035); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 70,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "  .editorial-link:hover { color: var(--orange-dark); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 71,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "  .share-more:hover { color: var(--orange-dark); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 72,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "  .carousel-controls button:hover { background: #e9eae6; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 104,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "  .starter-slide { transition: opacity 100ms; transform: none; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 106,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "  .share-item a:hover img, .carousel-controls button:active { transform: none; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 115,
+      "reference": "R07",
+      "topicIds": [],
+      "code": ".brush-card-image img { width: 100%; aspect-ratio: .78; object-fit: cover; transition: transform 260ms ease; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 146,
+      "reference": "R07",
+      "topicIds": [
+        "C09"
+      ],
+      "code": "  .maku-course-card:hover .maku-course-media img,"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 147,
+      "reference": "R07",
+      "topicIds": [
+        "C09"
+      ],
+      "code": "  .brush-card:hover .brush-card-image img { transform: scale(1.045); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 148,
+      "reference": "R07",
+      "topicIds": [
+        "C09"
+      ],
+      "code": ".maku-course-card:focus-within .maku-course-media img,"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 149,
+      "reference": "R07",
+      "topicIds": [
+        "C09"
+      ],
+      "code": ".brush-card:focus-within .brush-card-image img { transform: scale(1.045); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 167,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "@media (prefers-reduced-motion: reduce) { .brush-card-image img { transition: none; } }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 180,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "  :is(.maku-course-card, .brush-card) :is(.maku-course-media, .brush-card-image) img { transition: none; transform: none !important; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 200,
+      "reference": "R07",
+      "topicIds": [],
+      "code": ".collection-feature > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; transition: transform 240ms var(--ease-out); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 234,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "  .collection-feature > img { transition: none; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 235,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "  .collection-feature:hover > img { transform: none; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 239,
+      "reference": "R07",
+      "topicIds": [
+        "C14"
+      ],
+      "code": ".gallery-reveal { transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 244,
+      "reference": "R07",
+      "topicIds": [
+        "C14"
+      ],
+      "code": ".gallery-reveal .motion-line > span { transition: transform 700ms var(--ease-out), opacity 500ms var(--ease-out); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 245,
+      "reference": "R07",
+      "topicIds": [
+        "C14"
+      ],
+      "code": ".gallery-reveal .motion-line:nth-child(2) > span { transition-delay: 70ms; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 247,
+      "reference": "R07",
+      "topicIds": [
+        "C14"
+      ],
+      "code": ".gallery-reveal[data-gallery-reveal=image] { transform: none; clip-path: inset(0); transition: clip-path 700ms var(--ease-out), opacity 500ms var(--ease-out); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 250,
+      "reference": "R07",
+      "topicIds": [
+        "C14"
+      ],
+      "code": ".gallery-reveal[data-gallery-reveal=image][data-reveal-from] { clip-path: inset(0); transition: transform 680ms var(--ease-out), opacity 520ms var(--ease-out); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 253,
+      "reference": "R07",
+      "topicIds": [
+        "C14"
+      ],
+      "code": ".collection-brush-poster.gallery-reveal { transition-delay: 70ms; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 256,
+      "reference": "R07",
+      "topicIds": [
+        "C14"
+      ],
+      "code": ".gallery-reveal:focus-within { opacity: 1; transform: none; clip-path: none; transition: none; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 257,
+      "reference": "R07",
+      "topicIds": [
+        "C14"
+      ],
+      "code": ".gallery-reveal:focus-within .motion-line > span { opacity: 1; transform: none; transition: none; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 266,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "@supports (animation-timeline: view()) {"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 269,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "    html .gallery-ribbon-track { animation: ribbon-drift linear both; animation-timeline: --ribbon; animation-range: entry 0% exit 100%; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 270,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "    html .gallery-ribbon i { animation: ribbon-turn linear both; animation-timeline: --ribbon; animation-range: entry 0% exit 100%; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 271,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "    @keyframes ribbon-drift { from { transform: translateX(-3%); } to { transform: translateX(-24%); } }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 272,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "    @keyframes ribbon-turn { from { transform: rotate(-35deg); } to { transform: rotate(100deg); } }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 278,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "    html :is(.hero-artwork, .collection-feature, .closing-art) > img { animation: gallery-parallax linear both; animation-range: entry 0% exit 100%; transition: none; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 280,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "    html .collection-feature > img { animation-timeline: --feature-art; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 281,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "    html .closing-art > img { animation-timeline: --closing-art; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 282,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "    @keyframes gallery-parallax { from { transform: translateY(-4%) scale(1.12); } to { transform: translateY(4%) scale(1.12); } }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 286,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "  .gallery-reveal { transition-duration: 300ms; transition-delay: 0ms; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 288,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "  .gallery-reveal .motion-line > span { transition-duration: 350ms; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 289,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "  .gallery-reveal[data-gallery-reveal=image] { transition: opacity 300ms var(--ease-out), transform 300ms var(--ease-out); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 291,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "  .gallery-reveal[data-gallery-reveal=image][data-reveal-from] { transition-duration: 300ms; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 297,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "  @keyframes ribbon-drift { from { transform: translateX(-3%); } to { transform: translateX(-12%); } }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 300,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "  .gallery-reveal[data-gallery-reveal=image][data-reveal-from], .gallery-reveal[data-gallery-reveal=image][data-reveal-from].is-waiting { opacity: 1; transform: none; clip-path: none; transition: opacity 150ms var(--ease-out); transition-delay: 0ms; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 301,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "  .gallery-reveal, .gallery-reveal.is-waiting, .gallery-reveal[data-gallery-reveal=image].is-waiting, .gallery-reveal .motion-line > span, .gallery-reveal.is-waiting .motion-line > span { opacity: 1; transform: none; clip-path: none; transition: opacity 100ms; transition-delay: 0ms; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 382,
+      "reference": "R07",
+      "topicIds": [],
+      "code": ".hero-explore-arrow { display:grid; place-items:center; width:48px; height:48px; border:1px solid #ffffff88; border-radius:50%; font:400 25px/1 var(--display); transition:transform 180ms var(--ease-out),background-color 180ms ease; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 385,
+      "reference": "R07",
+      "topicIds": [],
+      "code": ".hero-floating-art { position:absolute; overflow:hidden; z-index:2; border:1px solid #ffffff30; border-radius:2px; box-shadow:0 12px 40px #0003; transition:transform 240ms var(--ease-out); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 395,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "  .hero-primary-nav a:hover { color:var(--orange); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 396,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "  .hero-explore:hover .hero-explore-arrow { transform:translateX(4px); background:#ffffff18; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 398,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "  .hero-floating-art:hover { transform:translateY(-5px); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 438,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "  .hero-floating-art, .hero-explore-arrow { transition:none; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 439,
+      "reference": "R07",
+      "topicIds": [],
+      "code": "  .hero-floating-art:hover, .hero-explore:hover .hero-explore-arrow { transform:none; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 445,
+      "reference": "R07",
+      "topicIds": [
+        "C61"
+      ],
+      "code": ".starter-slide-art img { transition: transform 260ms var(--ease-out); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 447,
+      "reference": "R07",
+      "topicIds": [
+        "C61"
+      ],
+      "code": ".collection-feature > img, .closing-art > img { transition: scale 260ms var(--ease-out); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 451,
+      "reference": "R07",
+      "topicIds": [
+        "C61"
+      ],
+      "code": ":is(.about-art, .about-art-detail) img { transition: transform 260ms var(--ease-out); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 452,
+      "reference": "R07",
+      "topicIds": [
+        "C61"
+      ],
+      "code": ".detail-cover img { transition: transform 260ms var(--ease-out); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 453,
+      "reference": "R07",
+      "topicIds": [
+        "C61"
+      ],
+      "code": ".hero-floating-art img { transition: transform 260ms var(--ease-out); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 455,
+      "reference": "R07",
+      "topicIds": [
+        "C61"
+      ],
+      "code": ".resource-detail-art img { transition: transform 260ms var(--ease-out); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 456,
+      "reference": "R07",
+      "topicIds": [
+        "C61"
+      ],
+      "code": "  .starter-slide:hover { opacity: 1; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 457,
+      "reference": "R07",
+      "topicIds": [
+        "C61"
+      ],
+      "code": "  .starter-slide:hover .starter-slide-art img { transform: scale(1.035); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 458,
+      "reference": "R07",
+      "topicIds": [
+        "C61"
+      ],
+      "code": "  :is(.artwork-frame, .detail-cover, .hero-floating-art, .resource-detail-art):hover > img { transform: scale(1.035); }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 459,
+      "reference": "R07",
+      "topicIds": [
+        "C61"
+      ],
+      "code": "  :is(.collection-feature, .closing-art):hover > img { scale: 1.035; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 461,
+      "reference": "R07",
+      "topicIds": [
+        "C61"
+      ],
+      "code": "  .starter-slide-art img { transition: none; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 462,
+      "reference": "R07",
+      "topicIds": [
+        "C61"
+      ],
+      "code": "  .starter-slide:hover .starter-slide-art img, .starter-slide:focus-within .starter-slide-art img { transform: none; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 463,
+      "reference": "R07",
+      "topicIds": [
+        "C61"
+      ],
+      "code": "  :is(.about-art, .about-art-detail, .detail-cover, .hero-floating-art, .resource-detail-art) > img { transition: none !important; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 464,
+      "reference": "R07",
+      "topicIds": [
+        "C61"
+      ],
+      "code": "  :is(.artwork-frame, .detail-cover, .hero-floating-art, .resource-detail-art):hover > img { transform: none; }"
+    },
+    {
+      "file": "assets/gallery.css",
+      "line": 465,
+      "reference": "R07",
+      "topicIds": [
+        "C61"
+      ],
+      "code": "  :is(.collection-feature, .closing-art):hover > img { scale: none; }"
+    },
+    {
+      "file": "assets/gallery.js",
+      "line": 3,
+      "reference": "R08",
+      "topicIds": [
+        "C13"
+      ],
+      "code": "if ('IntersectionObserver' in window) {"
+    },
+    {
+      "file": "assets/gallery.js",
+      "line": 9,
+      "reference": "R08",
+      "topicIds": [
+        "C13"
+      ],
+      "code": "  const observer = new IntersectionObserver(entries => {"
+    },
+    {
+      "file": "assets/gallery.js",
+      "line": 77,
+      "reference": "R08",
+      "topicIds": [
+        "C16"
+      ],
+      "code": "    pendingFrame = requestAnimationFrame(() => {"
+    },
+    {
+      "file": "assets/gallery.js",
+      "line": 129,
+      "reference": "R08",
+      "topicIds": [
+        "C73"
+      ],
+      "code": "  if ('IntersectionObserver' in window) {"
+    },
+    {
+      "file": "assets/gallery.js",
+      "line": 130,
+      "reference": "R08",
+      "topicIds": [
+        "C73"
+      ],
+      "code": "    const visibility = new IntersectionObserver(entries => pause('offscreen', !entries[0].isIntersecting), {threshold: 0.1});"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 8,
+      "reference": "R09",
+      "topicIds": [],
+      "code": ".artio-hero-shell :is(a, button):focus-visible { outline: 2px solid #fff; outline-offset: 5px; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 23,
+      "reference": "R09",
+      "topicIds": [],
+      "code": ".artio-navigation a:hover { color: #ccc; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 29,
+      "reference": "R09",
+      "topicIds": [],
+      "code": ".artio-account-link:hover { box-shadow: 0 0 0 1px #aaa; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 39,
+      "reference": "R09",
+      "topicIds": [],
+      "code": ".artio-explore:hover { background: #ffffff18; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 59,
+      "reference": "R09",
+      "topicIds": [
+        "C11"
+      ],
+      "code": "        transition: transform 180ms ease-out;"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 61,
+      "reference": "R09",
+      "topicIds": [
+        "C11"
+      ],
+      "code": "    .artio-hero-image { --pointer-depth: 6px; scale: 1.18; transition: transform 180ms ease-out, scale 350ms ease-out; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 68,
+      "reference": "R09",
+      "topicIds": [
+        "C11"
+      ],
+      "code": "        transition: transform 300ms ease-out;"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 70,
+      "reference": "R09",
+      "topicIds": [
+        "C11"
+      ],
+      "code": "    .is-pointer-active .artio-portrait:hover > img, .is-pointer-active .artio-eye-crop:hover > img {"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 100,
+      "reference": "R09",
+      "topicIds": [],
+      "code": "/* Homepage layout and current animation systems. */"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 123,
+      "reference": "R09",
+      "topicIds": [],
+      "code": ".home-gallery .collection-feature > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; transition: scale 600ms cubic-bezier(.22,1,.36,1); }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 144,
+      "reference": "R09",
+      "topicIds": [
+        "C68"
+      ],
+      "code": ".home-gallery .service-panel::after { content: \"\"; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(180deg,transparent 22%,rgba(0,0,0,.18) 42%,rgba(0,0,0,.78) 76%,rgba(0,0,0,.94) 100%); opacity: 0; transition: opacity 450ms ease; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 145,
+      "reference": "R09",
+      "topicIds": [
+        "C68"
+      ],
+      "code": ".home-gallery .service-panel.is-current::after, .home-gallery .service-panel:focus-within::after { opacity: 1; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 148,
+      "reference": "R09",
+      "topicIds": [
+        "C68"
+      ],
+      "code": ".home-gallery .service-copy { position: absolute; bottom: 36px; left: 36px; right: 36px; z-index: 2; min-width: 0; opacity: 0; transform: translateY(20px); pointer-events: none; transition: opacity 400ms ease,transform 450ms ease; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 149,
+      "reference": "R09",
+      "topicIds": [
+        "C68"
+      ],
+      "code": ".home-gallery .service-panel.is-current .service-copy, .home-gallery .service-panel:focus-within .service-copy { opacity: 1; transform: none; pointer-events: auto; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 155,
+      "reference": "R09",
+      "topicIds": [
+        "C68"
+      ],
+      "code": ".home-gallery .service-art img { width: 100%; height: 100%; object-fit: cover; transition: transform 260ms ease; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 167,
+      "reference": "R09",
+      "topicIds": [],
+      "code": ".home-gallery .starter-slide { min-width: 0; flex: 0 0 48%; scroll-snap-align: center; opacity: .65; transform: scale(.92); transition: transform 260ms ease, opacity 180ms ease; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 170,
+      "reference": "R09",
+      "topicIds": [],
+      "code": ".home-gallery .starter-slide.is-active, .home-gallery .starter-slide:focus-within { opacity: 1; transform: none; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 173,
+      "reference": "R09",
+      "topicIds": [],
+      "code": ".home-gallery .starter-slide img { width: 100%; aspect-ratio: 1.24; object-fit: cover; transition: transform 260ms ease; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 199,
+      "reference": "R09",
+      "topicIds": [],
+      "code": ".home-gallery :focus-visible { outline: 2px solid #ff4844; outline-offset: 5px; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 201,
+      "reference": "R09",
+      "topicIds": [],
+      "code": ".home-gallery .starter-slide:hover { opacity: 1; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 202,
+      "reference": "R09",
+      "topicIds": [],
+      "code": ".home-gallery a:hover { color: #ff4844; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 203,
+      "reference": "R09",
+      "topicIds": [],
+      "code": ".home-gallery .orange-btn:hover { color: #fff; background: #343735; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 204,
+      "reference": "R09",
+      "topicIds": [],
+      "code": ".home-gallery .carousel-controls button:not(:disabled):hover { background: #e9eae6; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 228,
+      "reference": "R09",
+      "topicIds": [],
+      "code": ".home-gallery .starter-slide { transform: none; opacity: 1; transition: none; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 229,
+      "reference": "R09",
+      "topicIds": [],
+      "code": ".home-gallery .starter-slide img { transition: none; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 230,
+      "reference": "R09",
+      "topicIds": [],
+      "code": ".home-gallery .starter-slide:hover img { transform: none; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 238,
+      "reference": "R09",
+      "topicIds": [],
+      "code": ".home-gallery .collection-feature:hover { color: #fff; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 274,
+      "reference": "R09",
+      "topicIds": [],
+      "code": ".home-gallery .gallery-ribbon-track { animation: none; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 276,
+      "reference": "R09",
+      "topicIds": [],
+      "code": ".home-gallery .service-copy, .home-gallery .service-panel::after, .home-gallery .service-art img, .home-gallery .collection-feature > img { transition: none; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 298,
+      "reference": "R09",
+      "topicIds": [],
+      "code": ".home-gallery .gallery-ribbon-track { animation: none; transform: translateX(var(--ribbon-x,0px)); }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 319,
+      "reference": "R09",
+      "topicIds": [
+        "C66"
+      ],
+      "code": ".home-gallery .art-frame-entrance { opacity: 0; translate: 0 48px; clip-path: inset(0 0 100% 0 round 16px); transition: opacity 700ms ease, translate 1200ms cubic-bezier(.22,1,.36,1), clip-path 1400ms cubic-bezier(.22,1,.36,1); }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 321,
+      "reference": "R09",
+      "topicIds": [
+        "C66"
+      ],
+      "code": "@media (prefers-reduced-motion: reduce) { .home-gallery .art-frame-entrance { opacity: 1; translate: none; clip-path: none; transition: none; } }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 329,
+      "reference": "R09",
+      "topicIds": [
+        "C66"
+      ],
+      "code": ".home-gallery .art-roll-item > img { transition: scale 260ms ease; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 331,
+      "reference": "R09",
+      "topicIds": [
+        "C66"
+      ],
+      "code": "  .home-gallery .art-roll-item:hover > img { scale: 1.035; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 371,
+      "reference": "R09",
+      "topicIds": [],
+      "code": ".art-bridge .bridge-entrance { opacity: 0; translate: 0 24px; transition: opacity 800ms ease, translate 900ms cubic-bezier(.22,1,.36,1); transition-delay: var(--reveal-delay,0ms); }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 375,
+      "reference": "R09",
+      "topicIds": [],
+      "code": "    .art-bridge .bridge-entrance { opacity: 1; translate: none; transition: none; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 384,
+      "reference": "R09",
+      "topicIds": [
+        "C62"
+      ],
+      "code": ".home-gallery .closing-art > img { transition: scale 260ms ease; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 385,
+      "reference": "R09",
+      "topicIds": [
+        "C62"
+      ],
+      "code": ".home-gallery .service-art img { transition: transform 260ms ease; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 386,
+      "reference": "R09",
+      "topicIds": [
+        "C62"
+      ],
+      "code": "  .home-gallery .service-panel:hover .service-art img,"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 387,
+      "reference": "R09",
+      "topicIds": [
+        "C62"
+      ],
+      "code": "  .home-gallery .starter-slide:hover img { transform: scale(1.045); scale: none; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 388,
+      "reference": "R09",
+      "topicIds": [
+        "C62"
+      ],
+      "code": "  /* Scroll animation owns transform; hover zoom uses its own scale. */"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 389,
+      "reference": "R09",
+      "topicIds": [
+        "C62"
+      ],
+      "code": "  .home-gallery .closing-art:hover > img { scale: 1.045; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 390,
+      "reference": "R09",
+      "topicIds": [
+        "C62"
+      ],
+      "code": ".home-gallery .service-panel:focus-within .service-art img,"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 391,
+      "reference": "R09",
+      "topicIds": [
+        "C62"
+      ],
+      "code": ".home-gallery .starter-slide:focus-within img { transform: scale(1.045); }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 393,
+      "reference": "R09",
+      "topicIds": [
+        "C62"
+      ],
+      "code": "  .home-gallery :is(.collection-feature, .service-panel, .starter-slide, .closing-art) img { transition: none; transform: none !important; scale: none; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 410,
+      "reference": "R09",
+      "topicIds": [
+        "C69"
+      ],
+      "code": ".home-gallery .service-panel.panel-motion:not(.is-current):not(:focus-within) .service-copy { opacity: 0; transform: translateY(20px); pointer-events: none; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 411,
+      "reference": "R09",
+      "topicIds": [
+        "C69"
+      ],
+      "code": ".home-gallery .service-panel.panel-motion:not(.is-current):not(:focus-within)::after { opacity: 0; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 431,
+      "reference": "R09",
+      "topicIds": [],
+      "code": "  .artio-hero-image, .artio-portrait, .artio-eye-crop, .artio-portrait > img, .artio-eye-crop > img { transform: none; transition: none; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 453,
+      "reference": "R09",
+      "topicIds": [
+        "C63"
+      ],
+      "code": ".home-gallery .resource-collections .collection-feature > img { scale: 1; transition: scale 600ms cubic-bezier(.22,1,.36,1); }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 454,
+      "reference": "R09",
+      "topicIds": [
+        "C63"
+      ],
+      "code": ".home-gallery .collection-feature-copy { translate: 0 0; transition: translate 450ms cubic-bezier(.22,1,.36,1); }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 455,
+      "reference": "R09",
+      "topicIds": [
+        "C63"
+      ],
+      "code": "  .home-gallery .collection-feature:hover > img { scale: 1.045; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 456,
+      "reference": "R09",
+      "topicIds": [
+        "C63"
+      ],
+      "code": "  .home-gallery .collection-feature:hover .collection-feature-copy { translate: 0 -6px; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 457,
+      "reference": "R09",
+      "topicIds": [
+        "C63"
+      ],
+      "code": ".home-gallery .collection-feature:focus-visible > img { scale: 1.045; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 458,
+      "reference": "R09",
+      "topicIds": [
+        "C63"
+      ],
+      "code": ".home-gallery .collection-feature:focus-visible .collection-feature-copy { translate: 0 -6px; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 460,
+      "reference": "R09",
+      "topicIds": [
+        "C63"
+      ],
+      "code": "  .home-gallery .resource-collections .collection-feature > img { scale: none; transition: none; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 461,
+      "reference": "R09",
+      "topicIds": [
+        "C63"
+      ],
+      "code": "  .home-gallery .collection-feature-copy { translate: none; transition: none; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 462,
+      "reference": "R09",
+      "topicIds": [
+        "C63"
+      ],
+      "code": "  .home-gallery .collection-feature:is(:hover, :focus-visible) > img { scale: none; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 463,
+      "reference": "R09",
+      "topicIds": [
+        "C63"
+      ],
+      "code": "  .home-gallery .collection-feature:is(:hover, :focus-visible) .collection-feature-copy { translate: none; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 470,
+      "reference": "R09",
+      "topicIds": [],
+      "code": ".gallery-home .home-gallery .gallery-ribbon-track { animation: none; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 471,
+      "reference": "R09",
+      "topicIds": [],
+      "code": ".gallery-home .home-gallery .gallery-ribbon i { animation: none; transform: none; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 475,
+      "reference": "R09",
+      "topicIds": [],
+      "code": "  .home-gallery .new-share .starter-slide a:hover { color: inherit; }"
+    },
+    {
+      "file": "assets/landing.css",
+      "line": 476,
+      "reference": "R09",
+      "topicIds": [],
+      "code": "  .home-gallery .new-share .starter-slide a:hover .editorial-link { color: inherit; }"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 25,
+      "reference": "R10",
+      "topicIds": [
+        "C15"
+      ],
+      "code": "    const animations = [];"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 44,
+      "reference": "R10",
+      "topicIds": [
+        "C15"
+      ],
+      "code": "                const animation = element.animate([start, end], {"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 50,
+      "reference": "R10",
+      "topicIds": [
+        "C15"
+      ],
+      "code": "                animations.push(animation);"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 54,
+      "reference": "R10",
+      "topicIds": [
+        "C15"
+      ],
+      "code": "    // Hero text and artwork enter once; typing never restarts their animations."
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 55,
+      "reference": "R10",
+      "topicIds": [
+        "C15"
+      ],
+      "code": "    const finishEntrance = () => animations.forEach(animation => animation.cancel());"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 73,
+      "reference": "R10",
+      "topicIds": [
+        "C12"
+      ],
+      "code": "    shell.addEventListener('pointermove', event => {"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 79,
+      "reference": "R10",
+      "topicIds": [
+        "C12"
+      ],
+      "code": "        pointerFrame = requestAnimationFrame(() => {"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 100,
+      "reference": "R10",
+      "topicIds": [
+        "C64"
+      ],
+      "code": "    if (!gallery || !('IntersectionObserver' in window)) return;"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 103,
+      "reference": "R10",
+      "topicIds": [
+        "C64"
+      ],
+      "code": "    const observer = new IntersectionObserver(entries => {"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 119,
+      "reference": "R10",
+      "topicIds": [
+        "C65"
+      ],
+      "code": "    if (!gallery || !('IntersectionObserver' in window)) return;"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 155,
+      "reference": "R10",
+      "topicIds": [
+        "C65"
+      ],
+      "code": "        frame = requestAnimationFrame(tick);"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 162,
+      "reference": "R10",
+      "topicIds": [
+        "C65"
+      ],
+      "code": "        if (!frame) frame=requestAnimationFrame(tick);"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 164,
+      "reference": "R10",
+      "topicIds": [
+        "C65"
+      ],
+      "code": "    new IntersectionObserver(([entry]) => {"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 181,
+      "reference": "R10",
+      "topicIds": [
+        "C67"
+      ],
+      "code": "    if (!panels.length || !('IntersectionObserver' in window)) return;"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 198,
+      "reference": "R10",
+      "topicIds": [
+        "C67"
+      ],
+      "code": "    function schedule() { if (visible && !frame) frame = requestAnimationFrame(paint); }"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 199,
+      "reference": "R10",
+      "topicIds": [
+        "C67"
+      ],
+      "code": "    new IntersectionObserver(([entry]) => {"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 212,
+      "reference": "R10",
+      "topicIds": [
+        "C70"
+      ],
+      "code": "    if (!bridge || !('IntersectionObserver' in window)) return;"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 215,
+      "reference": "R10",
+      "topicIds": [
+        "C70"
+      ],
+      "code": "    const observer = new IntersectionObserver(entries => {"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 279,
+      "reference": "R10",
+      "topicIds": [
+        "C71"
+      ],
+      "code": "    function schedule() { if (visible && !frame) frame = requestAnimationFrame(paint); }"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 280,
+      "reference": "R10",
+      "topicIds": [
+        "C71"
+      ],
+      "code": "    if ('IntersectionObserver' in window) {"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 281,
+      "reference": "R10",
+      "topicIds": [
+        "C71"
+      ],
+      "code": "        new IntersectionObserver(([entry]) => {"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 326,
+      "reference": "R10",
+      "topicIds": [
+        "C72"
+      ],
+      "code": "        loopFrame = requestAnimationFrame(tickRibbon);"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 330,
+      "reference": "R10",
+      "topicIds": [
+        "C72"
+      ],
+      "code": "        if (ribbonVisible && !scrolling && !reduced.matches && !document.hidden) loopFrame = requestAnimationFrame(tickRibbon);"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 359,
+      "reference": "R10",
+      "topicIds": [
+        "C72"
+      ],
+      "code": "    function schedule() { if (!frame) frame = requestAnimationFrame(paint); }"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 380,
+      "reference": "R10",
+      "topicIds": [
+        "C72"
+      ],
+      "code": "    if ('IntersectionObserver' in window) {"
+    },
+    {
+      "file": "assets/landing.js",
+      "line": 381,
+      "reference": "R10",
+      "topicIds": [
+        "C72"
+      ],
+      "code": "        new IntersectionObserver(([entry]) => {"
+    },
+    {
+      "file": "assets/resource-cards.css",
+      "line": 42,
+      "reference": "R11",
+      "topicIds": [],
+      "code": ":is(.course-library-page .library-filters, .search-page .search-form) :is(input, select):focus {"
+    },
+    {
+      "file": "assets/resource-cards.css",
+      "line": 45,
+      "reference": "R11",
+      "topicIds": [],
+      "code": ":is(.course-library-page .library-filters, .search-page .search-form) :focus-visible {"
+    },
+    {
+      "file": "assets/resource-cards.css",
+      "line": 48,
+      "reference": "R11",
+      "topicIds": [],
+      "code": ".search-page .search-form .search-field input:focus {"
+    },
+    {
+      "file": "assets/resource-cards.css",
+      "line": 78,
+      "reference": "R11",
+      "topicIds": [
+        "C78"
+      ],
+      "code": "    transition: opacity 180ms ease, transform 220ms cubic-bezier(.22,1,.36,1), display 220ms allow-discrete, overlay 220ms allow-discrete;"
+    },
+    {
+      "file": "assets/resource-cards.css",
+      "line": 81,
+      "reference": "R11",
+      "topicIds": [
+        "C78"
+      ],
+      "code": "  @starting-style {"
+    },
+    {
+      "file": "assets/resource-cards.css",
+      "line": 89,
+      "reference": "R11",
+      "topicIds": [
+        "C78"
+      ],
+      "code": "    transition: background-color 140ms ease;"
+    },
+    {
+      "file": "assets/resource-cards.css",
+      "line": 91,
+      "reference": "R11",
+      "topicIds": [
+        "C78"
+      ],
+      "code": "  .course-library-page .library-filters select option:is(:hover, :focus, :checked) { background: #f1f2f3; color: #18191b; }"
+    },
+    {
+      "file": "assets/resource-cards.css",
+      "line": 101,
+      "reference": "R11",
+      "topicIds": [
+        "C78"
+      ],
+      "code": "    transition: height 240ms ease, opacity 200ms ease, content-visibility 240ms allow-discrete;"
+    },
+    {
+      "file": "assets/resource-cards.css",
+      "line": 108,
+      "reference": "R11",
+      "topicIds": [],
+      "code": "  .course-library-page .catalog-filter-disclosure::details-content { transition: none; transform: none; }"
+    },
+    {
+      "file": "assets/resource-cards.css",
+      "line": 149,
+      "reference": "R11",
+      "topicIds": [
+        "C10"
+      ],
+      "code": "  transition: transform 600ms cubic-bezier(.22, 1, .36, 1), opacity 600ms cubic-bezier(.22, 1, .36, 1), translate 550ms cubic-bezier(.22, 1, .36, 1);"
+    },
+    {
+      "file": "assets/resource-cards.css",
+      "line": 161,
+      "reference": "R11",
+      "topicIds": [
+        "C10"
+      ],
+      "code": "  transition: opacity 550ms cubic-bezier(.22, 1, .36, 1);"
+    },
+    {
+      "file": "assets/resource-cards.css",
+      "line": 164,
+      "reference": "R11",
+      "topicIds": [
+        "C10"
+      ],
+      "code": "  transition: transform 650ms cubic-bezier(.22, 1, .36, 1);"
+    },
+    {
+      "file": "assets/resource-cards.css",
+      "line": 166,
+      "reference": "R11",
+      "topicIds": [
+        "C10"
+      ],
+      "code": "  :is(.course-library-page, .brush-page, .search-page) :is(.maku-course-card, .brush-card):hover {"
+    },
+    {
+      "file": "assets/resource-cards.css",
+      "line": 169,
+      "reference": "R11",
+      "topicIds": [
+        "C10"
+      ],
+      "code": "  :is(.course-library-page, .brush-page, .search-page) :is(.maku-course-card, .brush-card):hover::after { opacity: 1; }"
+    },
+    {
+      "file": "assets/resource-cards.css",
+      "line": 170,
+      "reference": "R11",
+      "topicIds": [
+        "C10"
+      ],
+      "code": ":is(.course-library-page, .brush-page, .search-page) :is(.maku-course-card, .brush-card):focus-within {"
+    },
+    {
+      "file": "assets/resource-cards.css",
+      "line": 173,
+      "reference": "R11",
+      "topicIds": [
+        "C10"
+      ],
+      "code": ":is(.course-library-page, .brush-page, .search-page) :is(.maku-course-card, .brush-card):focus-within::after { opacity: 1; }"
+    },
+    {
+      "file": "assets/resource-cards.css",
+      "line": 176,
+      "reference": "R11",
+      "topicIds": [
+        "C10"
+      ],
+      "code": "    transition: none;"
+    },
+    {
+      "file": "assets/resource-cards.css",
+      "line": 180,
+      "reference": "R11",
+      "topicIds": [
+        "C10"
+      ],
+      "code": "  :is(.course-library-page, .brush-page, .search-page) :is(.maku-course-card, .brush-card):is(:hover, :focus-within) { transform: none; translate: none; }"
+    },
+    {
+      "file": "assets/resource-cards.css",
+      "line": 182,
+      "reference": "R11",
+      "topicIds": [
+        "C10"
+      ],
+      "code": "  :is(.course-library-page, .brush-page, .search-page) :is(.maku-course-media, .brush-card-image) img { transition: none; }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 23,
+      "reference": "R12",
+      "topicIds": [
+        "C74"
+      ],
+      "code": "body { animation: page-enter 300ms var(--ease-out) both; }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 27,
+      "reference": "R12",
+      "topicIds": [
+        "C74"
+      ],
+      "code": "@keyframes page-enter { from { opacity: 0; } to { opacity: 1; } }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 28,
+      "reference": "R12",
+      "topicIds": [
+        "C74"
+      ],
+      "code": "@keyframes hero-letter-enter { from { opacity: 0; transform: translateY(0.6em); } to { opacity: 1; transform: none; } }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 29,
+      "reference": "R12",
+      "topicIds": [
+        "C74"
+      ],
+      "code": "@keyframes hero-float-enter { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 47,
+      "reference": "R12",
+      "topicIds": [
+        "C74"
+      ],
+      "code": ".hero-letter { display: inline-block; opacity: 0; animation: hero-letter-enter 620ms var(--ease-out) both; animation-delay: calc(var(--letter-index) * 38ms + 120ms); }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 48,
+      "reference": "R12",
+      "topicIds": [
+        "C74"
+      ],
+      "code": ".immersive-hero .hero-header { animation: hero-float-enter 500ms var(--ease-out) 60ms both; }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 49,
+      "reference": "R12",
+      "topicIds": [
+        "C74"
+      ],
+      "code": ".hero-resource-label, .hero-explore { animation: hero-float-enter 560ms var(--ease-out) 340ms both; }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 50,
+      "reference": "R12",
+      "topicIds": [
+        "C74"
+      ],
+      "code": ".hero-floating-art { animation: hero-float-enter 620ms var(--ease-out) 300ms both; }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 51,
+      "reference": "R12",
+      "topicIds": [
+        "C74"
+      ],
+      "code": ".hero-floating-two { animation-delay: 380ms; }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 74,
+      "reference": "R12",
+      "topicIds": [],
+      "code": "   the next panel enters, echoing the supplied scroll animation reference. */"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 86,
+      "reference": "R12",
+      "topicIds": [],
+      "code": ".service-art img { width: 100%; height: 100%; object-fit: cover; transition: transform 260ms var(--ease-out); }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 129,
+      "reference": "R12",
+      "topicIds": [],
+      "code": "  .service-art:hover img, .new-share-carousel .starter-slide:hover img { transform: scale(1.045); }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 147,
+      "reference": "R12",
+      "topicIds": [],
+      "code": "  body, .hero-letter, .immersive-hero .hero-header, .hero-resource-label, .hero-explore, .hero-floating-art { animation: none; opacity: 1; transform: none; }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 148,
+      "reference": "R12",
+      "topicIds": [],
+      "code": "  .service-art img, .new-share-carousel .starter-slide img { transition: opacity 100ms; }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 152,
+      "reference": "R12",
+      "topicIds": [
+        "C75"
+      ],
+      "code": ".mobile-nav { width: min(680px, 100vw); padding: 24px 42px 40px; transition: transform 450ms cubic-bezier(.22,1,.36,1), opacity 350ms ease, display 450ms allow-discrete, overlay 450ms allow-discrete; }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 154,
+      "reference": "R12",
+      "topicIds": [
+        "C75"
+      ],
+      "code": ".mobile-nav[open] { transition-duration: 650ms, 450ms, 650ms, 650ms; }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 155,
+      "reference": "R12",
+      "topicIds": [
+        "C75"
+      ],
+      "code": ".mobile-nav::backdrop { transition: opacity 450ms ease, display 450ms allow-discrete, overlay 450ms allow-discrete; }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 161,
+      "reference": "R12",
+      "topicIds": [
+        "C75"
+      ],
+      "code": ".mobile-nav nav a { opacity: 0; transform: translateY(14px); transition: opacity 450ms ease, transform 600ms cubic-bezier(.22,1,.36,1); }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 163,
+      "reference": "R12",
+      "topicIds": [
+        "C75"
+      ],
+      "code": ".mobile-nav[open] nav a:nth-child(1) { transition-delay: 80ms; }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 164,
+      "reference": "R12",
+      "topicIds": [
+        "C75"
+      ],
+      "code": ".mobile-nav[open] nav a:nth-child(2) { transition-delay: 150ms; }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 165,
+      "reference": "R12",
+      "topicIds": [
+        "C75"
+      ],
+      "code": ".mobile-nav[open] nav a:nth-child(3) { transition-delay: 220ms; }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 166,
+      "reference": "R12",
+      "topicIds": [
+        "C75"
+      ],
+      "code": ".mobile-nav[open] nav a:nth-child(4) { transition-delay: 290ms; }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 167,
+      "reference": "R12",
+      "topicIds": [
+        "C75"
+      ],
+      "code": "@starting-style { .mobile-nav[open] nav a { opacity: 0; transform: translateY(14px); } }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 181,
+      "reference": "R12",
+      "topicIds": [
+        "C75"
+      ],
+      "code": "  .mobile-nav, .mobile-nav[open] { transform: none; transition: opacity 100ms, display 100ms allow-discrete, overlay 100ms allow-discrete; }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 182,
+      "reference": "R12",
+      "topicIds": [
+        "C75"
+      ],
+      "code": "  .mobile-nav::backdrop { transition: opacity 100ms, display 100ms allow-discrete, overlay 100ms allow-discrete; }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 183,
+      "reference": "R12",
+      "topicIds": [
+        "C75"
+      ],
+      "code": "  .mobile-nav nav a { opacity: 1; transform: none; transition: opacity 100ms; transition-delay: 0ms; }"
+    },
+    {
+      "file": "assets/site-refinements.css",
+      "line": 184,
+      "reference": "R12",
+      "topicIds": [
+        "C75"
+      ],
+      "code": "  @starting-style { .mobile-nav[open] nav a { opacity: 1; transform: none; } }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 22,
+      "reference": "R13",
+      "topicIds": [],
+      "code": "html { scroll-behavior: smooth; scroll-padding-top: 130px; scrollbar-gutter: stable; -webkit-tap-highlight-color: transparent; -webkit-text-size-adjust: 100%; }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 41,
+      "reference": "R13",
+      "topicIds": [],
+      "code": ":focus-visible { outline: 2px solid var(--orange-dark); outline-offset: 5px; }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 44,
+      "reference": "R13",
+      "topicIds": [],
+      "code": "input:focus, textarea:focus, select:focus { border-color: var(--orange-dark); }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 45,
+      "reference": "R13",
+      "topicIds": [],
+      "code": "input:focus-visible, textarea:focus-visible, select:focus-visible { outline-offset: 2px; }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 55,
+      "reference": "R13",
+      "topicIds": [
+        "C77"
+      ],
+      "code": ".skip-link:focus { transform: none; }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 56,
+      "reference": "R13",
+      "topicIds": [
+        "C77"
+      ],
+      "code": ".orange-btn, .outline-btn, .outline-light { display: inline-flex; align-items: center; justify-content: center; gap: 20px; min-height: 50px; padding: 13px 24px; border-radius: 100px; background: var(--ink); color: white; font-size: 13px; font-weight: 500; line-height: 1.5; border: 1px solid var(--ink); transition: transform 100ms var(--ease-out); }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 60,
+      "reference": "R13",
+      "topicIds": [
+        "C77"
+      ],
+      "code": ".icon-btn { display: inline-grid; place-items: center; background: transparent; border: 1px solid transparent; border-radius: 50%; width: 44px; height: 44px; padding: 0; flex-shrink: 0; transition: transform 100ms var(--ease-out); }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 61,
+      "reference": "R13",
+      "topicIds": [
+        "C77"
+      ],
+      "code": ":is(.orange-btn, .outline-btn, .outline-light, .icon-btn, .maku-login):not(:disabled):active { transform: scale(.97); transition-duration: 140ms; }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 70,
+      "reference": "R13",
+      "topicIds": [],
+      "code": ".mobile-nav { position: fixed; inset: 0 auto 0 0; margin: 0; width: min(510px, 90vw); max-width: none; height: 100dvh; max-height: none; padding: max(30px, env(safe-area-inset-top)) 38px max(32px, env(safe-area-inset-bottom)); border: 0; background: #18191b; color: #fff; overflow-y: auto; overscroll-behavior: contain; transform: translateX(-100%); opacity: 0; transition: transform 200ms var(--ease-drawer), opacity 150ms var(--ease-out), display 200ms allow-discrete, overlay 200ms allow-discrete; }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 71,
+      "reference": "R13",
+      "topicIds": [],
+      "code": ".mobile-nav[open] { transform: translateX(0); opacity: 1; transition-duration: 280ms; }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 93,
+      "reference": "R13",
+      "topicIds": [],
+      "code": ".maku-course-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 220ms var(--ease-out); }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 193,
+      "reference": "R13",
+      "topicIds": [],
+      "code": "dialog::backdrop { background: #11171ca6; opacity: 0; transition: opacity 180ms var(--ease-out), display 180ms allow-discrete, overlay 180ms allow-discrete; }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 195,
+      "reference": "R13",
+      "topicIds": [
+        "C76"
+      ],
+      "code": ".auth-dialog, .lesson-dialog { padding: 0; border: 1px solid #e8e8e6; border-radius: 20px; width: min(460px, calc(100% - 32px)); max-height: calc(100dvh - 32px); margin: auto; background: white; color: var(--ink); overflow-y: auto; overscroll-behavior: contain; opacity: 0; transform: translateY(8px) scale(.97); transition: opacity 160ms var(--ease-out), transform 160ms var(--ease-out), display 160ms allow-discrete, overlay 160ms allow-discrete; }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 196,
+      "reference": "R13",
+      "topicIds": [
+        "C76"
+      ],
+      "code": ".auth-dialog[open], .lesson-dialog[open] { opacity: 1; transform: none; transition-duration: 220ms; }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 204,
+      "reference": "R13",
+      "topicIds": [
+        "C76"
+      ],
+      "code": ".auth-tab-indicator { position: absolute; inset: 4px auto 4px 4px; width: calc(50% - 4px); background: white; border-radius: 100px; box-shadow: 0 2px 5px #17221b0b; transition: transform 200ms var(--ease-out); }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 228,
+      "reference": "R13",
+      "topicIds": [
+        "C76"
+      ],
+      "code": ".toast { position: fixed; z-index: 100; bottom: calc(24px + env(safe-area-inset-bottom)); left: 50%; max-width: calc(100% - 32px); width: max-content; border-radius: 12px; padding: 14px 22px; background: #202422; box-shadow: 0 8px 25px #0002; color: white; font-size: 12px; text-align: center; opacity: 0; transform: translate(-50%, 10px); pointer-events: none; transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out); }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 230,
+      "reference": "R13",
+      "topicIds": [
+        "C76"
+      ],
+      "code": "@starting-style {"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 242,
+      "reference": "R13",
+      "topicIds": [],
+      "code": "  .orange-btn:hover { background: #343735; border-color: #343735; }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 243,
+      "reference": "R13",
+      "topicIds": [],
+      "code": "  .outline-btn:hover, .maku-login:hover, .icon-btn:hover { background: #e9eae6; }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 244,
+      "reference": "R13",
+      "topicIds": [],
+      "code": "  .outline-light:hover { background: #ffffff12; }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 245,
+      "reference": "R13",
+      "topicIds": [],
+      "code": "  .text-link:hover, .footer-bottom a:hover, .course-card-link:hover { color: var(--orange-dark); }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 247,
+      "reference": "R13",
+      "topicIds": [],
+      "code": "  .mobile-nav a:hover { color: var(--orange); }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 248,
+      "reference": "R13",
+      "topicIds": [],
+      "code": "  .drawer-top .icon-btn:hover { background: #ffffff25; }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 396,
+      "reference": "R13",
+      "topicIds": [],
+      "code": "  html { scroll-behavior: auto; }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 398,
+      "reference": "R13",
+      "topicIds": [],
+      "code": "  .maku-course-media img, .auth-tab-indicator, .orange-btn, .outline-btn, .outline-light, .icon-btn, .maku-login { transition: none; }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 399,
+      "reference": "R13",
+      "topicIds": [],
+      "code": "  .maku-course-media:hover img, :is(.orange-btn, .outline-btn, .outline-light, .icon-btn, .maku-login):active { transform: none; }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 400,
+      "reference": "R13",
+      "topicIds": [],
+      "code": "  .mobile-nav, .auth-dialog, .lesson-dialog, .toast { transform: none; transition: opacity 100ms, display 100ms allow-discrete, overlay 100ms allow-discrete; }"
+    },
+    {
+      "file": "assets/style.css",
+      "line": 402,
+      "reference": "R13",
+      "topicIds": [],
+      "code": "  @starting-style { .mobile-nav[open], .auth-dialog[open], .lesson-dialog[open] { transform: none; } }"
+    }
+  ]
+}

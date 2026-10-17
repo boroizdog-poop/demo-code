@@ -1,0 +1,28 @@
+    if ($action==='course_save') {
+        $title=text_field($data,'title',190);$slug=text_field($data,'slug',190);$category=text_field($data,'category',80);$level=text_field($data,'level',50);$status=text_field($data,'status',20);
+        if (!$title || !preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/',$slug)) reply(422,'Điền tên và đường dẫn khóa học hợp lệ.');
+        if (!in_array($level,['Tân thủ','Trung cấp'],true) || !in_array($status,['draft','published'],true)) reply(422,'Nhóm giới thiệu hoặc trạng thái không hợp lệ.');
+        if (!in_array($category,array_column(artio_categories(),'name'),true)) reply(422,'Vui lòng chọn danh mục hiện có.');
+        $price=filter_var($data['price']??0,FILTER_VALIDATE_INT);$old=filter_var($data['old_price']??0,FILTER_VALIDATE_INT);
+        if ($price===false || $old===false || $price<0 || $old<0 || $price>999999999 || $old>999999999 || ($old>0 && $old<$price)) reply(422,'Giá phải là số nguyên không âm; giá gốc không thấp hơn giá bán.');
+        $image=artio_image_url(text_field($data,'image_url',2000));$excerpt=text_field($data,'excerpt',1000);$description=text_field($data,'description',30000);
+        $curriculum=$data['curriculum']??[];
+        if (!is_array($curriculum) || count($curriculum)>40) reply(422,'Tối đa 40 chương.');
+        $clean=[];$lessonCount=0;
+        foreach ($curriculum as $chapter) {
+            if (!is_array($chapter)) reply(422,'Chương không hợp lệ.');
+            $chapterTitle=text_field($chapter,'title',190);$lessons=$chapter['lessons']??[];
+            if (!$chapterTitle || !is_array($lessons) || count($lessons)>80) reply(422,'Mỗi chương cần tên, tối đa 80 bài.');
+            $items=[];
+            foreach ($lessons as $lesson) {
+                if (!is_array($lesson)) reply(422,'Bài học không hợp lệ.');
+                $name=text_field($lesson,'title',190);$minutes=filter_var($lesson['minutes']??0,FILTER_VALIDATE_INT);
+                if (!$name || $minutes===false || $minutes<0 || $minutes>1440) reply(422,'Bài học cần tên và thời lượng từ 0 đến 1440 phút.');
+                $items[]=['title'=>$name,'minutes'=>$minutes,'url'=>artio_video_url(text_field($lesson,'url',2000)),'content'=>text_field($lesson,'content',30000),'free'=>($lesson['free']??false)===true];
+                $lessonCount++;
+            }
+            $clean[]=['title'=>$chapterTitle,'lessons'=>$items];
+        }
+        if ($status==='published' && (!$image || !$excerpt || !$description || !$lessonCount)) reply(422,'Để xuất bản, hãy thêm ảnh bìa, mô tả và ít nhất một bài học.');
+        $fields=['slug'=>$slug,'title'=>$title,'category'=>$category,'level'=>$level,'price'=>$price,'old_price'=>$old,'image_url'=>$image,'excerpt'=>$excerpt,'description'=>$description,'benefits_json'=>json_encode(artio_lines(text_field($data,'benefits',8000)),JSON_UNESCAPED_UNICODE),'audience_json'=>json_encode(artio_lines(text_field($data,'audience',8000)),JSON_UNESCAPED_UNICODE),'requirements_json'=>json_encode(artio_lines(text_field($data,'requirements',8000)),JSON_UNESCAPED_UNICODE),'curriculum_json'=>json_encode($clean,JSON_UNESCAPED_UNICODE),'preview_url'=>artio_video_url(text_field($data,'preview_url',2000)),'resource_url'=>artio_video_url(text_field($data,'resource_url',2000)),'status'=>$status];
+        $categoryQuery=$db->prepare('SELECT id FROM categories WHERE name=?');$categoryQuery->execute([$category]);

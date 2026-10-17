@@ -1,0 +1,23 @@
+<?php
+function artio_comments_section(string $key): void {
+    $comments=artio_comments($key); $viewer=artio_user(); ?>
+<section class="resource-comments" id="comments" aria-labelledby="comments-title">
+  <header class="comments-heading">
+    <div><p class="comments-eyebrow">GÓC CHIA SẺ</p><h2 id="comments-title">Cùng nhau <em>chia sẻ.</em></h2><p class="comment-count"><?=count($comments)?> bình luận gần nhất</p></div>
+    <?php if(count($comments)>1): ?><div class="comments-controls" hidden><button type="button" data-comments-prev aria-label="Bình luận trước" aria-controls="comment-cards"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H4m6-6-6 6 6 6"/></svg></button><button type="button" data-comments-next aria-label="Bình luận tiếp theo" aria-controls="comment-cards"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></button></div><?php endif; ?>
+  </header>
+  <div class="comments-column">
+    <div id="comment-cards" data-comment-list role="region" aria-label="Bình luận của cộng đồng" tabindex="0"><?php foreach($comments as $comment): ?>
+      <article class="comment" data-comment-id="<?=(int)$comment['id']?>">
+        <div class="comment-card-top"><span class="comment-avatar" aria-hidden="true"><?=artio_h(preg_match('/^\s*(\S)/u', $comment['name'], $initial)?$initial[1]:'A')?></span><span class="comment-card-label">Cộng đồng ARTIO</span></div>
+        <span class="comment-quote" aria-hidden="true">“</span>
+        <p class="comment-message" tabindex="0"><?=nl2br(artio_h($comment['body']))?></p>
+        <footer class="comment-meta"><strong><?=artio_h($comment['name'])?></strong><time datetime="<?=artio_h(date('Y-m-d',strtotime($comment['created_at'])))?>"><?=artio_h(date('d.m.Y',strtotime($comment['created_at'])))?></time><?php if($viewer && ((int)$comment['user_id']===(int)$viewer['id'] || $viewer['role']==='admin')): ?><button type="button" class="text-link" data-hide-comment="<?=(int)$comment['id']?>">Ẩn bình luận</button><?php endif; ?></footer>
+      </article>
+    <?php endforeach; ?></div>
+    <?php if(!$comments): ?><p class="comment-empty">Chưa có bình luận. Chia sẻ một câu hỏi hoặc kinh nghiệm sử dụng tài nguyên này.</p><?php endif; ?>
+    <?php if($viewer): ?><form class="comment-form" data-comment-form data-resource="<?=artio_h($key)?>"><label for="comment-body"><span class="sr-only">Bình luận của bạn</span><textarea id="comment-body" name="body" rows="2" maxlength="1000" required placeholder="Thêm bình luận..."></textarea></label><button class="outline-btn" type="submit">Đăng bình luận ↗</button><p class="form-status" role="status"></p></form>
+    <?php else: ?><button class="outline-btn" data-open-auth>Đăng nhập để bình luận ↗</button><?php endif; ?>
+  </div>
+</section>
+<?php }

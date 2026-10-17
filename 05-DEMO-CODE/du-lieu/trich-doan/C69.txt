@@ -1,0 +1,11 @@
+.artio-search-toggle svg { width: 17px; height: 17px; }
+.art-bridge-copy em { color: inherit; }
+.home-gallery .gallery-about { grid-template-columns: minmax(230px,.9fr) minmax(0,1.6fr) minmax(0,.55fr); }
+.home-gallery .artwork-frame { height: 100%; }
+.home-gallery .about-intro h2 em { color: var(--ink); }
+.home-gallery .service-copy { opacity: 1; transform: none; pointer-events: auto; }
+.home-gallery .service-panel::after { opacity: .65; }
+.home-gallery .service-panel.panel-motion:not(.is-current):not(:focus-within) .service-copy { opacity: 0; transform: translateY(20px); pointer-events: none; }
+.home-gallery .service-panel.panel-motion:not(.is-current):not(:focus-within)::after { opacity: 0; }
+.home-gallery .gallery-ribbon-track { will-change: auto; }
+.home-gallery .starter-slide-copy { padding-top: 10px; }

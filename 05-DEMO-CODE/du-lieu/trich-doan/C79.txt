@@ -1,0 +1,28 @@
+const menu = $('#mobile-nav');
+function syncMenu(open) {
+  menuTriggers.forEach(button => {
+    button.setAttribute('aria-expanded', String(open));
+    button.setAttribute('aria-label', button.classList.contains('hero-logo-trigger') ? (open ? 'Đóng danh mục Artio' : 'Mở danh mục Artio') : (open ? 'Đóng menu' : 'Mở menu'));
+  });
+}
+function closeMenu(restoreFocus = false) {
+  if (!menu?.open) return;
+  const focusInside = menu.contains(document.activeElement);
+  menu.close();
+  syncMenu(false);
+  if (restoreFocus && focusInside) lastMenuTrigger?.focus();
+}
+// Native dialog supplies focus trapping, Escape and an inert background on every screen size.
+menuTriggers.forEach(button => button.addEventListener('click', () => { lastMenuTrigger = button; if (menu.open) closeMenu(true); else { menu.showModal(); syncMenu(true); } }));
+menu?.addEventListener('close', () => syncMenu(false));
+$$('#mobile-nav a').forEach(link => link.addEventListener('click', () => closeMenu()));
+document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(true); });
+if ($('[data-resource-gate]')) openAuth();
+const catalogDisclosure = $('.catalog-filter-disclosure');
+if (catalogDisclosure) {
+  // Expanded HTML remains usable without JavaScript; desktop always shows the controls.
+  const compactFilters = matchMedia('(max-width: 760px)');
+  const syncFilters = () => { catalogDisclosure.open = !compactFilters.matches; };
+  syncFilters();
+  compactFilters.addEventListener('change', syncFilters);
+}

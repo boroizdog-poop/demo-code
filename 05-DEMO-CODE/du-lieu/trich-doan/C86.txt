@@ -1,0 +1,5 @@
+  <section class="gallery-closing page-width" id="tiep-tuc"><div class="closing-art" data-gallery-reveal="image"><img src="<?=artio_h($site['closing_image'])?>" width="950" height="1571" loading="lazy" alt="Nhân vật fantasy trong sắc xanh"></div><div class="closing-copy" data-gallery-reveal><div class="section-index">06 / CONTINUE</div><h2><?=artio_content_heading($site['closing_title'])?></h2><a class="orange-btn" href="courses.php">Xem tất cả khóa học ↗</a><a class="text-link closing-contact" href="brush.php">Xem tất cả brush ↗</a></div></section>
+</div>
+</main>
+<?php if(artio_is_admin()): ?><nav class="admin-quick-edit" aria-label="Chỉnh sửa trang chủ"><b>Quản trị nội dung</b><a href="admin.php?view=site">Sửa chữ và ảnh trang chủ ↗</a><a href="admin.php?view=courses">Quản lý khóa học ↗</a><a href="admin.php?view=brushes">Quản lý brush ↗</a></nav><?php endif; ?>
+<?php artio_footer(); ?>

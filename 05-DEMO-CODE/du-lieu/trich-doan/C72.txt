@@ -1,0 +1,95 @@
+// Scroll motion for the hero and the LEARN / CREATE / EXPLORE ribbon.
+(() => {
+    const root = document.querySelector('.home-gallery');
+    if (!root) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const hero = document.querySelector('.artio-hero-shell');
+    const ribbon = root.querySelector('.gallery-ribbon');
+    const track = ribbon.querySelector('.gallery-ribbon-track');
+    let frame = 0;
+    let lastCover = -1;
+    let lastRibbon = -1;
+    let loopFrame = 0, previousTime = 0, loopOffset = 0, period = 0;
+    let ribbonVisible = false, scrolling = false, idleTimer = 0;
+    function measurePeriod() {
+        const first = track.firstElementChild;
+        period = first ? first.getBoundingClientRect().width + (parseFloat(getComputedStyle(track).columnGap) || 0) : 0;
+        if (period) loopOffset %= period;
+    }
+    function drawRibbon(progress) {
+        const scrollOffset = progress * (innerWidth <= 760 ? 240 : 520);
+        const offset = period ? (scrollOffset + loopOffset) % period : scrollOffset;
+        track.style.setProperty('--ribbon-x', `${(-offset).toFixed(1)}px`);
+        ribbon.style.setProperty('--ribbon-turn', `${(progress * 160 + (period ? loopOffset / period * 360 : 0)).toFixed(1)}deg`);
+    }
+    function tickRibbon(time) {
+        loopFrame = 0;
+        if (!ribbonVisible || scrolling || reduced.matches || document.hidden) { previousTime = 0; return; }
+        const delta = previousTime ? Math.min((time - previousTime) / 1000, .05) : 0;
+        previousTime = time;
+        if (period) loopOffset = (loopOffset + delta * 50) % period;
+        drawRibbon(Math.max(0, lastRibbon));
+        loopFrame = requestAnimationFrame(tickRibbon);
+    }
+    function syncRibbonLoop() {
+        cancelAnimationFrame(loopFrame); loopFrame = 0; previousTime = 0;
+        if (ribbonVisible && !scrolling && !reduced.matches && !document.hidden) loopFrame = requestAnimationFrame(tickRibbon);
+    }
+    const clamp = value => Math.max(0, Math.min(1, value));
+    function paint() {
+        frame = 0;
+        if (reduced.matches) {
+            hero.style.setProperty('--hero-height-cut', '0px');
+            hero.style.setProperty('--hero-scroll-dim', '0');
+            track.style.setProperty('--ribbon-x', '0px');
+            ribbon.style.setProperty('--ribbon-turn', '0deg');
+            lastCover = lastRibbon = -1;
+            return;
+        }
+        const height = innerHeight;
+        const baseHeight = parseFloat(hero.style.getPropertyValue('--hero-base-height')) || height;
+        const cover = clamp(window.scrollY / baseHeight);
+        // Read layout before writing styles; skip effects already at their endpoint.
+        const ribbonRect = ribbon.getBoundingClientRect();
+        const progress = clamp((height - ribbonRect.top) / (height + ribbonRect.height));
+        if (cover !== lastCover) {
+            lastCover = cover;
+            hero.style.setProperty('--hero-height-cut', '0px');
+            hero.style.setProperty('--hero-scroll-dim', (cover*.5).toFixed(3));
+        }
+        if (progress !== lastRibbon) {
+            lastRibbon = progress;
+            drawRibbon(progress);
+        }
+    }
+    function schedule() { if (!frame) frame = requestAnimationFrame(paint); }
+    function configure() {
+        schedule();
+        syncRibbonLoop();
+    }
+    window.addEventListener('scroll', () => {
+        scrolling = true;
+        loopOffset = 0;
+        syncRibbonLoop();
+        lastRibbon = -1;
+        schedule();
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(() => {
+            scrolling = false;
+            syncRibbonLoop();
+        }, 180);
+    }, {passive:true});
+    window.addEventListener('resize', () => { measurePeriod(); lastCover = lastRibbon = -1; schedule(); }, {passive:true});
+    window.addEventListener('pageshow', schedule);
+    reduced.addEventListener('change', configure);
+    measurePeriod();
+    if ('IntersectionObserver' in window) {
+        new IntersectionObserver(([entry]) => {
+            ribbonVisible = entry.isIntersecting;
+            syncRibbonLoop();
+        }).observe(ribbon);
+    }
+    document.addEventListener('visibilitychange', syncRibbonLoop);
+    if ('ResizeObserver' in window) new ResizeObserver(() => { measurePeriod(); lastRibbon = -1; schedule(); }).observe(track.firstElementChild);
+    paint();
+})();

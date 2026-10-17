@@ -1,0 +1,26 @@
+  editor.addEventListener('input',()=>{dirty=true;courseRevision++;});
+  let slugEdited=Boolean(editor.elements.slug.value);
+  editor.elements.slug.addEventListener('input',()=>slugEdited=true);
+  editor.elements.title.addEventListener('input',()=>{if(!slugEdited)editor.elements.slug.value=editor.elements.title.value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/gi,'d').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');});
+  function coverPreview(url){const image=$('#cover-preview');image.hidden=!url;$('#cover-placeholder').hidden=Boolean(url);if(url)image.src=url;}
+  editor.elements.image_url.addEventListener('change',()=>{const url=editor.elements.image_url.value;if(url.startsWith('https://')||/^(assets|uploads)\//.test(url))coverPreview(url);else coverPreview('');});
+  $('#image-upload').addEventListener('change',async event=>{
+    const file=event.target.files[0];if(!file)return;
+    if(file.size>6*1024*1024){$('#upload-status').textContent='Ảnh tối đa 6 MB.';return;}
+    uploading=true;setAdminBusy(editor,true);$('#upload-status').textContent='Đang tải ảnh...';
+    const data=new FormData();data.set('action','upload');data.set('image',file);const result=await postApi(data);
+    $('#upload-status').textContent=result.message;
+    if(result.ok){editor.elements.image_url.value=result.url;coverPreview(result.url);dirty=true;courseRevision++;}
+    uploading=false;if(!saving)setAdminBusy(editor,false);
+  });
+  editor.addEventListener('submit',async event=>{
+    event.preventDefault();if(uploading||saving)return;
+    saving=true;const revision=courseRevision;setAdminBusy(editor,true,event.submitter);
+    const status=event.submitter?.value||'draft';const values=Object.fromEntries(new FormData(editor));
+    $('#editor-status').textContent='Đang lưu...';
+    const result=await postApi({action:'course_save',...values,status,curriculum:chapters});
+    $('#editor-status').textContent=result.message;$('#editor-status').classList.toggle('success',result.ok);
+    if(result.ok){dirty=courseRevision!==revision;editor.elements.id.value=result.id;editor.elements.version.value=result.version;$('#preview-link').hidden=false;$('#preview-link').href=`course.php?id=${result.id}&preview=1`;history.replaceState(null,'',`admin.php?edit=${result.id}`);}
+    saving=false;if(!uploading)setAdminBusy(editor,false);
+  });
+}

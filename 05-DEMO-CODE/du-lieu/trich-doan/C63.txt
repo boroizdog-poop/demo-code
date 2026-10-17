@@ -1,0 +1,13 @@
+/* Resource cards: animate artwork and copy independently of the fixed frame.
+   Scale composes with the existing scroll parallax transform. */
+.home-gallery .resource-collections .collection-feature > img { scale: 1; transition: scale 600ms cubic-bezier(.22,1,.36,1); }
+.home-gallery .collection-feature-copy { translate: 0 0; transition: translate 450ms cubic-bezier(.22,1,.36,1); }
+  .home-gallery .collection-feature:hover > img { scale: 1.045; }
+  .home-gallery .collection-feature:hover .collection-feature-copy { translate: 0 -6px; }
+.home-gallery .collection-feature:focus-visible > img { scale: 1.045; }
+.home-gallery .collection-feature:focus-visible .collection-feature-copy { translate: 0 -6px; }
+@media (prefers-reduced-motion: reduce) {
+  .home-gallery .resource-collections .collection-feature > img { scale: none; transition: none; }
+  .home-gallery .collection-feature-copy { translate: none; transition: none; }
+  .home-gallery .collection-feature:is(:hover, :focus-visible) > img { scale: none; }
+  .home-gallery .collection-feature:is(:hover, :focus-visible) .collection-feature-copy { translate: none; }

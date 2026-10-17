@@ -1,0 +1,8 @@
+$all=artio_courses();$categories=artio_categories();
+$q=trim((string)($_GET['q']??''));$needle=artio_search_normalize($q);
+$category=(string)($_GET['category']??'');$sort=(string)($_GET['sort']??'new');
+$courses=array_values(array_filter($all,fn($c)=>($needle===''||str_contains(artio_search_normalize($c['title'].' '.$c['category']),$needle))&&(!$category||$c['category']===$category)));
+if($sort==='price')usort($courses,fn($a,$b)=>$a['price']<=>$b['price']);
+elseif($sort==='title')usort($courses,fn($a,$b)=>strcmp(artio_search_normalize($a['title']),artio_search_normalize($b['title'])));
+else usort($courses,fn($a,$b)=>$b['id']<=>$a['id']);
+$activeFilterCount=(int)($category!=='');

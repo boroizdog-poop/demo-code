@@ -1,0 +1,11 @@
+    if ($action==='comment_add') {
+        $user=artio_user();if(!$user) reply(401,'Hãy đăng nhập để bình luận.');
+        $resource=text_field($data,'resource_key',190);$body=text_field($data,'body',4000);
+        if (!preg_match('/^(course|brush):([a-zA-Z0-9_-]+)$/',$resource,$match) || $body==='' || preg_match_all('/./us',$body)>1000) reply(422,'Nhập bình luận từ 1 đến 1000 ký tự.');
+        require_once __DIR__.'/includes/brushes.php';
+        $exists=$match[1]==='course'?artio_course((int)$match[2]):artio_brush($match[2]);
+        if (!$exists) reply(404,'Tài nguyên không tồn tại hoặc chưa xuất bản.');
+        artio_rate_limit('comment',10,300);
+        $db->prepare('INSERT INTO comments(resource_key,user_id,body,course_id,brush_id) VALUES(?,?,?,?,?)')->execute([$resource,$user['id'],$body,$match[1]==='course'?(int)$exists['id']:null,$match[1]==='brush'?(int)$exists['id']:null]);
+        reply(200,'Đã đăng bình luận.');
+    }

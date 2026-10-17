@@ -1,0 +1,46 @@
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='m5 5 10 10M15 5 5 15' stroke='%23686c73' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E") center / 18px 18px no-repeat;
+}
+
+/* Animate supported native select pickers without replacing their keyboard behavior. */
+@supports (appearance: base-select) {
+  .course-library-page .library-filters .catalog-filter-fields select,
+  .course-library-page .library-filters select::picker(select) { appearance: base-select; }
+  .course-library-page .library-filters select::picker-icon { display: none; }
+  .course-library-page .library-filters select::picker(select) {
+    margin-block: 8px;
+    padding: 7px;
+    border: 1px solid #e1e3e5;
+    border-radius: 14px;
+    background: #fff;
+    color: #18191b;
+    box-shadow: 0 12px 32px #18191b14;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 180ms ease, transform 220ms cubic-bezier(.22,1,.36,1), display 220ms allow-discrete, overlay 220ms allow-discrete;
+  }
+  .course-library-page .library-filters select:open::picker(select) { opacity: 1; transform: none; }
+  @starting-style {
+    .course-library-page .library-filters select:open::picker(select) { opacity: 0; transform: translateY(-6px); }
+  }
+  .course-library-page .library-filters select option {
+    align-items: center;
+    min-height: 44px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    transition: background-color 140ms ease;
+  }
+  .course-library-page .library-filters select option:is(:hover, :focus, :checked) { background: #f1f2f3; color: #18191b; }
+}
+
+/* Ease the collapsible filter section on smaller screens where it is shown. */
+@supports (interpolate-size: allow-keywords) {
+  .course-library-page .catalog-filter-disclosure { interpolate-size: allow-keywords; }
+  .course-library-page .catalog-filter-disclosure::details-content {
+    height: 0;
+    overflow: clip;
+    opacity: 0;
+    transition: height 240ms ease, opacity 200ms ease, content-visibility 240ms allow-discrete;
+  }
+  .course-library-page .catalog-filter-disclosure[open]::details-content { height: auto; opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {

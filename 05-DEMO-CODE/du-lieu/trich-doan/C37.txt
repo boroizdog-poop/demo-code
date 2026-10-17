@@ -1,0 +1,31 @@
+    if ($action==='brush_save') {
+        $fields=[];
+        foreach (['slug'=>190,'title'=>190,'artist'=>190,'type'=>190,'tag'=>80,'description'=>8000,'usage'=>8000] as $key=>$length) {
+            $fields[$key]=text_field($data,$key,$length);
+            if ($fields[$key]==='') reply(422,'Điền đầy đủ thông tin brush.');
+        }
+        if (!preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/',$fields['slug'])) reply(422,'Đường dẫn brush cần chữ không dấu và gạch ngang.');
+        $fields['image']=artio_image_url(text_field($data,'image',2000));
+        $fields['source']=text_field($data,'source',2000);
+        if (!$fields['image'] || !filter_var($fields['source'],FILTER_VALIDATE_URL) || parse_url($fields['source'],PHP_URL_SCHEME)!=='https') reply(422,'Điền ảnh hợp lệ và nguồn brush https://.');
+        $fields['source_label']=(string)parse_url($fields['source'],PHP_URL_HOST);
+        $fields['shared_at']=text_field($data,'shared_at',10);
+        $date=DateTimeImmutable::createFromFormat('!Y-m-d',$fields['shared_at']);
+        if (!$date || $date->format('Y-m-d')!==$fields['shared_at']) reply(422,'Ngày thêm tài nguyên không hợp lệ.');
+        $fields['status']=text_field($data,'status',20);
+        if (!in_array($fields['status'],['draft','published'],true)) reply(422,'Trạng thái không hợp lệ.');
+        $id=(int)($data['id']??0);
+        if ($id) {
+            $original=$db->prepare('SELECT slug FROM brushes WHERE id=?');$original->execute([$id]);
+            if ($original->fetchColumn()!==$fields['slug']) reply(422,'Giữ nguyên đường dẫn brush để bảo toàn liên kết và bình luận.');
+            $set=implode(',',array_map(fn($key)=>"`$key`=?",array_keys($fields)));
+            $stmt=$db->prepare("UPDATE brushes SET $set,version=version+1,updated_at=CURRENT_TIMESTAMP WHERE id=? AND version=?");
+            $stmt->execute([...array_values($fields),$id,(int)($data['version']??0)]);
+            if (!$stmt->rowCount()) reply(409,'Brush đã được cập nhật ở nơi khác. Tải lại trang trước khi sửa tiếp.');
+        } else {
+            $db->prepare('INSERT INTO brushes('.implode(',',array_map(fn($key)=>"`$key`",array_keys($fields))).') VALUES('.implode(',',array_fill(0,count($fields),'?')).')')->execute(array_values($fields));
+            $id=(int)$db->lastInsertId();
+        }
+        $stmt=$db->prepare('SELECT version FROM brushes WHERE id=?');$stmt->execute([$id]);
+        reply(200,'Đã lưu brush.',['id'=>$id,'version'=>(int)$stmt->fetchColumn()]);
+    }

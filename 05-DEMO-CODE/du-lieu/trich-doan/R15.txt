@@ -1,0 +1,114 @@
+<?php
+function artio_icon(string $name): string {
+    $paths=['search'=>'<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>','menu'=>'<path d="M4 6h16M4 12h16M4 18h16"/>','arrow'=>'<path d="M5 19 19 5M5 5h14v14"/>','bookmark'=>'<path d="M6 3h12v18l-6-4-6 4z"/>','eye'=>'<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>'];
+    return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'.($paths[$name]??$paths['arrow']).'</svg>';
+}
+function artio_head(string $title, bool $admin=false, bool $home=false, bool $comments=false): void { ?>
+<!doctype html><html lang="vi" data-authenticated="<?=artio_user()?'true':'false'?>"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
+<meta name="theme-color" content="<?=$home?'#080808':($admin?'#f7f7f5':'#fcfcfc')?>"><meta name="color-scheme" content="light">
+<title><?=artio_h($title)?> — Artio</title><meta name="description" content="Gallery tài nguyên digital art: khóa học, hướng dẫn và brush được phân loại để dễ khám phá.">
+<meta name="csrf-token" content="<?=artio_csrf()?>">
+<?php if($admin): ?><script src="assets/admin-navigation.js?v=1"></script><?php endif; ?>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Instrument+Sans:wght@400;500;600;700&family=Merriweather:wght@400;700&display=block" rel="stylesheet">
+<!-- Shared styles: keep this order because later files refine earlier styles. -->
+<link rel="stylesheet" href="assets/landing/hero/fonts.css?v=1">
+<link rel="stylesheet" href="assets/style.css?v=22">
+<link rel="stylesheet" href="assets/gallery.css?v=19">
+<link rel="stylesheet" href="assets/site-refinements.css?v=10">
+<?php if($admin): ?>
+<link rel="stylesheet" href="assets/admin.css?v=10">
+<?php endif; ?>
+<script src="assets/app.js?v=18" defer></script>
+<?php if(!$admin): ?>
+<script src="assets/gallery.js?v=11" defer></script>
+<link rel="stylesheet" href="assets/resource-cards.css?v=22">
+<?php if($comments): ?>
+<link rel="stylesheet" href="assets/comments.css?v=9">
+<script src="assets/comments.js?v=1" defer></script>
+<?php endif; ?>
+<?php endif; ?>
+<?php if($home): ?>
+<link rel="preload" href="assets/landing/hero/baloo-2-medium.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="assets/landing.css?v=9">
+<script src="assets/landing.js?v=2" defer></script>
+<?php endif; ?>
+</head><?php }
+function artio_header(string $active=''): void { $user=artio_user(); $contact=artio_facebook_url() ?: 'https://www.facebook.com/profile.php?id=61594846690066'; $contactExternal=str_starts_with($contact,'https://'); $hero=$active==='home'; ?>
+<?php if($hero): ?>
+<header class="artio-header">
+  <button class="artio-brand hero-logo-trigger" type="button" aria-label="Mở danh mục Artio" aria-expanded="false" aria-controls="mobile-nav" aria-haspopup="dialog"><img src="assets/landing/hero/362ec.png" alt="Artio" width="86" height="86"></button>
+  <nav class="artio-navigation" aria-label="Điều hướng chính"><a href="courses.php">Khóa học</a><a href="brush.php">Brushes</a><a href="<?=artio_h($contact)?>" <?=$contactExternal?'target="_blank" rel="noopener noreferrer"':''?>>Liên hệ</a></nav>
+  <div class="artio-account"><a class="artio-search-toggle" href="search.php#catalog-search" aria-label="Tìm tài nguyên"><?=artio_icon('search')?></a>
+  <?php if($user): ?><a class="artio-account-link artio-login" href="<?=$user['role']==='admin'?'admin.php':'account.php'?>"><?=$user['role']==='admin'?'Quản trị':'Tài khoản'?></a><button class="artio-account-link artio-login" data-logout>Đăng xuất</button><?php else: ?><button class="artio-account-link artio-login" data-open-auth data-auth-start="login">Đăng nhập</button><button class="artio-account-link artio-signup" data-open-auth data-auth-start="register">Đăng ký</button><?php endif; ?>
+  </div>
+</header>
+<?php else: ?>
+<a class="skip-link" href="#main-content">Chuyển đến nội dung</a>
+<header class="maku-header">
+<div class="header-start"><button class="icon-btn mobile-nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Mở menu"><?=artio_icon('menu')?></button><span class="header-caption">Digital art gallery</span></div>
+<a href="index.php" class="maku-logo" aria-label="Artio - Trang chủ"><img src="assets/images/artio-logo.png" width="291" height="202" alt="Artio"></a>
+<div class="maku-actions"><a class="icon-btn search-toggle" href="search.php#catalog-search" aria-label="Tìm tài nguyên"><?=artio_icon('search')?></a>
+<?php if($user): ?><a class="maku-login" href="<?=$user['role']==='admin'?'admin.php':'account.php'?>"><?=$user['role']==='admin'?'Quản trị':'Tài khoản'?></a><button class="icon-btn logout-btn" data-logout aria-label="Đăng xuất">↪</button><?php else: ?><button class="maku-login" data-open-auth data-auth-start="login">Đăng nhập</button><?php endif; ?>
+</div></header>
+<?php endif; ?>
+<dialog id="mobile-nav" class="mobile-nav" aria-label="Khám phá Artio">
+  <div class="drawer-top"><span class="sr-only">Điều hướng</span><button class="icon-btn" data-close-dialog aria-label="Đóng menu"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4L16 16M16 4L4 16"/></svg></button></div>
+  <nav aria-label="Điều hướng chính">
+    <a href="index.php" <?=$active==='home'?'aria-current="page"':''?>><small>01</small>Home<span aria-hidden="true">↗</span></a>
+    <a href="courses.php" <?=$active==='courses'?'aria-current="page"':''?>><small>02</small>Khóa học<span aria-hidden="true">↗</span></a>
+    <a href="brush.php" <?=$active==='brush'?'aria-current="page"':''?>><small>03</small>Brush<span aria-hidden="true">↗</span></a>
+    <a href="<?=artio_h($contact)?>" <?=$active==='contact'?'aria-current="page"':''?> <?=$contactExternal?'target="_blank" rel="noopener noreferrer"':''?>><small>04</small>Liên hệ<span aria-hidden="true">↗</span></a>
+  </nav>
+  <div class="mobile-nav-footer"><?php if($user): ?><a href="account.php">Bộ sưu tập của bạn <?=artio_icon('bookmark')?></a><?php endif; ?><?php if($user && $user['role']==='admin'): ?><a href="admin.php">Quản trị nội dung ↗</a><?php endif; ?><?php if($user): ?><button class="text-link" data-logout>Đăng xuất ↪</button><?php else: ?><button class="text-link" data-open-auth>Đăng nhập / Tạo tài khoản ↗</button><?php endif; ?></div>
+</dialog>
+<noscript><nav class="no-script-nav"><a href="index.php">Home</a><a href="courses.php">Khóa học</a><a href="brush.php">Brush</a><a href="<?=artio_h($contact)?>" <?=$contactExternal?'target="_blank" rel="noopener noreferrer"':''?>>Liên hệ</a></nav></noscript>
+<?php }
+function artio_card(array $course, bool $collection=false): void { ?>
+<?php $resourceHref='course.php?id='.(int)$course['id']; $needsAuth=!artio_user(); ?>
+<article class="maku-course-card">
+<a href="<?=$resourceHref?>" class="maku-course-media" <?=$needsAuth?'data-auth-gate':''?>><img src="<?=artio_h($course['image_url'])?>" alt="<?=artio_h($course['title'])?>" data-fallback loading="lazy" decoding="async" width="600" height="440"><span class="course-play"><?=artio_icon('arrow')?></span></a>
+<div class="maku-course-body">
+  <h3><a href="<?=$resourceHref?>" <?=$needsAuth?'data-auth-gate':''?>><?=artio_h($course['title'])?></a></h3>
+  
+  <a class="course-card-link" href="<?=$resourceHref?>" aria-label="Khám phá <?=artio_h($course['title'])?>" <?=$needsAuth?'data-auth-gate':''?>>Khám phá nội dung <?=artio_icon('arrow')?></a>
+<?php if($collection): ?><button class="text-link collection-remove" type="button" data-save-course="<?=(int)$course['id']?>" data-saved="true" data-collection-remove aria-label="Bỏ lưu <?=artio_h($course['title'])?>">Bỏ lưu <?=artio_icon('bookmark')?></button><?php endif; ?>
+</div></article>
+<?php }
+function artio_footer(): void { $site=artio_site_content(); $contact=artio_facebook_url() ?: 'https://www.facebook.com/profile.php?id=61594846690066'; $contactExternal=str_starts_with($contact,'https://'); ?>
+<footer class="maku-footer"><div class="footer-bottom"><span>© <?=date('Y')?> <?=artio_h($site['footer_owner'])?></span><nav aria-label="Liên kết cuối trang"><a href="index.php#ve-artio">Về Artio</a><a href="courses.php">Khóa học</a><a href="brush.php">Brush</a><a href="<?=artio_h($contact)?>" <?=$contactExternal?'target="_blank" rel="noopener noreferrer"':''?>>Liên hệ</a></nav><a class="footer-art-source" href="https://www.figma.com/design/OhOim00rO2wNPMblOgi30H/Untitled" target="_blank" rel="noopener noreferrer">Ảnh tham khảo từ bản thiết kế ARTIO ↗</a></div></footer>
+<?php artio_dialogs(); }
+function artio_require_resource_login(string $resource, string $library): void {
+    if (artio_user()) return;
+    artio_head('Đăng nhập để xem '.$resource); ?>
+<body class="resource-gate-page"><?php artio_header($library==='courses.php'?'courses':'brush'); ?>
+<main id="main-content" class="resource-gate page-width" data-resource-gate>
+  <p class="eyebrow orange-eyebrow">ARTIO / CREATIVE LIBRARY</p><h1>Đăng nhập để<br><em>mở <?=artio_h($resource)?>.</em></h1>
+  <p>Đăng nhập hoặc tạo tài khoản để khám phá nội dung và lấy tài nguyên từ tác giả.</p>
+  <button class="orange-btn" data-open-auth data-auth-start="login">Đăng nhập / Đăng ký <?=artio_icon('arrow')?></button><a class="text-link" href="<?=artio_h($library)?>">Quay lại thư viện <?=artio_icon('arrow')?></a>
+</main><?php artio_footer(); ?></body></html><?php exit;
+}
+function artio_dialogs(): void { ?>
+<dialog id="auth-dialog" class="auth-dialog" data-mode="login" aria-labelledby="auth-title" aria-describedby="auth-subtitle">
+  <button class="dialog-close" data-close-dialog aria-label="Đóng đăng nhập">×</button>
+  <div class="auth-content">
+    <img class="auth-brand" src="assets/landing/login/logo-mark.png" width="96" height="68" alt="Artio">
+    <div class="auth-tabs" role="group" aria-label="Chọn đăng nhập hoặc tạo tài khoản"><span class="auth-tab-indicator" aria-hidden="true"></span><button type="button" data-auth-mode="login" class="active" aria-pressed="true">Đăng nhập</button><button type="button" data-auth-mode="register" aria-pressed="false">Tạo tài khoản</button></div>
+    <h2 id="auth-title">Mừng bạn trở lại.</h2>
+    <p id="auth-subtitle" class="auth-subtitle">Lưu khóa học và trao đổi về các tài nguyên trong gallery.</p>
+    <form id="auth-form">
+      <label class="register-only" hidden>Tên hiển thị<input name="name" autocomplete="name" maxlength="120" disabled placeholder="Tên của bạn" enterkeyhint="next"></label>
+      <div class="auth-field"><label for="auth-email">Email hoặc tên đăng nhập</label><input id="auth-email" name="email" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="190" required placeholder="Email hoặc tên đăng nhập" enterkeyhint="next" autofocus></div>
+      <div class="auth-field"><label for="auth-password">Mật khẩu</label><span class="password-field"><input id="auth-password" name="password" type="password" autocomplete="current-password" required maxlength="72" placeholder="Nhập mật khẩu" enterkeyhint="done"><button type="button" data-toggle-password aria-label="Hiện mật khẩu" aria-pressed="false" aria-controls="auth-password auth-confirm-password"><?=artio_icon('eye')?></button></span><small id="password-help" class="register-only" hidden>Sử dụng ít nhất 10 ký tự cho mật khẩu.</small></div>
+      <label class="register-only" hidden>Nhập lại mật khẩu<input id="auth-confirm-password" name="confirm_password" type="password" autocomplete="new-password" maxlength="72" disabled placeholder="Nhập lại mật khẩu" enterkeyhint="done" aria-describedby="password-match"></label>
+      <small id="password-match" class="register-only" role="status" aria-live="polite" hidden></small>
+      <p id="auth-error" class="form-error" role="alert"></p>
+      <button type="submit" class="orange-btn auth-submit"><span data-auth-submit-label>Đăng nhập</span><?=artio_icon('arrow')?></button>
+    </form>
+    <p class="auth-footnote"><?=artio_icon('bookmark')?> Lưu tài nguyên. Chia sẻ ghi chú.</p>
+  </div>
+</dialog>
+<dialog id="lesson-dialog" class="lesson-dialog" aria-labelledby="lesson-title"><button class="dialog-close" data-close-dialog aria-label="Đóng bài học">×</button><p class="eyebrow orange-eyebrow">NỘI DUNG BÀI HỌC</p><h2 id="lesson-title"></h2><div id="lesson-player"></div><div id="lesson-content" class="prose"></div></dialog>
+<div class="toast" role="status" aria-live="polite"></div>
+<?php }

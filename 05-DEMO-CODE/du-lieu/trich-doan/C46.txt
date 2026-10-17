@@ -1,0 +1,8 @@
+<?php
+declare(strict_types=1);
+if (PHP_SAPI !== 'cli') exit;
+require_once dirname(__DIR__).'/bootstrap.php';
+$db=artio_db();
+$ref=$db->getAttribute(PDO::ATTR_DRIVER_NAME)==='sqlite'?'INTEGER':'INT UNSIGNED';
+$db->exec("CREATE TABLE IF NOT EXISTS saved_brushes (user_id $ref NOT NULL REFERENCES users(id), brush_id $ref NOT NULL REFERENCES brushes(id), PRIMARY KEY(user_id,brush_id))");
+echo "Saved brushes table ready. Existing records retained.\n";

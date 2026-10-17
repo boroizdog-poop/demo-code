@@ -1,0 +1,61 @@
+// Recycle the original images downwards; no duplicated images or cloned tracks.
+(() => {
+    const gallery = document.querySelector('.about-rolling-gallery');
+    if (!gallery || !('IntersectionObserver' in window)) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const columns = [...gallery.querySelectorAll('.art-roll-track')].map((track,index) => ({track,y:0,speed:[22,30][index],steps:new Map()}));
+    let visible = false, frame = 0, previousTime = 0;
+    const paused = () => gallery.contains(document.activeElement);
+    function reset() {
+        columns.forEach(column => {
+            if (!column.initialized && !reduced.matches) {
+                column.track.prepend(column.track.lastElementChild);
+                column.initialized = true;
+            }
+        });
+        columns.forEach(column => {
+            const gap = parseFloat(getComputedStyle(column.track).gap) || 0;
+            [...column.track.children].forEach(item => column.steps.set(item, item.offsetHeight + gap));
+            column.y = -column.steps.get(column.track.firstElementChild);
+        });
+        columns.forEach(column => {
+            column.track.style.transform = `translateY(${column.y}px)`;
+        });
+    }
+    function tick(time) {
+        frame = 0;
+        if (!visible || reduced.matches || document.hidden || paused()) { previousTime=0; return; }
+        const delta = previousTime ? Math.min(.05,(time-previousTime)/1000) : 0;
+        previousTime = time;
+        columns.forEach(column => {
+            column.y += delta*column.speed;
+            if (column.y >= 0) {
+                const last = column.track.lastElementChild;
+                const step = column.steps.get(last);
+                column.track.prepend(last);
+                column.y -= step;
+            }
+            column.track.style.transform = `translateY(${column.y.toFixed(2)}px)`;
+        });
+        frame = requestAnimationFrame(tick);
+    }
+    function start() {
+        if (!visible || reduced.matches || document.hidden || paused()) {
+            cancelAnimationFrame(frame); frame = 0; previousTime = 0;
+            return;
+        }
+        if (!frame) frame=requestAnimationFrame(tick);
+    }
+    new IntersectionObserver(([entry]) => {
+        visible=entry.isIntersecting;
+        columns.forEach(column => { column.track.style.willChange = visible ? 'transform' : 'auto'; });
+        start();
+    }).observe(gallery);
+    window.addEventListener('resize',reset,{passive:true});
+    reduced.addEventListener('change',()=>{reset();start();});
+    document.addEventListener('visibilitychange',start);
+    gallery.addEventListener('focusin', start);
+    gallery.addEventListener('focusout', () => queueMicrotask(start));
+    reset();
+    if ('ResizeObserver' in window) new ResizeObserver(reset).observe(gallery);
+})();

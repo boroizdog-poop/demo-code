@@ -1,0 +1,34 @@
+    let pointerFrame = 0;
+    let pointerX = 0;
+    let pointerY = 0;
+    function resetPointer() {
+        if (!pointerFrame && !shell.classList.contains('is-pointer-active')) return;
+        cancelAnimationFrame(pointerFrame);
+        pointerFrame = 0;
+        hero.style.removeProperty('--pointer-x');
+        hero.style.removeProperty('--pointer-y');
+        shell.classList.remove('is-pointer-active');
+    }
+    shell.addEventListener('pointermove', event => {
+        if (motion.matches || window.innerWidth <= 1000 || (event.pointerType !== 'mouse' && event.pointerType !== 'pen')) return;
+        shell.classList.add('is-pointer-active');
+        pointerX = event.clientX;
+        pointerY = event.clientY;
+        if (pointerFrame) return;
+        pointerFrame = requestAnimationFrame(() => {
+            pointerFrame = 0;
+            const rect = shell.getBoundingClientRect();
+            if (!rect.width || !rect.height) return;
+            const clamp = value => Math.max(-1, Math.min(1, value));
+            hero.style.setProperty('--pointer-x', clamp((pointerX - rect.left) / rect.width * 2 - 1).toFixed(3));
+            hero.style.setProperty('--pointer-y', clamp((pointerY - rect.top) / rect.height * 2 - 1).toFixed(3));
+        });
+    }, { passive: true });
+    shell.addEventListener('pointerleave', resetPointer);
+    document.addEventListener('visibilitychange', resetPointer);
+    shell.addEventListener('pointercancel', resetPointer);
+    window.addEventListener('blur', resetPointer);
+    window.addEventListener('scroll', resetPointer, { passive: true });
+    window.addEventListener('resize', resetPointer, { passive: true });
+    motion.addEventListener('change', resetPointer);
+})();

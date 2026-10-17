@@ -1,0 +1,18 @@
+<?php
+declare(strict_types=1);
+if (PHP_SAPI !== 'cli') exit;
+require dirname(__DIR__) . '/bootstrap.php';
+$db = artio_db();
+$sqlite = $db->getAttribute(PDO::ATTR_DRIVER_NAME) === 'sqlite';
+$id = $sqlite ? 'INTEGER PRIMARY KEY AUTOINCREMENT' : 'INT UNSIGNED AUTO_INCREMENT PRIMARY KEY';
+$db->exec("CREATE TABLE IF NOT EXISTS users (id $id, name VARCHAR(120) NOT NULL, email VARCHAR(190) NOT NULL UNIQUE, password_hash VARCHAR(255) NOT NULL, role VARCHAR(20) NOT NULL DEFAULT 'student', created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
+$db->exec("CREATE TABLE IF NOT EXISTS categories (id $id, name VARCHAR(80) NOT NULL UNIQUE, slug VARCHAR(100) NOT NULL UNIQUE, sort_order INTEGER NOT NULL DEFAULT 0)");
+$db->exec("CREATE TABLE IF NOT EXISTS courses (id $id, slug VARCHAR(190) NOT NULL UNIQUE, title VARCHAR(190) NOT NULL, category VARCHAR(80) NOT NULL, level VARCHAR(50) NOT NULL, lessons INTEGER NOT NULL DEFAULT 0, price DECIMAL(12,2) NOT NULL DEFAULT 0, old_price DECIMAL(12,2) NOT NULL DEFAULT 0, duration VARCHAR(80) DEFAULT '', total_enrolled INTEGER NOT NULL DEFAULT 0, image_url TEXT, accent VARCHAR(20) DEFAULT '#ff6633', excerpt TEXT, description TEXT, benefits_json TEXT, curriculum_json MEDIUMTEXT, audience_json TEXT, requirements_json TEXT, preview_url TEXT, version INTEGER NOT NULL DEFAULT 1, status VARCHAR(20) NOT NULL DEFAULT 'draft', created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
+$db->exec("CREATE TABLE IF NOT EXISTS newsletter_subscribers (id $id, email VARCHAR(190) NOT NULL UNIQUE, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
+$ref=$sqlite?'INTEGER':'INT UNSIGNED';
+$db->exec("CREATE TABLE IF NOT EXISTS saved_courses (user_id $ref NOT NULL REFERENCES users(id), course_id $ref NOT NULL REFERENCES courses(id), PRIMARY KEY(user_id,course_id))");
+$db->exec('CREATE TABLE IF NOT EXISTS auth_attempts (bucket VARCHAR(64) NOT NULL PRIMARY KEY, attempts INTEGER NOT NULL DEFAULT 0, reset_at INTEGER NOT NULL)');
+
+// Add the columns introduced after the original small schema, retaining existing records.
+foreach (['users'=>['role'=>"VARCHAR(20) NOT NULL DEFAULT 'student'"], 'courses'=>[
+    'slug'=>"VARCHAR(190) NOT NULL DEFAULT ''", 'price'=>'DECIMAL(12,2) NOT NULL DEFAULT 0', 'old_price'=>'DECIMAL(12,2) NOT NULL DEFAULT 0',

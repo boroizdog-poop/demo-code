@@ -1,0 +1,29 @@
+}
+.home-gallery .about-rolling-gallery { grid-column: 2 / -1; position: relative; margin-top: 0; }
+.home-gallery .art-frame-entrance { opacity: 0; translate: 0 48px; clip-path: inset(0 0 100% 0 round 16px); transition: opacity 700ms ease, translate 1200ms cubic-bezier(.22,1,.36,1), clip-path 1400ms cubic-bezier(.22,1,.36,1); }
+.home-gallery .art-frame-entrance.art-frame-entered { opacity: 1; translate: none; clip-path: inset(0 round 16px); }
+@media (prefers-reduced-motion: reduce) { .home-gallery .art-frame-entrance { opacity: 1; translate: none; clip-path: none; transition: none; } }
+.home-gallery .art-roll-columns { display: grid; grid-template-columns: 1.6fr .85fr; gap: 24px; height: 760px; overflow: hidden; mask-image: linear-gradient(#000 0%,#000 90%,transparent); }
+.home-gallery .art-roll-window { position: relative; overflow: hidden; overflow-anchor: none; }
+.home-gallery .art-roll-track { display: flex; flex-direction: column; gap: 24px; }
+.home-gallery .art-roll-item { flex: none; width: 100%; aspect-ratio: var(--art-ratio); overflow: hidden; border-radius: 16px; }
+.home-gallery .art-roll-item img { width: 100%; height: 100%; object-fit: cover; }
+.home-gallery .about-rolling-gallery img { opacity: 1; translate: none; scale: none; clip-path: none; }
+/* Zoom the image independently from the moving column that contains it. */
+.home-gallery .art-roll-item > img { transition: scale 260ms ease; }
+@media (prefers-reduced-motion: no-preference) {
+  .home-gallery .art-roll-item:hover > img { scale: 1.035; }
+}
+.home-gallery .art-roll-track .about-art, .home-gallery .art-roll-track .about-art-detail { margin-top: 0; display: block; }
+.home-gallery .art-roll-item .artwork-frame { width: 100%; height: 100%; }
+.home-gallery .art-roll-item figcaption { display: none; }
+.home-gallery .art-roll-track .about-art img, .home-gallery .art-roll-track .about-art-detail img { height: 100%; }
+@media (max-width: 760px) {
+.home-gallery .about-rolling-gallery { grid-column: 1 / -1; margin-top: 16px; }
+.home-gallery .art-roll-columns { gap: 12px; height: 540px; grid-template-columns: 1.3fr 1fr; }
+.home-gallery .art-roll-track { gap: 12px; }
+.home-gallery .art-roll-item { height: calc(180px / var(--art-ratio)); aspect-ratio: auto; border-radius: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+.home-gallery .art-roll-columns { height: auto; mask-image: none; }
+.home-gallery .art-roll-track { transform: none !important; }

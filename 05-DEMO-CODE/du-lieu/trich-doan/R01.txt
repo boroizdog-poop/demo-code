@@ -1,0 +1,33 @@
+'use strict';
+// Keep native navigation, form initialization and unsaved-change protection intact.
+(() => {
+  const storageKey = 'artio:admin-sidebar-scroll';
+  const sidebar = () => document.querySelector('.admin-page .admin-sidebar');
+  const restore = () => {
+    const element = sidebar();
+    if (!element || !matchMedia('(min-width: 801px)').matches) return;
+    try {
+      const saved = sessionStorage.getItem(storageKey);
+      if (saved !== null && Number.isFinite(Number(saved))) element.scrollTop = Math.max(0, Number(saved));
+    } catch { /* Navigation still works if browser storage is unavailable. */ }
+  };
+  const save = () => {
+    const element = sidebar();
+    if (!element || !matchMedia('(min-width: 801px)').matches) return;
+    try { sessionStorage.setItem(storageKey, String(element.scrollTop)); } catch { /* Optional visual state only. */ }
+  };
+  // Register early enough to restore before the incoming transition snapshot.
+  window.addEventListener('pagereveal', restore);
+  window.addEventListener('pageswap', save);
+  window.addEventListener('pageshow', restore);
+  window.addEventListener('pagehide', save);
+  document.addEventListener('DOMContentLoaded', () => {
+    restore();
+    const element = sidebar();
+    if (!element) return;
+    element.addEventListener('scroll', save, {passive: true});
+    document.addEventListener('click', event => {
+      if (event.target.closest('.admin-sidebar a, .admin-section-tabs a')) save();
+    });
+  }, {once: true});
+})();

@@ -1,0 +1,30 @@
+// Highlight only the panel reached by the reading position as the stack overlaps.
+(() => {
+    const panels = [...document.querySelectorAll('.home-gallery .service-panel')];
+    if (!panels.length || !('IntersectionObserver' in window)) return;
+    panels.forEach(panel => panel.classList.add('panel-motion'));
+    let frame = 0;
+    let lastCurrent = -2;
+    let visible = true;
+    function paint() {
+        frame = 0;
+        const readingLine = window.innerHeight * .55;
+        let current = -1;
+        panels.forEach((panel, index) => {
+            const rect = panel.getBoundingClientRect();
+            if (rect.top <= readingLine && rect.bottom > 0) current = index;
+        });
+        if (current === lastCurrent) return;
+        lastCurrent = current;
+        panels.forEach((panel, index) => panel.classList.toggle('is-current', index === current));
+    }
+    function schedule() { if (visible && !frame) frame = requestAnimationFrame(paint); }
+    new IntersectionObserver(([entry]) => {
+        visible = entry.isIntersecting;
+        if (visible) schedule();
+    }).observe(panels[0].closest('.service-stack'));
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule, { passive: true });
+    window.addEventListener('pageshow', schedule);
+    paint();
+})();

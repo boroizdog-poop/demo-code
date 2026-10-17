@@ -1,0 +1,54 @@
+  if (slides.length) select(0);
+  else { previous.disabled = true; next.disabled = true; status.textContent = 'Chưa có tài nguyên'; }
+
+  // Native smooth scrolling between anchors avoids a perpetual scroll loop.
+  // Focus, direct interaction and reduced motion keep control with the reader.
+  function syncPlayback() {
+    const available = !motionPreference.matches && slides.length > 1;
+
+    toggle.hidden = !available;
+    const playing = available && !document.hidden && !userPaused && pauseReasons.size === 0;
+    status.setAttribute('aria-live', playing ? 'off' : 'polite');
+    toggle.setAttribute('aria-pressed', String(userPaused));
+    toggle.setAttribute('aria-label', userPaused ? 'Tiếp tục chuyển động' : 'Tạm dừng chuyển động');
+    toggle.firstElementChild.textContent = userPaused ? '▷' : 'Ⅱ';
+    if (!playing) {
+      clearTimeout(autoTimer);
+      autoTimer = 0;
+    } else if (!autoTimer) {
+      autoTimer = setTimeout(tick, 4200);
+    }
+  }
+  function pause(reason, paused) {
+    paused ? pauseReasons.add(reason) : pauseReasons.delete(reason);
+    syncPlayback();
+  }
+  function pauseBriefly() {
+    clearTimeout(resumeTimer);
+    pause('interaction', true);
+    resumeTimer = setTimeout(() => pause('interaction', false), 3500);
+  }
+  function tick() {
+    autoTimer = 0;
+    if (active === slides.length - 1) autoDirection = -1;
+    if (active === 0) autoDirection = 1;
+    go(active + autoDirection, false, true);
+    syncPlayback();
+  }
+  if ('IntersectionObserver' in window) {
+    const visibility = new IntersectionObserver(entries => pause('offscreen', !entries[0].isIntersecting), {threshold: 0.1});
+    visibility.observe(carousel);
+  } else pauseReasons.delete('offscreen');
+  carousel.addEventListener('focusin', () => pause('focus', true));
+  carousel.addEventListener('focusout', event => { if (!carousel.contains(event.relatedTarget)) pause('focus', false); });
+  carousel.addEventListener('pointerdown', () => pause('pointer', true), {passive: true});
+  window.addEventListener('pointerup', () => { if (pauseReasons.has('pointer')) { pauseBriefly(); pause('pointer', false); } }, {passive: true});
+  window.addEventListener('pointercancel', () => pause('pointer', false), {passive: true});
+  carousel.addEventListener('wheel', pauseBriefly, {passive: true});
+  carousel.addEventListener('pointerenter', event => { if (event.pointerType === 'mouse') pause('hover', true); });
+  carousel.addEventListener('pointerleave', () => pause('hover', false));
+  toggle.addEventListener('click', () => { userPaused = !userPaused; syncPlayback(); });
+  document.addEventListener('visibilitychange', syncPlayback);
+  motionPreference.addEventListener('change', syncPlayback);
+  syncPlayback();
+}

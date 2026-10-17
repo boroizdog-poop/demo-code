@@ -1,0 +1,6 @@
+<?php
+return [
+    // Database local; không kết nối tới database trên server khác.
+    'db_driver' => 'sqlite',
+    'db_path' => __DIR__ . '/storage/artio.sqlite',
+];

@@ -1,0 +1,19 @@
+  .admin-create-panel > summary span { display: none; }
+  .admin-page .builder-chapter-heading { flex-direction: column; align-items: stretch; }
+  .admin-page .builder-chapter { padding: 16px; }
+  .admin-page .sticky-actions { justify-content: stretch; gap: 8px; }
+  .admin-page .sticky-actions .orange-btn, .admin-page .sticky-actions .outline-btn { flex: 1 1 140px; }
+}
+.admin-page .admin-select-trigger { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 40px; width: 100%; padding: 8px 12px; border: 1px solid var(--admin-line-strong); border-radius: 12px; background: var(--admin-surface); color: var(--admin-ink); font: 400 14px/1.5 var(--body); text-align: left; }
+.admin-page .admin-select-trigger svg { width: 16px; height: 16px; transition: transform 150ms ease; }
+.admin-page .admin-select-trigger[aria-expanded=true] svg { transform: rotate(180deg); }
+.admin-page .admin-select-trigger:focus-visible, .admin-page .admin-select-trigger[aria-expanded=true] { outline: none; border-color: var(--admin-focus); box-shadow: 0 0 0 2px var(--admin-ring); }
+.admin-page .admin-select-options { position: fixed; inset: auto; margin: 0; padding: 4px; border: 1px solid var(--admin-line); border-radius: 16px; background: var(--admin-surface); box-shadow: 0 10px 20px rgb(0 0 0 / .1); overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--admin-scrollbar) transparent; opacity: 0; transform: translateY(-4px); transition: opacity 150ms ease,transform 150ms ease,display 150ms allow-discrete,overlay 150ms allow-discrete; }
+.admin-page .admin-select-options:popover-open { opacity: 1; transform: none; }
+@starting-style { .admin-page .admin-select-options:popover-open { opacity: 0; transform: translateY(-4px); } }
+.admin-page .admin-select-option { display: block; min-height: 40px; width: 100%; padding: 8px 12px; border-radius: 12px; background: transparent; color: var(--admin-body); font: 400 14px/1.5 var(--body); text-align: left; }
+.admin-page .admin-select-option[aria-selected=true] { font-weight: 500; }
+.admin-page .admin-select-option:hover, .admin-page .admin-select-option:focus-visible { outline: none; background: var(--admin-hover); }
+@media (prefers-reduced-motion:reduce) { .admin-page .admin-select-options, .admin-page .admin-select-trigger svg, .admin-page :is(input,textarea,select,.admin-select-trigger) { transition: none; } }
+.admin-page .editor-card label { align-content: start; }
+.admin-page .admin-select-option { display: flex; justify-content: space-between; gap: 12px; }

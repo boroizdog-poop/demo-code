@@ -1,0 +1,9 @@
+function artio_require_resource_login(string $resource, string $library): void {
+    if (artio_user()) return;
+    artio_head('Đăng nhập để xem '.$resource); ?>
+<body class="resource-gate-page"><?php artio_header($library==='courses.php'?'courses':'brush'); ?>
+<main id="main-content" class="resource-gate page-width" data-resource-gate>
+  <p class="eyebrow orange-eyebrow">ARTIO / CREATIVE LIBRARY</p><h1>Đăng nhập để<br><em>mở <?=artio_h($resource)?>.</em></h1>
+  <p>Đăng nhập hoặc tạo tài khoản để khám phá nội dung và lấy tài nguyên từ tác giả.</p>
+  <button class="orange-btn" data-open-auth data-auth-start="login">Đăng nhập / Đăng ký <?=artio_icon('arrow')?></button><a class="text-link" href="<?=artio_h($library)?>">Quay lại thư viện <?=artio_icon('arrow')?></a>
+</main><?php artio_footer(); ?></body></html><?php exit;

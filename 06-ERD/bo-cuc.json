@@ -1,0 +1,245 @@
+{
+  "nodes": [
+    {
+      "name": "users",
+      "x": 65,
+      "y": 110,
+      "w": 440,
+      "h": 240,
+      "rows": [
+        "PK id",
+        "UK email; UK username",
+        "name; password_hash",
+        "role; created_at"
+      ]
+    },
+    {
+      "name": "saved_courses",
+      "x": 675,
+      "y": 110,
+      "w": 420,
+      "h": 210,
+      "rows": [
+        "PK FK user_id",
+        "PK FK course_id",
+        "Khóa chính kép"
+      ]
+    },
+    {
+      "name": "courses",
+      "x": 1270,
+      "y": 110,
+      "w": 450,
+      "h": 320,
+      "rows": [
+        "PK id; UK slug",
+        "FK category_id",
+        "title; level; status; version",
+        "curriculum_json; resource_url",
+        "image_url; updated_at",
+        "category (tên lưu tương thích)"
+      ]
+    },
+    {
+      "name": "brushes",
+      "x": 65,
+      "y": 660,
+      "w": 440,
+      "h": 275,
+      "rows": [
+        "PK id; UK slug",
+        "title; artist; type; tag",
+        "source; image; shared_at",
+        "status; version",
+        "created_at; updated_at"
+      ]
+    },
+    {
+      "name": "comments",
+      "x": 675,
+      "y": 640,
+      "w": 450,
+      "h": 280,
+      "rows": [
+        "PK id; FK user_id",
+        "FK course_id HOẶC FK brush_id",
+        "resource_key; body; hidden",
+        "created_at"
+      ]
+    },
+    {
+      "name": "categories",
+      "x": 1270,
+      "y": 660,
+      "w": 450,
+      "h": 215,
+      "rows": [
+        "PK id",
+        "UK name; UK slug",
+        "sort_order"
+      ]
+    },
+    {
+      "name": "saved_brushes",
+      "x": 65,
+      "y": 1090,
+      "w": 440,
+      "h": 210,
+      "rows": [
+        "PK FK user_id",
+        "PK FK brush_id",
+        "Khóa chính kép"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "p": [
+        [
+          505,
+          205
+        ],
+        [
+          675,
+          205
+        ]
+      ],
+      "label": "1 : N",
+      "x": 555,
+      "y": 185
+    },
+    {
+      "p": [
+        [
+          1095,
+          205
+        ],
+        [
+          1270,
+          205
+        ]
+      ],
+      "label": "N : 1",
+      "x": 1150,
+      "y": 185
+    },
+    {
+      "p": [
+        [
+          285,
+          350
+        ],
+        [
+          285,
+          475
+        ],
+        [
+          615,
+          475
+        ],
+        [
+          615,
+          710
+        ],
+        [
+          675,
+          710
+        ]
+      ],
+      "label": "1 : N",
+      "x": 405,
+      "y": 455
+    },
+    {
+      "p": [
+        [
+          505,
+          805
+        ],
+        [
+          675,
+          805
+        ]
+      ],
+      "label": "1 : N",
+      "x": 555,
+      "y": 785
+    },
+    {
+      "p": [
+        [
+          1125,
+          750
+        ],
+        [
+          1200,
+          750
+        ],
+        [
+          1200,
+          350
+        ],
+        [
+          1270,
+          350
+        ]
+      ],
+      "label": "1 : N",
+      "x": 1133,
+      "y": 540
+    },
+    {
+      "p": [
+        [
+          1495,
+          430
+        ],
+        [
+          1495,
+          660
+        ]
+      ],
+      "label": "N : 1",
+      "x": 1512,
+      "y": 545
+    },
+    {
+      "p": [
+        [
+          285,
+          935
+        ],
+        [
+          285,
+          1090
+        ]
+      ],
+      "label": "1 : N",
+      "x": 305,
+      "y": 1020
+    },
+    {
+      "p": [
+        [
+          65,
+          235
+        ],
+        [
+          25,
+          235
+        ],
+        [
+          25,
+          1195
+        ],
+        [
+          65,
+          1195
+        ]
+      ],
+      "label": "1 : N",
+      "x": 34,
+      "y": 1050
+    }
+  ]
+}

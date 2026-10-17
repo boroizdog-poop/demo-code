@@ -1,0 +1,380 @@
+'use strict';
+const editor = $('#course-editor');
+let dirty = false;
+const dirtyForms = new Set();
+// Keep visual feedback and unsaved-change protection consistent across forms.
+const formRevisions = new WeakMap();
+function trackAdminForm(form) {
+  formRevisions.set(form,0);
+  const changed=()=>{formRevisions.set(form,formRevisions.get(form)+1);dirtyForms.add(form);};
+  form.addEventListener('input',changed);
+  form.addEventListener('change',changed);
+}
+function setAdminBusy(form, busy, activeButton) {
+  if(busy) form.setAttribute('aria-busy','true'); else form.removeAttribute('aria-busy');
+  const buttons=$$('button[type="submit"],button:not([type])',form);
+  const active=activeButton||buttons[0];
+  buttons.forEach(button=>{
+    button.setAttribute('aria-disabled',String(busy));
+    if(busy&&button===active) button.setAttribute('aria-busy','true'); else button.removeAttribute('aria-busy');
+  });
+}
+document.addEventListener('click',event=>{
+  if(event.target.closest('button[aria-disabled="true"]')) event.preventDefault();
+});
+$$('[data-site-settings]').forEach(trackAdminForm);
+const adminNavigation = $('.admin-navigation');
+if(adminNavigation) {
+  const compactNavigation = matchMedia('(max-width: 800px)');
+  adminNavigation.open = !compactNavigation.matches;
+  compactNavigation.addEventListener('change', event => { adminNavigation.open=!event.matches; });
+}
+if(location.hash==='#add-brush') $('#add-brush')?.setAttribute('open','');
+$('[data-open-brush-create]')?.addEventListener('click',event=>{
+  const panel=$('#add-brush');if(!panel)return;
+  event.preventDefault();panel.open=true;
+  panel.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+});
+window.addEventListener('beforeunload', event => { if (dirty || dirtyForms.size) { event.preventDefault(); event.returnValue=''; } });
+const adminSearch = $('#admin-search');
+function filterAdminCourses() {
+  if(!adminSearch) return;
+  const normalize = text => text.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/gi,'d').toLowerCase();
+  const query = normalize(adminSearch.value.trim());
+  const rows = $$('[data-admin-title]');
+  rows.forEach(row => {
+    row.hidden = !normalize(row.dataset.adminTitle).includes(query);
+    if(row.dataset.adminBrushId){
+      const details=document.getElementById('brush-'+row.dataset.adminBrushId);
+      if(details)details.hidden=row.hidden;
+    }
+  });
+  const noResults = $('[data-admin-no-results]');
+  if(noResults) noResults.hidden = !query || rows.some(row => !row.hidden);
+  const clear = $('.admin-search-clear');
+  if(clear) clear.hidden = !adminSearch.value;
+}
+adminSearch?.addEventListener('input', filterAdminCourses);
+$$('[data-admin-search-clear]').forEach(button => button.addEventListener('click', () => {
+  adminSearch.value=''; filterAdminCourses(); adminSearch.focus();
+}));
+const categoryFormsBound=new WeakSet();
+const brushFormsBound=new WeakSet();
+function savedFormId(form, name, value) {
+  let input=form.elements[name];
+  if(!input){input=document.createElement('input');input.type='hidden';input.name=name;form.append(input);}
+  input.value=String(value);
+}
+async function savedAdminDocument(view) {
+  const response=await fetch('admin.php?view='+view,{credentials:'same-origin'});
+  if(!response.ok)throw new Error('Cannot refresh saved record');
+  const page=new DOMParser().parseFromString(await response.text(),'text/html');
+  if(!page.querySelector('.admin-content'))throw new Error('Admin session expired');
+  const csrf=page.querySelector('meta[name="csrf-token"]');if(csrf)$('meta[name="csrf-token"]').content=csrf.content;
+  return page;
+}
+async function refreshSavedCategory(form,id,revision) {
+  const page=await savedAdminDocument('categories');
+  if(revision!==formRevisions.get(form))return;
+  const saved=[...page.querySelectorAll('.categories-admin .category-form')].find(item=>Number(item.elements.id.value)===Number(id));
+  if(!saved)throw new Error('Missing saved category');
+  const list=$('.categories-admin');
+  const existing=$$('.category-form',list).find(item=>Number(item.elements.id.value)===Number(id));
+  if(!existing){list.append(saved);initAdminResourceForms(list);}
+  else if(!dirtyForms.has(existing)){
+    existing.elements.name.value=saved.elements.name.value;existing.elements.slug.value=saved.elements.slug.value;
+  }
+  form.reset();form.elements.id?.remove();dirtyForms.delete(form);
+}
+async function refreshSavedBrush(form,id,revision) {
+  const page=await savedAdminDocument('brushes');
+  const details=page.getElementById('brush-'+id), list=$('.admin-content .admin-course-list');
+  if(!details||!details.previousElementSibling||!list)throw new Error('Missing saved brush');
+  const row=details.previousElementSibling;
+  const existing=document.getElementById('brush-'+id);
+  const isCreation=Boolean(form.closest('#add-brush'));
+  const records=[...page.querySelectorAll('details[id^="brush-"]')];
+  const following=records.slice(records.indexOf(details)+1).map(item=>document.getElementById(item.id)).find(Boolean);
+  const before=following?.previousElementSibling||null;
+  if(existing){
+    existing.previousElementSibling.replaceWith(row);
+    const summary=$('summary',existing), savedSummary=details.querySelector('summary');
+    if(summary&&savedSummary)summary.textContent=savedSummary.textContent;
+    if(existing.nextElementSibling!==before){
+      const focused=document.activeElement;
+      const restoreFocus=focused&&existing.contains(focused);
+      list.insertBefore(row,before);list.insertBefore(existing,before);
+      if(restoreFocus)focused.focus({preventScroll:true});
+    }
+  } else {
+    if(revision!==formRevisions.get(form))return;
+    list.insertBefore(row,before);list.insertBefore(details,before);
+    initAdminResourceForms(details);initAdminSelects(details);
+  }
+  if(isCreation&&revision===formRevisions.get(form)){
+    form.reset();form.elements.id?.remove();form.elements.version?.remove();
+    const preview=$('[data-brush-image-preview]',form), placeholder=$('[data-brush-image-placeholder]',form);
+    if(preview){preview.hidden=true;preview.removeAttribute('src');}if(placeholder)placeholder.hidden=false;
+    const uploadStatus=$('[data-brush-upload-status]',form);if(uploadStatus)uploadStatus.textContent='';
+    dirtyForms.delete(form);
+  }
+  $$('[data-brush-stat]').forEach(stat=>{
+    const saved=page.querySelector('[data-brush-stat="'+stat.dataset.brushStat+'"]');
+    if(saved)stat.textContent=saved.textContent;
+  });
+  filterAdminCourses();
+}
+function initAdminResourceForms(scope=document) {
+  $$('.category-form',scope).filter(form=>!categoryFormsBound.has(form)).forEach(form=>{
+    categoryFormsBound.add(form);trackAdminForm(form);
+    const isCreation=!form.elements.id;
+    form.addEventListener('submit',async event=>{
+      event.preventDefault();if(form.getAttribute('aria-busy')==='true')return;
+      const revision=formRevisions.get(form), status=$('.form-status',form);setAdminBusy(form,true);
+      status.textContent='Đang lưu danh mục...';
+      try {
+        const result=await postApi({action:'category_save',...Object.fromEntries(new FormData(form))});
+        status.textContent=result.message;status.className=result.ok?'form-status form-success':'form-status form-error';
+        if(result.ok){
+          if(result.id)savedFormId(form,'id',result.id);
+          if(revision===formRevisions.get(form))dirtyForms.delete(form);
+          if(isCreation&&result.id&&revision===formRevisions.get(form)){
+            try{await refreshSavedCategory(form,result.id,revision);}catch{status.textContent=result.message+' Danh sách chưa cập nhật; bạn có thể tải lại trang khi thuận tiện.';}
+          }
+        }
+      } finally {setAdminBusy(form,false);}
+    });
+  });
+  const brushForms=$$('[data-brush-form]',scope).filter(form=>!brushFormsBound.has(form));
+  brushForms.forEach(form=>{brushFormsBound.add(form);trackAdminForm(form);});
+brushForms.forEach(form => {
+  const field=form.elements.image;
+  const preview=$('[data-brush-image-preview]',form);
+  const placeholder=$('[data-brush-image-placeholder]',form);
+  const input=$('[data-brush-image-upload]',form);
+  const uploadStatus=$('[data-brush-upload-status]',form);
+  function showImage(url){preview.hidden=!url;placeholder.hidden=Boolean(url);if(url)preview.src=url;}
+  field.addEventListener('change',()=>showImage(/^(https:\/\/|assets\/|uploads\/)/.test(field.value)?field.value:''));
+  input.addEventListener('change',async()=>{
+    const file=input.files[0];if(!file)return;
+    if(form.getAttribute('aria-busy')==='true'){input.value='';return;}
+    if(file.size>6*1024*1024){uploadStatus.textContent='Ảnh tối đa 6 MB.';input.value='';return;}
+    setAdminBusy(form,true);input.disabled=true;uploadStatus.textContent='Đang tải ảnh...';
+    try {
+      const data=new FormData();data.set('action','upload');data.set('image',file);
+      const result=await postApi(data);
+      uploadStatus.textContent=result.ok?'Ảnh đã tải lên. Nhấn Lưu để áp dụng.':result.message;
+      if(result.ok){field.value=result.url;showImage(result.url);field.dispatchEvent(new Event('change',{bubbles:true}));}
+    } catch { uploadStatus.textContent='Không tải được ảnh. Vui lòng thử lại.'; }
+    finally { input.disabled=false;input.value='';setAdminBusy(form,false); }
+  });
+});
+brushForms.forEach(form=>form.addEventListener('submit',async event=>{
+  event.preventDefault();if(form.getAttribute('aria-busy')==='true')return;
+  const revision=formRevisions.get(form), status=$('.form-status',form);setAdminBusy(form,true);status.textContent='Đang lưu brush...';
+  try {
+    const result=await postApi({action:'brush_save',...Object.fromEntries(new FormData(form))});
+    status.textContent=result.message;status.className=result.ok?'form-status form-success':'form-status form-error';
+    if(result.ok){
+      savedFormId(form,'id',result.id);savedFormId(form,'version',result.version);
+      if(revision===formRevisions.get(form))dirtyForms.delete(form);
+      if(revision===formRevisions.get(form)){
+        try{await refreshSavedBrush(form,result.id,revision);}catch{status.textContent=result.message+' Danh sách chưa cập nhật; bạn có thể tải lại trang khi thuận tiện.';}
+      }
+    }
+  } finally {setAdminBusy(form,false);}
+}));
+}
+initAdminResourceForms();
+$$('[data-site-settings]').forEach(form => form.addEventListener('submit', async event => {
+  event.preventDefault();if(form.getAttribute('aria-busy')==='true')return;
+  const revision=formRevisions.get(form);setAdminBusy(form,true);
+  $('[role=status]',form).textContent='Đang lưu đường dẫn...';
+  const result=await postApi({action:'site_settings',...Object.fromEntries(new FormData(form))});
+  const status=$('[role=status]',form);status.textContent=result.message;
+  status.className=result.ok?'form-status form-success':'form-status form-error';setAdminBusy(form,false);
+  if(result.ok&&revision===formRevisions.get(form))dirtyForms.delete(form);
+}));
+$$('[data-site-content]').forEach(form => {
+  const state = $('[data-save-state]',form);
+  const previewTitle = $('[data-section-preview-title]');
+  const previewImage = $('[data-section-preview-image]');
+  let revision = 0;
+  let activeUploads = 0;
+  function updatePreview() {
+    const titleField=form.elements[form.dataset.previewTitle];
+    const imageField=form.elements[form.dataset.previewImage];
+    if(previewTitle && titleField) previewTitle.textContent=titleField.value;
+    if(previewImage && imageField && /^(https:\/\/|assets\/|uploads\/)/.test(imageField.value) && previewImage.getAttribute('src')!==imageField.value) previewImage.src=imageField.value;
+  }
+  function markChanged() {
+    revision++; dirtyForms.add(form);
+    if(state){state.textContent='Chưa lưu';state.classList.add('is-unsaved');}
+    updatePreview();
+  }
+  form.addEventListener('input',markChanged);
+  $$('[data-content-field] input[name]',form).forEach(input=>input.addEventListener('change',()=>{
+    if(/^(https:\/\/|assets\/|uploads\/)/.test(input.value)) $('img',input.closest('[data-content-field]')).src=input.value;
+  }));
+  form.addEventListener('submit',async event=>{
+    event.preventDefault();if(activeUploads||form.getAttribute('aria-busy')==='true')return;setAdminBusy(form,true);
+    const submittedRevision=revision;
+    const status=$('[role="status"]',form);status.textContent='Đang lưu nội dung...';
+    const result=await postApi({action:'site_content_save',...Object.fromEntries(new FormData(form))});
+    status.textContent=result.message;
+    if(result.ok && revision===submittedRevision){dirtyForms.delete(form);if(state){state.textContent='Đã lưu';state.classList.remove('is-unsaved');}}
+    status.className=result.ok?'form-status form-success':'form-status form-error';setAdminBusy(form,false);
+  });
+  $$('[data-content-upload]',form).forEach(input=>input.addEventListener('change',async()=>{
+    const file=input.files[0];if(!file)return;
+    const status=$('[role="status"]',form);
+    if(file.size>6*1024*1024){status.textContent='Ảnh tối đa 6 MB.';input.value='';return;}
+    activeUploads++;setAdminBusy(form,true);input.disabled=true;status.textContent='Đang tải ảnh...';
+    const data=new FormData();data.set('action','upload');data.set('image',file);
+    const result=await postApi(data);
+    status.textContent=result.ok?'Ảnh đã tải lên. Nhấn Lưu nội dung để áp dụng.':result.message;
+    if(result.ok){form.elements[input.dataset.contentUpload].value=result.url;$('img',input.closest('[data-content-field]')).src=result.url;markChanged();}
+    activeUploads--;if(!activeUploads)setAdminBusy(form,false);input.disabled=false;input.value='';
+  }));
+});
+if (editor) {
+  const chapters = JSON.parse($('#editor-data').textContent);
+  const builder = $('#chapters-builder');
+  let uploading = false;
+  let saving = false;
+  let courseRevision = 0;
+  function field(labelText, value, onChange, {type='text', multiline=false, maxLength=190}={}) {
+    const label=document.createElement('label');label.append(document.createTextNode(labelText));
+    const input=document.createElement(multiline?'textarea':'input');
+    if(!multiline)input.type=type;else input.rows=3;
+    if(type==='number'){input.min=0;input.max=1440;}else input.maxLength=maxLength;
+    input.value=value??'';input.addEventListener('input',()=>{onChange(type==='number'?Number(input.value):input.value);dirty=true;updateSummary();});
+    label.append(input);return label;
+  }
+  function action(text, fn, label) { const button=document.createElement('button');button.type='button';button.textContent=text;button.className='builder-action';if(label)button.setAttribute('aria-label',label);button.addEventListener('click',()=>{fn();dirty=true;courseRevision++;render();});return button; }
+  function move(list,index,delta){const target=index+delta;if(target>=0&&target<list.length)[list[index],list[target]]=[list[target],list[index]];}
+  function updateSummary(){const count=chapters.reduce((sum,c)=>sum+c.lessons.length,0);const mins=chapters.reduce((sum,c)=>sum+c.lessons.reduce((n,l)=>n+(l.minutes||0),0),0);$('#curriculum-summary').textContent=`${chapters.length} chương · ${count} bài học · ${mins} phút (tự động tính)`;}
+  function render(){
+    builder.replaceChildren();
+    chapters.forEach((chapter,ci)=>{
+      const section=document.createElement('section');section.className='builder-chapter';
+      const heading=document.createElement('div');heading.className='builder-chapter-heading';
+      heading.append(field(`Chương ${ci+1}`,chapter.title,value=>chapter.title=value));
+      const controls=document.createElement('div');controls.className='builder-controls';
+      controls.append(action('↑',()=>move(chapters,ci,-1),'Đưa chương lên'),action('↓',()=>move(chapters,ci,1),'Đưa chương xuống'),action('Bỏ chương',()=>{if(confirm('Bỏ chương này và các bài học bên trong? Thay đổi chỉ áp dụng khi bạn lưu.'))chapters.splice(ci,1);}));heading.append(controls);section.append(heading);
+      chapter.lessons.forEach((lesson,li)=>{
+        const row=document.createElement('details');row.className='builder-lesson';row.open=!lesson.title;
+        const summary=document.createElement('summary');summary.textContent=`${ci+1}.${li+1}  ${lesson.title||'Bài học mới'}`;row.append(summary);
+        const grid=document.createElement('div');grid.className='editor-grid';
+        grid.append(field('Tên bài học',lesson.title,value=>{lesson.title=value;summary.textContent=`${ci+1}.${li+1}  ${value}`;}),field('Thời lượng (phút)',lesson.minutes,value=>lesson.minutes=value,{type:'number'}));
+        const url=field('Link video (không bắt buộc)',lesson.url,value=>lesson.url=value,{type:'url',maxLength:2000});url.classList.add('span-2');grid.append(url);
+        const content=field('Nội dung / bài tập',lesson.content,value=>lesson.content=value,{multiline:true,maxLength:30000});content.classList.add('span-2');grid.append(content);
+        const free=document.createElement('label');free.className='checkbox-label';const checkbox=document.createElement('input');checkbox.type='checkbox';checkbox.checked=Boolean(lesson.free);checkbox.addEventListener('change',()=>{lesson.free=checkbox.checked;dirty=true;});free.append(checkbox,document.createTextNode('Cho phép xem trước miễn phí'));grid.append(free);
+        const tools=document.createElement('div');tools.className='builder-controls';tools.append(action('↑',()=>move(chapter.lessons,li,-1),'Đưa bài lên'),action('↓',()=>move(chapter.lessons,li,1),'Đưa bài xuống'),action('Bỏ bài',()=>{if(confirm('Bỏ bài học này? Thay đổi chỉ áp dụng khi bạn lưu.'))chapter.lessons.splice(li,1);}));grid.append(tools);row.append(grid);section.append(row);
+      });
+      section.append(action('+ Thêm bài học',()=>chapter.lessons.push({title:'',minutes:10,url:'',content:'',free:false})));builder.append(section);
+    });updateSummary();
+  }
+  render();$('#add-chapter').addEventListener('click',()=>{chapters.push({title:'Chương mới',lessons:[]});dirty=true;courseRevision++;render();});
+  editor.addEventListener('input',()=>{dirty=true;courseRevision++;});
+  let slugEdited=Boolean(editor.elements.slug.value);
+  editor.elements.slug.addEventListener('input',()=>slugEdited=true);
+  editor.elements.title.addEventListener('input',()=>{if(!slugEdited)editor.elements.slug.value=editor.elements.title.value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/gi,'d').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');});
+  function coverPreview(url){const image=$('#cover-preview');image.hidden=!url;$('#cover-placeholder').hidden=Boolean(url);if(url)image.src=url;}
+  editor.elements.image_url.addEventListener('change',()=>{const url=editor.elements.image_url.value;if(url.startsWith('https://')||/^(assets|uploads)\//.test(url))coverPreview(url);else coverPreview('');});
+  $('#image-upload').addEventListener('change',async event=>{
+    const file=event.target.files[0];if(!file)return;
+    if(file.size>6*1024*1024){$('#upload-status').textContent='Ảnh tối đa 6 MB.';return;}
+    uploading=true;setAdminBusy(editor,true);$('#upload-status').textContent='Đang tải ảnh...';
+    const data=new FormData();data.set('action','upload');data.set('image',file);const result=await postApi(data);
+    $('#upload-status').textContent=result.message;
+    if(result.ok){editor.elements.image_url.value=result.url;coverPreview(result.url);dirty=true;courseRevision++;}
+    uploading=false;if(!saving)setAdminBusy(editor,false);
+  });
+  editor.addEventListener('submit',async event=>{
+    event.preventDefault();if(uploading||saving)return;
+    saving=true;const revision=courseRevision;setAdminBusy(editor,true,event.submitter);
+    const status=event.submitter?.value||'draft';const values=Object.fromEntries(new FormData(editor));
+    $('#editor-status').textContent='Đang lưu...';
+    const result=await postApi({action:'course_save',...values,status,curriculum:chapters});
+    $('#editor-status').textContent=result.message;$('#editor-status').classList.toggle('success',result.ok);
+    if(result.ok){dirty=courseRevision!==revision;editor.elements.id.value=result.id;editor.elements.version.value=result.version;$('#preview-link').hidden=false;$('#preview-link').href=`course.php?id=${result.id}&preview=1`;history.replaceState(null,'',`admin.php?edit=${result.id}`);}
+    saving=false;if(!uploading)setAdminBusy(editor,false);
+  });
+}
+
+// Desktop select uses the same field style and existing native form value.
+// Touch devices retain the system picker. Popovers live outside clipping cards.
+let adminSelectSequence=0;
+function initAdminSelects(scope=document) {
+if ('showPopover' in HTMLElement.prototype) {
+  const desktopSelect = matchMedia('(min-width: 801px) and (pointer: fine)');
+  $$('select',scope).filter(select=>!select.dataset.adminSelectReady).forEach(select => {
+    select.dataset.adminSelectReady='true';
+    const index=adminSelectSequence++;
+    const label = select.closest('label');
+    const fieldName = label ? [...label.childNodes].filter(n=>n.nodeType===Node.TEXT_NODE).map(n=>n.textContent).join('').trim() : select.name;
+    const button = document.createElement('button');
+    button.type='button'; button.className='admin-select-trigger';
+    button.setAttribute('role','combobox');button.setAttribute('aria-haspopup','listbox');button.setAttribute('aria-expanded','false');
+    const value = document.createElement('span');
+    const chevron = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    chevron.setAttribute('viewBox','0 0 24 24');chevron.setAttribute('aria-hidden','true');
+    chevron.innerHTML='<path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.5"/>';
+    button.append(value,chevron);select.after(button);
+    const list=document.createElement('div');list.className='admin-select-options';list.id=`admin-select-${index}`;
+    list.setAttribute('popover','auto');list.setAttribute('role','listbox');list.setAttribute('aria-label',fieldName);
+    button.setAttribute('aria-controls',list.id);document.body.append(list);
+    const options=[...select.options].map((option, i)=>{
+      const item=document.createElement('button');item.type='button';item.className='admin-select-option';
+      item.setAttribute('role','option');item.setAttribute('aria-label',option.textContent);item.textContent=option.textContent;item.disabled=option.disabled;
+      item.addEventListener('click',()=>{
+        select.selectedIndex=i;
+        select.dispatchEvent(new Event('input',{bubbles:true}));select.dispatchEvent(new Event('change',{bubbles:true}));
+        sync();list.hidePopover();button.focus();
+      });list.append(item);return item;
+    });
+    function sync() {
+      value.textContent=select.selectedOptions[0]?.textContent||'';
+      button.setAttribute('aria-label',`${fieldName}: ${value.textContent}`);button.disabled=select.disabled;
+      options.forEach((item,i)=>item.setAttribute('aria-selected',String(i===select.selectedIndex)));
+    }
+    function focusOption(i) { if(options[i]&&!options[i].disabled) options[i].focus(); }
+    function open() {
+      const rect=button.getBoundingClientRect();
+      list.style.width=`${rect.width}px`;list.style.left=`${Math.max(8,Math.min(rect.left,innerWidth-rect.width-8))}px`;
+      const availableBelow=Math.max(0,innerHeight-rect.bottom-12), availableAbove=Math.max(0,rect.top-12);
+      // Measure the displayed picker rather than the zero-height hidden popover.
+      sync();list.style.maxHeight='304px';list.style.top=`${rect.bottom+8}px`;list.style.bottom='auto';list.showPopover();
+      const openBelow=availableBelow>=Math.min(304,list.scrollHeight)||availableBelow>=availableAbove;
+      list.style.maxHeight=`${Math.min(304,openBelow?availableBelow:availableAbove)}px`;
+      if(openBelow){list.style.top=`${rect.bottom+8}px`;list.style.bottom='auto';}
+      else {list.style.top='auto';list.style.bottom=`${innerHeight-rect.top+8}px`;}
+      button.setAttribute('aria-expanded','true');
+      const selected=options[select.selectedIndex];selected?.scrollIntoView({block:'nearest'});focusOption(select.selectedIndex);
+    }
+    button.addEventListener('click',()=>{if(list.matches(':popover-open'))list.hidePopover();else open();});
+    button.addEventListener('keydown',event=>{if(['ArrowDown','ArrowUp'].includes(event.key)){event.preventDefault();open();}});
+    let typeahead='', typeaheadTimer;
+    list.addEventListener('keydown',event=>{
+      const current=options.indexOf(document.activeElement);
+      if(event.key==='ArrowDown'||event.key==='ArrowUp'){event.preventDefault();focusOption((current+(event.key==='ArrowDown'?1:-1)+options.length)%options.length);}
+      else if(event.key==='Home'){event.preventDefault();focusOption(0);}
+      else if(event.key==='End'){event.preventDefault();focusOption(options.length-1);}
+      else if(event.key==='Escape'||event.key==='Tab'){list.hidePopover();button.focus();if(event.key==='Escape')event.preventDefault();}
+      else if(event.key.length===1&&event.key!==' '){
+        typeahead+=event.key.toLocaleLowerCase('vi');clearTimeout(typeaheadTimer);typeaheadTimer=setTimeout(()=>typeahead='',600);
+        const next=options.findIndex(item=>item.textContent.toLocaleLowerCase('vi').startsWith(typeahead));focusOption(next);
+      }
+    });
+    list.addEventListener('toggle',event=>button.setAttribute('aria-expanded',String(event.newState==='open')));
+    select.addEventListener('change',sync);
+    function responsive() {list.hidePopover();select.hidden=desktopSelect.matches;button.hidden=!desktopSelect.matches;sync();}
+    desktopSelect.addEventListener('change',responsive);responsive();
+    window.addEventListener('resize',()=>list.hidePopover());
+    window.addEventListener('scroll',()=>{if(list.matches(':popover-open'))list.hidePopover();},{passive:true});
+  });
+}
+
+}
+initAdminSelects($('.admin-content')||document);

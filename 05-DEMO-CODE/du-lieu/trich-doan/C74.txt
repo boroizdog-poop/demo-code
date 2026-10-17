@@ -1,0 +1,32 @@
+:is(.mobile-nav,.starter-carousel,.detail-section-nav,.auth-dialog,.lesson-dialog) { scrollbar-width: none; }
+:is(.mobile-nav,.starter-carousel,.detail-section-nav,.auth-dialog,.lesson-dialog)::-webkit-scrollbar { display: none; }
+html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; width: 0; height: 0; }
+body { animation: page-enter 300ms var(--ease-out) both; }
+a, select, input, textarea { text-align: inherit; }
+.orange-btn, .outline-btn, .outline-light, .maku-login, .hero-register { line-height: 1.2; }
+
+@keyframes page-enter { from { opacity: 0; } to { opacity: 1; } }
+@keyframes hero-letter-enter { from { opacity: 0; transform: translateY(0.6em); } to { opacity: 1; transform: none; } }
+@keyframes hero-float-enter { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+
+/* The dark artwork frame follows the reference and fills the first viewport. */
+.gallery-home .immersive-hero {
+  width: 100%;
+  height: 100svh;
+  min-height: 0;
+  margin: 0 auto 112px;
+  border-radius: 0;
+}
+.immersive-hero .hero-copy h1 {
+  font-family: var(--hero-title);
+  font-weight: 500;
+  font-size: clamp(68px, 7.326vw, 105.5px);
+  line-height: 1.60284;
+  letter-spacing: 0;
+}
+.hero-copy h1 .hero-letter { color: inherit; font-size: inherit; line-height: inherit; letter-spacing: inherit; }
+.hero-letter { display: inline-block; opacity: 0; animation: hero-letter-enter 620ms var(--ease-out) both; animation-delay: calc(var(--letter-index) * 38ms + 120ms); }
+.immersive-hero .hero-header { animation: hero-float-enter 500ms var(--ease-out) 60ms both; }
+.hero-resource-label, .hero-explore { animation: hero-float-enter 560ms var(--ease-out) 340ms both; }
+.hero-floating-art { animation: hero-float-enter 620ms var(--ease-out) 300ms both; }
+.hero-floating-two { animation-delay: 380ms; }
